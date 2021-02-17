@@ -11,6 +11,8 @@ import { HotelsListComponent } from './components/hotels-list/hotels-list.compon
 import { UpdateHotelComponent } from './components/update-hotel/update-hotel.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './material.module';
+import { HttpClientModule } from '@angular/common/http';
+import { ApiService } from './shared/api.service';
 
 @NgModule({
   declarations: [
@@ -22,13 +24,14 @@ import { AngularMaterialModule } from './material.module';
     HotelsListComponent,
     UpdateHotelComponent,
   ],
-  imports: [
+  imports: [ 
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
