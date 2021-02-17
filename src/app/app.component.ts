@@ -9,8 +9,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 export class AppComponent {
   title='admin-dashboard';
   opened = true;
-  @ViewChild('sidenav') sidenav: MatSidenav;
-
+  @ViewChild('sidenav', { static: true }) sidenav: MatSidenav;
   ngOnInit() {
     console.log(window.innerWidth)
     if (window.innerWidth < 768) {
