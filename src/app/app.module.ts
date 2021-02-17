@@ -21,12 +21,12 @@ import { AngularMaterialModule } from './material.module';
     AddHotelComponent,
     HotelsListComponent,
     UpdateHotelComponent,
-    AngularMaterialModule
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AngularMaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent],

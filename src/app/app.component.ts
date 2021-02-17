@@ -7,6 +7,7 @@ import { MatSidenav } from '@angular/material/sidenav';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  title='admin-dashboard';
   opened = true;
   @ViewChild('sidenav') sidenav: MatSidenav;
 

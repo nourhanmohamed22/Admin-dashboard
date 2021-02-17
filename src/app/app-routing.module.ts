@@ -8,7 +8,7 @@ import { UpdateHotelComponent } from './components/update-hotel/update-hotel.com
 import { UpdateRestaurantComponent } from './components/update-restaurant/update-restaurant.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'add-restaurant' },
+  { path: '', pathMatch: 'full', redirectTo: '' },
   { path: 'add-restaurant', component: AddRestaurantComponent },
   { path: 'update-restaurant/:id', component: UpdateRestaurantComponent },
   { path: 'restaurant-list', component: RestaurantsListComponent },
