@@ -21,7 +21,7 @@ mongoose.connect(dataBaseConfig.db, {
 // Set up express js port
 const restaurantRoute = require('./routes/restaurant.route')
 // edited
-const hotelRoute = require('./routes/hotel.route')
+/* const hotelRoute = require('./routes/hotel.route') */
 
 const app = express();
 app.use(bodyParser.json());
@@ -36,7 +36,7 @@ app.use(express.static(path.join(__dirname, 'dist/admin_dashboard')));
 
 // RESTful API root
 /// edited   /////////
-app.use('/api', restaurantRoute,hotelRoute)
+app.use('/api', restaurantRoute)
 
 // PORT
 const port = process.env.PORT || 8000;

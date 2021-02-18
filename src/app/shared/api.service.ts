@@ -56,7 +56,7 @@ export class ApiService {
 
   /* ******************** */
  // Add hotel
- AddHotel(data: Hotel): Observable<any> {
+/*  AddHotel(data: Hotel): Observable<any> {
   let API_URL = `${this.endpoint}/add-hotel`;
   return this.http.post(API_URL, data)
     .pipe(
@@ -94,7 +94,7 @@ GetHotels() {
       .pipe(
         catchError(this.errorMgmt)
       )
-  }
+  } */
   /* **************** */
 
   
