@@ -46,7 +46,7 @@ languageSpoken:{
     type:Array
 }
 }, {
-  collection: 'restaurants'
+  collection: 'hotels'
 })
 
-module.exports = mongoose.model('Restaurant', Restaurant)
+module.exports = mongoose.model('Hotel', Hotel)
