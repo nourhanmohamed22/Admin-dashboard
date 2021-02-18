@@ -1,11 +1,14 @@
 <mat-toolbar color="primary" class="header">
-  <div>Tripadvisor Records</div>
+  <img class="logo" src="https://static.tacdn.com/img2/brand_refresh/Tripadvisor_lockup_horizontal_secondary_registered.svg">
+  <div>
+    <h1>Tripadvisor Records</h1>
+  </div> 
   <span class="nav-tool-items">
     <mat-icon (click)="sidenav.toggle()" class="hamburger">menu</mat-icon>
   </span>
 </mat-toolbar>
 
-<mat-sidenav-container>
+<mat-sidenav-container> 
   <!-- Sidenav -->
   <mat-sidenav #sidenav [mode]="isBiggerScreen() ? 'over' : 'side'" [(opened)]="opened" [fixedInViewport]="true"
     [fixedTopGap]>
