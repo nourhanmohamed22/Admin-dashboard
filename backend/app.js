@@ -35,7 +35,7 @@ app.use(express.static(path.join(__dirname, 'dist/admin_dashboard')));
 
 
 // RESTful API root
-/// edited   /////////
+
 app.use('/api', restaurantRoute)
 
 // PORT

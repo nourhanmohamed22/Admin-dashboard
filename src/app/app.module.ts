@@ -1,6 +1,6 @@
 import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AddRestaurantComponent } from './components/add-restaurant/add-restaurant.component';
@@ -12,8 +12,14 @@ import { UpdateHotelComponent } from './components/update-hotel/update-hotel.com
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './material.module';
 import { HttpClientModule } from '@angular/common/http';
+<<<<<<< HEAD
 import { ApiService } from './shared/api.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+=======
+import { ApiService } from './shared/api.service'; 
+
+
+>>>>>>> 83b23fd4c02e5f597b55881720dd6c3aaec14c44
 
 @NgModule({
   declarations: [
@@ -24,6 +30,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AddHotelComponent,
     HotelsListComponent,
     UpdateHotelComponent,
+  
   ],
   imports: [ 
     BrowserModule,
@@ -32,7 +39,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AngularMaterialModule,
     HttpClientModule,
     ReactiveFormsModule,
+<<<<<<< HEAD
     FormsModule
+=======
+    FormsModule,
+    
+  
+>>>>>>> 83b23fd4c02e5f597b55881720dd6c3aaec14c44
   ],
   providers: [ApiService],
   bootstrap: [AppComponent],
