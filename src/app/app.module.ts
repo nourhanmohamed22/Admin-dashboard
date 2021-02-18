@@ -1,6 +1,6 @@
 import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AddRestaurantComponent } from './components/add-restaurant/add-restaurant.component';
@@ -12,7 +12,9 @@ import { UpdateHotelComponent } from './components/update-hotel/update-hotel.com
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './material.module';
 import { HttpClientModule } from '@angular/common/http';
-import { ApiService } from './shared/api.service';
+import { ApiService } from './shared/api.service'; 
+
+
 
 @NgModule({
   declarations: [
@@ -23,13 +25,18 @@ import { ApiService } from './shared/api.service';
     AddHotelComponent,
     HotelsListComponent,
     UpdateHotelComponent,
+  
   ],
   imports: [ 
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
+    
+  
   ],
   providers: [ApiService],
   bootstrap: [AppComponent],
