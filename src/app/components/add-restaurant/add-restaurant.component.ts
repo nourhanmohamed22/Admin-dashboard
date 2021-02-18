@@ -38,7 +38,7 @@ export class AddRestaurantComponent implements OnInit {
   establishmentArray:Establishment[]=[];
   cuisineArray:Cuisine[]=[];
   dietaryArray:Dietary[]=[];
-mealArray:Meal[]=[];
+  mealArray:Meal[]=[];
   SectioinArray: any = ['A', 'B', 'C', 'D', 'E'];
 
   ngOnInit(): void {

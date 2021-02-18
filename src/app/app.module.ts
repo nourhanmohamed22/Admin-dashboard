@@ -12,14 +12,8 @@ import { UpdateHotelComponent } from './components/update-hotel/update-hotel.com
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './material.module';
 import { HttpClientModule } from '@angular/common/http';
-<<<<<<< HEAD
 import { ApiService } from './shared/api.service';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-=======
-import { ApiService } from './shared/api.service'; 
 
-
->>>>>>> 83b23fd4c02e5f597b55881720dd6c3aaec14c44
 
 @NgModule({
   declarations: [
@@ -39,13 +33,8 @@ import { ApiService } from './shared/api.service';
     AngularMaterialModule,
     HttpClientModule,
     ReactiveFormsModule,
-<<<<<<< HEAD
     FormsModule
-=======
-    FormsModule,
-    
-  
->>>>>>> 83b23fd4c02e5f597b55881720dd6c3aaec14c44
+
   ],
   providers: [ApiService],
   bootstrap: [AppComponent],
