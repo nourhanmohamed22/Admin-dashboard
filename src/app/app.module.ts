@@ -3,16 +3,22 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularMaterialModule } from './material.module';
+import { HttpClientModule } from '@angular/common/http';
+
+
+/// Components
 import { AddRestaurantComponent } from './components/add-restaurant/add-restaurant.component';
 import { UpdateRestaurantComponent } from './components/update-restaurant/update-restaurant.component';
 import { RestaurantsListComponent } from './components/restaurants-list/restaurants-list.component';
 import { AddHotelComponent } from './components/add-hotel/add-hotel.component';
 import { HotelsListComponent } from './components/hotels-list/hotels-list.component';
 import { UpdateHotelComponent } from './components/update-hotel/update-hotel.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AngularMaterialModule } from './material.module';
-import { HttpClientModule } from '@angular/common/http';
+
+/// api services
 import { ApiService } from './shared/api.service';
+import { Api2Service } from './shared/api2.service';
 
 
 @NgModule({
@@ -36,7 +42,7 @@ import { ApiService } from './shared/api.service';
     FormsModule
 
   ],
-  providers: [ApiService],
+  providers: [ApiService,Api2Service],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

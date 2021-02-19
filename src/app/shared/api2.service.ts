@@ -1,31 +1,33 @@
 import { Injectable } from '@angular/core';
-import { Restaurant } from './restaurant';
+import { Hotel } from './hotel';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService {
-  endpoint: string = 'http://localhost:8000/api';
+export class Api2Service {
+
+  endpoint: string = 'http://localhost:8008/api';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   constructor(private http: HttpClient) { }
 
-   // Add restaurant
-   AddRestaurant(data: Restaurant): Observable<any> {
-    let API_URL = `${this.endpoint}/add-restaurant`;
+   // Add hotel
+   AddHotel(data: Hotel): Observable<any> {
+    let API_URL = `${this.endpoint}/add-hotel`;
     return this.http.post(API_URL, data)
       .pipe(
         catchError(this.errorMgmt)
       ) 
   }
-  // Get all restaurants
-  GetRestaurants() {
+   // Get all hotels
+  GetHotels() {
     return this.http.get(`${this.endpoint}`);
   }
    // Get restaurant
-   GetRestaurant(id): Observable<any> {
-    let API_URL = `${this.endpoint}/read-restaurant/${id}`;
+   GetHotel(id): Observable<any> {
+    let API_URL = `${this.endpoint}/read-hotel/${id}`;
     return this.http.get(API_URL, { headers: this.headers })
       .pipe(
         map((res: Response) => {
@@ -34,18 +36,18 @@ export class ApiService {
         catchError(this.errorMgmt)
       )
   }
-    // Update restaurant
-    UpdateRestaurant(id, data): Observable<any> {
-      let API_URL = `${this.endpoint}/update-restaurant/${id}`;
+    // Update hotel
+    UpdateHotel(id, data): Observable<any> {
+      let API_URL = `${this.endpoint}/update-hotel/${id}`;
       return this.http.put(API_URL, data, { headers: this.headers })
         .pipe(
           catchError(this.errorMgmt)
         )
     }
   
-    // Delete restaurant
-    DeleteRestaurant(id): Observable<any> {
-      var API_URL = `${this.endpoint}/delete-restaurant/${id}`;
+     // Delete hotel
+     DeleteHotel(id): Observable<any> {
+      var API_URL = `${this.endpoint}/delete-hotel/${id}`;
       return this.http.delete(API_URL)
         .pipe(
           catchError(this.errorMgmt)
@@ -66,3 +68,7 @@ export class ApiService {
     return throwError(errorMessage);
   }
 }
+
+
+
+  
