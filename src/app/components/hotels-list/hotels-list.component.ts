@@ -26,7 +26,7 @@ export class HotelsListComponent implements OnInit {
     }
   
     ngOnInit() { }
-  
+
     DeleteHotel(index: number, e){
       if(window.confirm('Are you sure')) {
         const data = this.dataSource.data;

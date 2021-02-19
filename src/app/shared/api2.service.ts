@@ -47,7 +47,7 @@ export class Api2Service {
   
      // Delete hotel
      DeleteHotel(id): Observable<any> {
-      var API_URL = `${this.endpoint}/delete-restaurant/${id}`;
+      var API_URL = `${this.endpoint}/delete-hotel/${id}`;
       return this.http.delete(API_URL)
         .pipe(
           catchError(this.errorMgmt)
