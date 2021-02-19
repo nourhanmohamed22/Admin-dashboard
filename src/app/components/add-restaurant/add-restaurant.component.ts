@@ -182,8 +182,8 @@ export class AddRestaurantComponent implements OnInit {
     }  
       /* Submit book */
   submitRestaurantForm() {
-    
     if (this.restaurantForm.valid) {
+      console.log("pressed");
       this.restaurantApi.AddRestaurant(this.restaurantForm.value).subscribe(res => {
         this.ngZone.run(() => this.router.navigateByUrl('/restaurant-list'))
       }, (error) => {

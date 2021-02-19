@@ -37,7 +37,7 @@ export class Api2Service {
       )
   }
     // Update hotel
-    UpdateRestaurantHotel(id, data): Observable<any> {
+    UpdateHotel(id, data): Observable<any> {
       let API_URL = `${this.endpoint}/update-hotel/${id}`;
       return this.http.put(API_URL, data, { headers: this.headers })
         .pipe(

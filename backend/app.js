@@ -65,7 +65,8 @@ app.use(function (err, req, res, next) {
   res.status(err.statusCode).send(err.message);
 });
 
-// edited
+
+// edited hotel 
 const hotelRoute = require('./routes/hotel.route')
 const app2 = express();
 app2.use(bodyParser.json());

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Restaurant } from './restaurant';
-import { Hotel } from './hotel';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
@@ -52,15 +51,6 @@ export class ApiService {
           catchError(this.errorMgmt)
         )
     }
-  
-   // Delete restaurant
-   DeleteHotel(id): Observable<any> {
-    var API_URL = `${this.endpoint}/delete-restaurant/${id}`;
-    return this.http.delete(API_URL)
-      .pipe(
-        catchError(this.errorMgmt)
-      )
-  }
   
      // Error handling 
   errorMgmt(error: HttpErrorResponse) {
