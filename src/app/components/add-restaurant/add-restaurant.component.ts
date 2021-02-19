@@ -31,6 +31,10 @@ export class AddRestaurantComponent implements OnInit {
   removable = true;
   addOnBlur = true;
   @ViewChild('chipList') chipList;
+  @ViewChild('chipList2') chipList2;
+  @ViewChild('chipList3') chipList3;
+  @ViewChild('chipList4') chipList4;
+  @ViewChild('chipList5') chipList5;
   @ViewChild('resetRestaurantForm') myNgForm;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   restaurantForm: FormGroup;
@@ -39,7 +43,7 @@ export class AddRestaurantComponent implements OnInit {
   cuisineArray:Cuisine[]=[];
   dietaryArray:Dietary[]=[];
   mealArray:Meal[]=[];
-  SectioinArray: any = ['A', 'B', 'C', 'D', 'E'];
+  
 
   ngOnInit(): void {
     this.submitBookForm();
@@ -47,7 +51,9 @@ export class AddRestaurantComponent implements OnInit {
   constructor(    public fb: FormBuilder,
     private router: Router,
     private ngZone: NgZone,
-    private restaurantApi: ApiService) { }
+    private restaurantApi: ApiService) { 
+      this.submitBookForm();
+    }
     /* Reactive book form */
     submitBookForm() {
       this.restaurantForm = this.fb.group({
@@ -61,15 +67,15 @@ export class AddRestaurantComponent implements OnInit {
         dietary_restrictions:[this.dietaryArray],
         location:['', [Validators.required]],
         phone:['', [Validators.required]],
-        
+           
       })
     }
-    /* Add dynamic languages */
+    /* Add restaurant feature */
   add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
     // Add feature
-    if ((value || '').trim() && this.featuresArray.length < 5) {
+    if ((value || '').trim() && this.featuresArray.length < 10) {
       this.featuresArray.push({ name: value.trim() })
     }
     
@@ -78,11 +84,96 @@ export class AddRestaurantComponent implements OnInit {
       input.value = '';
     }
   }
-  /* Remove dynamic languages */
+  /* Remove restaurant feature */
   remove(feature: Feature): void {
     const index = this.featuresArray.indexOf(feature);
     if (index >= 0) {
       this.featuresArray.splice(index, 1);
+    }
+  }
+  
+   /* Add establishment type*/
+   addEstablishment(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+    // Add establishment
+    if ((value || '').trim() && this.establishmentArray.length < 10) {
+      this.establishmentArray.push({ name: value.trim() })
+    }
+    
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+  }
+  /* Remove establishment type */
+  removeEstablishment(establishment: Establishment): void {
+    const index = this.establishmentArray.indexOf(establishment);
+    if (index >= 0) {
+      this.establishmentArray.splice(index, 1);
+    }
+  }
+   /* Add meals */
+   addMeals(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+    // Add Meals
+    if ((value || '').trim() && this.mealArray.length < 10) {
+      this.mealArray.push({ name: value.trim() })
+    }
+    
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+  }
+  /* Remove meals */
+  removeMeals(meal: Meal): void {
+    const index = this.mealArray.indexOf(meal);
+    if (index >= 0) {
+      this.mealArray.splice(index, 1);
+    }
+  }
+  /* Add cuisines*/
+  addCuisine(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+    // Add Cuisines
+    if ((value || '').trim() && this.cuisineArray.length < 10) {
+      this.cuisineArray.push({ name: value.trim() })
+    }
+    
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+  }
+  /* Remove meals */
+  removeCuisines(cuisine: Cuisine): void {
+    const index = this.cuisineArray.indexOf(cuisine);
+    if (index >= 0) {
+      this.cuisineArray.splice(index, 1);
+    }
+  }
+   /* Add restrictions*/
+   addRestriction(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+    // Add Restrictions
+    if ((value || '').trim() && this.dietaryArray.length < 10) {
+      this.dietaryArray.push({ name: value.trim() })
+    }
+    
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+  }
+  /* Remove restrictions */
+  removeRestriction(dietary: Dietary): void {
+    const index = this.dietaryArray.indexOf(dietary);
+    if (index >= 0) {
+      this.dietaryArray.splice(index, 1);
     }
   }
     /* Get errors */
@@ -91,10 +182,13 @@ export class AddRestaurantComponent implements OnInit {
     }  
       /* Submit book */
   submitRestaurantForm() {
+    
     if (this.restaurantForm.valid) {
       this.restaurantApi.AddRestaurant(this.restaurantForm.value).subscribe(res => {
         this.ngZone.run(() => this.router.navigateByUrl('/restaurant-list'))
-      });
+      }, (error) => {
+        console.log(error); 
+      }); 
     }
   }
 }

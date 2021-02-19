@@ -30,7 +30,7 @@ app.use(bodyParser.urlencoded({
 app.use(cors());
 
 // Setting up static directory
-app.use(express.static(path.join(__dirname, 'dist/admin_dashboard')));
+app.use(express.static(path.join(__dirname, 'dist/AdminDashboard')));
 
 
 // RESTful API root
