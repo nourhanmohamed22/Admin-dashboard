@@ -6,9 +6,9 @@ let Restaurant = new Schema({
     name:{
     type: String
   },
-  image_path: {
-    type: String
-  },
+  // image_path: {
+  //   type: String
+  // },
   restaurant_features: {
     type: Array
   },
@@ -33,12 +33,12 @@ let Restaurant = new Schema({
   phone:{
     type:Number
 },
-reviews:{
-    type:Array
-},
-stars:{
-    type:Number
-}
+// reviews:{
+//     type:Array
+// },
+// stars:{
+//     type:Number
+// }
 }, {
   collection: 'restaurants'
 })

@@ -52,7 +52,6 @@ export class AddRestaurantComponent implements OnInit {
     private router: Router,
     private ngZone: NgZone,
     private restaurantApi: ApiService) { 
-      this.submitBookForm();
     }
     /* Reactive book form */
     submitBookForm() {
@@ -189,6 +188,6 @@ export class AddRestaurantComponent implements OnInit {
       }, (error) => {
         console.log(error); 
       }); 
-    }
+    } 
   }
 }
