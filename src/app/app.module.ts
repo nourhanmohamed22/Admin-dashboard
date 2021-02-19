@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './shared/api.service';
+import { Api2Service } from './shared/api2.service';
 
 
 @NgModule({
@@ -36,7 +37,7 @@ import { ApiService } from './shared/api.service';
     FormsModule
 
   ],
-  providers: [ApiService],
+  providers: [ApiService,Api2Service],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
