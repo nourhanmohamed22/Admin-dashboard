@@ -39,7 +39,7 @@ hotelRoute.route('/read-hotel/:id').get((req, res) => {
 })
 
 
-// Update restaurant
+// Update hotel
 hotelRoute.route('/update-hotel/:id').put((req, res, next) => {
   Hotel.findByIdAndUpdate(req.params.id, {
     $set: req.body

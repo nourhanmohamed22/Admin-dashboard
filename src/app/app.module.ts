@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './material.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 /// Components
@@ -16,9 +16,15 @@ import { AddHotelComponent } from './components/add-hotel/add-hotel.component';
 import { HotelsListComponent } from './components/hotels-list/hotels-list.component';
 import { UpdateHotelComponent } from './components/update-hotel/update-hotel.component';
 
+//auth
+import {LoginComponent} from './auth/login/login.component'
+import {ErrorInterceptor } from './auth/_helpers/error.interceptor';
+import { JwtInterceptor } from './auth/_helpers/jwt.interceptor';
+import { fakeBackendProvider } from './auth/_helpers/fake-backend';
 /// api services
 import { ApiService } from './shared/api.service';
 import { Api2Service } from './shared/api2.service';
+import { HomeComponent } from './pages/home/home.component';
 
 
 @NgModule({
@@ -30,6 +36,8 @@ import { Api2Service } from './shared/api2.service';
     AddHotelComponent,
     HotelsListComponent,
     UpdateHotelComponent,
+    LoginComponent,
+    HomeComponent
   
   ],
   imports: [ 
@@ -42,7 +50,9 @@ import { Api2Service } from './shared/api2.service';
     FormsModule
 
   ],
-  providers: [ApiService,Api2Service],
+  providers:[{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  fakeBackendProvider],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

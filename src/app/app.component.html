@@ -1,4 +1,4 @@
-<mat-toolbar color="primary" class="header">
+<mat-toolbar color="primary" class="header" >
   <img class="logo" src="https://static.tacdn.com/img2/brand_refresh/Tripadvisor_lockup_horizontal_secondary_registered.svg">
   <div>
     <h1>Tripadvisor Records</h1>
@@ -6,13 +6,15 @@
   <span class="nav-tool-items">
     <mat-icon (click)="sidenav.toggle()" class="hamburger">menu</mat-icon>
   </span>
+  <a class="nav-item nav-link" *ngIf="!currentUser" routerLink="/login">Login</a>
+  <a class="nav-item nav-link" *ngIf="currentUser" (click)="logout()">Logout</a>
 </mat-toolbar>
 
-<mat-sidenav-container> 
+<mat-sidenav-container > 
   <!-- Sidenav -->
-  <mat-sidenav #sidenav [mode]="isBiggerScreen() ? 'over' : 'side'" [(opened)]="opened" [fixedInViewport]="true"
+  <mat-sidenav *ngIf="currentUser" #sidenav  [(opened)]="opened" [fixedInViewport]="true"
     [fixedTopGap]>
-    <mat-nav-list>
+    <mat-nav-list >
       <a mat-list-item routerLinkActive="active" routerLink="/add-restaurant">
         <mat-icon>add</mat-icon> Add Restaurant
       </a>
@@ -26,7 +28,7 @@
         <mat-icon>format_list_bulleted</mat-icon> View Hotels
       </a>
     </mat-nav-list>
-  </mat-sidenav>
+  </mat-sidenav>                      
 
   <!-- Main content -->
   <mat-sidenav-content>
