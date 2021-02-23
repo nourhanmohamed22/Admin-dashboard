@@ -12,6 +12,6 @@ export class Hotel {
     distance:Object;
     reviews:Array<object>;
     rating:Array<object>; 
-    styl: Array<string>;
+    style: Array<string>;
     languageSpoken: Array<string>;
  }

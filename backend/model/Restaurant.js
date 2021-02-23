@@ -6,9 +6,9 @@ let Restaurant = new Schema({
     name:{
     type: String
   },
-  // image_path: {
-  //   type: String
-  // },
+  image_path: {
+    type:String
+  },
   restaurant_features: {
     type: Array
   },

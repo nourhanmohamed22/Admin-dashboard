@@ -122,7 +122,7 @@
     </mat-error>
   </mat-form-field>
   
-          <!-- Price -->
+          <!-- Price -->   
           <div class="misc-bottom-padding">
             <mat-label>Price Range:</mat-label>
             <mat-radio-group aria-label="Select an option" formControlName="price_range">
@@ -130,6 +130,14 @@
               <mat-radio-button class = "tp-radio-button" value="Mid-range">Mid-range</mat-radio-button>
               <mat-radio-button  class = "tp-radio-button" value="Fine Dining">Fine Dining</mat-radio-button>
             </mat-radio-group>
+          </div>
+          <!-- Image -->
+            <div>
+            <button mat-stroked-button type="button" (click)="filePicker.click()">Pick Image</button>
+            <input type="file" #filePicker (change)="onImagePicked($event)">
+            </div>
+        <div class="image-preview" *ngIf="imagePreview !=='' && imagePreview  && restaurantForm.get('image_path').valid">
+          <img [src]="imagePreview" [alt]="restaurantForm.value.name">
           </div>
         </div>
       </mat-card>
