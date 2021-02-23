@@ -2,36 +2,30 @@ import { Component, ViewChild, HostListener, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
-import { AuthenticationService } from './auth/_services/autentication.service';
-import { AdminService } from './auth/_services/admin.service';
-import { Admin} from './auth/_model/admin';
+import { Admin} from '../../auth/_model/admin';
+import { AdminService } from '../../auth/_services/admin.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
-export class AppComponent {
-  title='admin-dashboard';
+export class HomeComponent implements OnInit {
   opened = true;
   currentUser: Admin;
   loading = false;
     users: Admin[];
-
-  constructor(
-    private router: Router,
-    private authenticationService: AuthenticationService,
-    private adminService: AdminService
-) {
-    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
-}
-logout() {
-  this.authenticationService.logout();
-  this.router.navigate(['/login']);
-}
+  constructor(private adminService: AdminService) { }
 
   @ViewChild('sidenav', { static: true }) sidenav: MatSidenav;
-  ngOnInit() {
+  ngOnInit(): void {
+    this.loading = true;
+    this.adminService.getAll().pipe(first()).subscribe(users => {
+        this.loading = false;
+        this.users = users;
+    });
+
+
     console.log(window.innerWidth)
     if (window.innerWidth < 768) {
       this.sidenav.fixedTopGap = 55;
@@ -40,14 +34,7 @@ logout() {
       this.sidenav.fixedTopGap = 55;
       this.opened = true;
     }
-    this.loading = true;
-    this.adminService.getAll().pipe(first()).subscribe(users => {
-        this.loading = false;
-        this.users = users;
-    });
-    
   }
-
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     if (event.target.innerWidth < 768) {
@@ -68,5 +55,4 @@ logout() {
     }
   }
 
- 
 }

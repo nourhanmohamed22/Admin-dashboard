@@ -20,9 +20,9 @@
   
           <!-- Booking -->
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Booking" formControlName="booking">
-            <mat-error *ngIf="handleError('booking', 'required')">
-              You must provide a<strong>hotel booking</strong>
+            <input matInput placeholder="Booking" formControlName="images">
+            <mat-error *ngIf="handleError('images', 'required')">
+              You must provide a<strong>hotel Images</strong>
             </mat-error>
           </mat-form-field>
   
@@ -51,7 +51,7 @@
                 {{subjectArray.name}}
                 <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
               </mat-chip>
-              <input placeholder="Add subject" [matChipInputFor]="chipList"
+              <input placeholder="Add Pricedeals" [matChipInputFor]="chipList"
                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
                 (matChipInputTokenEnd)="add($event)">
             </mat-chip-list>
@@ -62,21 +62,24 @@
   
           <!-- Date of birth -->
           <mat-form-field>
-            <input matInput readonly [matDatepicker]="picker" placeholder="Date of birth" formControlName="dob"
+            <input matInput readonly [matDatepicker]="picker" placeholder="Room" formControlName="room"
               (dateChange)="formatDate($event)">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
-            <mat-error *ngIf="handleError('dob', 'required')">
-              Date of birth is required
+            <mat-error *ngIf="handleError('room', 'required')">
+              Number of rooms
             </mat-error>
           </mat-form-field>
   
           <!-- Gender -->
           <div class="misc-bottom-padding">
-            <mat-label>Gender:</mat-label>
-            <mat-radio-group aria-label="Select an option" formControlName="gender">
-              <mat-radio-button value="Male">Male</mat-radio-button>
-              <mat-radio-button value="Female">Female</mat-radio-button>
+            <mat-label>Class:</mat-label>
+            <mat-radio-group aria-label="Select an option" formControlName="class">
+              <mat-radio-button value="Male">1</mat-radio-button>
+              <mat-radio-button value="Female">2</mat-radio-button>
+              <mat-radio-button value="Female">3</mat-radio-button>
+              <mat-radio-button value="Female">4</mat-radio-button>
+              <mat-radio-button value="Female">5</mat-radio-button>
             </mat-radio-group>
           </div>
         </div>

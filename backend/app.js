@@ -21,7 +21,6 @@ mongoose.connect(dataBaseConfig.db, {
 // Set up express js port
 const restaurantRoute = require('./routes/restaurant.route')
 
-
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({

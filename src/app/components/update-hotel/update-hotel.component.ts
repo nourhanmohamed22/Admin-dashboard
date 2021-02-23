@@ -59,7 +59,7 @@ export class UpdateHotelComponent implements OnInit {
       name: ['', [Validators.required]],
       booking: ['', [Validators.required]],
       map: ['', [Validators.required]],
-      Pricedeals: [this.subjectArray],
+      Pricedeals: [''],
       rooms: ['', [Validators.required]],
       images: ['']
     })
