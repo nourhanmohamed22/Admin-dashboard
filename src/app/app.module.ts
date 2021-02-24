@@ -7,6 +7,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './material.module';
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 
+///Pages
+import { HomeComponent } from './pages/home/home.component';
+
 
 /// Components
 import { AddRestaurantComponent } from './components/add-restaurant/add-restaurant.component';
@@ -24,7 +27,7 @@ import { fakeBackendProvider } from './auth/_helpers/fake-backend';
 /// api services
 import { ApiService } from './shared/api.service';
 import { Api2Service } from './shared/api2.service';
-import { HomeComponent } from './pages/home/home.component';
+
 
 
 @NgModule({

@@ -1,9 +1,6 @@
-import { Component, ViewChild, HostListener, OnInit } from '@angular/core';
-import { first } from 'rxjs/operators';
+import { Component, ViewChild, HostListener, OnInit, Output } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
-import { Router } from '@angular/router';
-import { Admin} from '../../auth/_model/admin';
-import { AdminService } from '../../auth/_services/admin.service';
+import * as EventEmitter from 'events';
 
 @Component({
   selector: 'app-home',
@@ -12,20 +9,12 @@ import { AdminService } from '../../auth/_services/admin.service';
 })
 export class HomeComponent implements OnInit {
   opened = true;
-  currentUser: Admin;
-  loading = false;
-    users: Admin[];
-  constructor(private adminService: AdminService) { }
+
 
   @ViewChild('sidenav', { static: true }) sidenav: MatSidenav;
+
   ngOnInit(): void {
-    this.loading = true;
-    this.adminService.getAll().pipe(first()).subscribe(users => {
-        this.loading = false;
-        this.users = users;
-    });
-
-
+   
     console.log(window.innerWidth)
     if (window.innerWidth < 768) {
       this.sidenav.fixedTopGap = 55;

@@ -15,7 +15,7 @@ export class RestaurantsListComponent implements OnInit {
   RestaurantData: any = [];
   dataSource: MatTableDataSource<Restaurant>;
   @ViewChild(MatPaginator,{ static: false }) paginator: MatPaginator;
-  displayedColumns: string[] = ['_id', 'name', 'image_path', 'restaurant_features', 'action'];
+  displayedColumns: string[] = [ 'name','price_range', 'image_path', 'restaurant_features', 'action'];
 
   constructor(private restaurantApi: ApiService) {
     this.restaurantApi. GetRestaurants().subscribe(data => {
