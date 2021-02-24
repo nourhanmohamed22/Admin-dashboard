@@ -67,47 +67,47 @@ app.use(function (err, req, res, next) {
 });
 
 
-// // edited hotel 
-// const hotelRoute = require('./routes/hotel.route')
-// const app2 = express();
-// app2.use(bodyParser.json());
-// app2.use(bodyParser.urlencoded({
-//   extended: false
-// }));
-// app2.use(cors());
+// edited hotel 
+const hotelRoute = require('./routes/hotel.route')
+const app2 = express();
+app2.use(bodyParser.json());
+app2.use(bodyParser.urlencoded({
+  extended: false
+}));
+app2.use(cors());
 
-// // Setting up static directory
-// app2.use(express.static(path.join(__dirname, 'dist/admin_dashboard')));
+// Setting up static directory
+app2.use(express.static(path.join(__dirname, 'dist/admin_dashboard')));
 
 
-// // RESTful API root
+// RESTful API root
 
-// app2.use('/api', hotelRoute)
+app2.use('/api', hotelRoute)
 
-// // PORT
-// const port2 = process.env.PORT || 8008;
+// PORT
+const port2 = process.env.PORT || 8008;
 
-// app2.listen(port2, () => {
-//   console.log('Connected to port ' + port)
-// })
+app2.listen(port2, () => {
+  console.log('Connected to port ' + port)
+})
 
-// // Find 404 and hand over to error handler
-// app2.use((req, res, next) => {
-//   next(createError(404));
-// });
+// Find 404 and hand over to error handler
+app2.use((req, res, next) => {
+  next(createError(404));
+});
 
-// // Index Route 
-// app2.get('/', (req, res) => {
-//   res.send('invaild endpoint');
-// });
+// Index Route 
+app2.get('/', (req, res) => {
+  res.send('invaild endpoint');
+});
 
-// app2.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'dist/admin-dashboard/index.html'));
-// });
+app2.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/admin-dashboard/index.html'));
+});
 
-// // error handler
-// app2.use(function (err, req, res, next) {
-//   console.error(err.message);
-//   if (!err.statusCode) err.statusCode = 500;
-//   res.status(err.statusCode).send(err.message);
-// });
+// error handler
+app2.use(function (err, req, res, next) {
+  console.error(err.message);
+  if (!err.statusCode) err.statusCode = 500;
+  res.status(err.statusCode).send(err.message);
+});

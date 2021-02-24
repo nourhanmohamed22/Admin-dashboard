@@ -3,50 +3,50 @@ const Schema = mongoose.Schema;
 
 // Define collection and schema
 let Hotel = new Schema({
-    name:{
-    type: String
+    images:{
+    type: Array
   },
-  booking:{
+  deals:{
       type: Array
   },
-  map: {
+  style: {
+    type: Array
+  },
+  description: {
+    type: Object
+  },
+  name: {
     type: String
   },
-  Pricedeals: {
+  booking: {
     type: Array
+  },
+ map: {
+    type: Object
   },
   rooms: {
     type: Number
   },
-  images: {
-    type: Array
-  },
- deals: {
-    type: Array
-  },
-  amenities: {
-    type: Array
-  },
-  class:{
-    type: Number
-  },
-  distance: {
+  distance:{
     type: Object
   },
   reviews: {
     type: Array
   },
-  rating:{
+  likes: {
+    type: Number
+  },
+  Pricedeals:{
       type:Array
   },
-  style:{
+  langaugeSpoken:{
     type:Array
 },
-languageSpoken:{
+rating:{
     type:Array
 }
 }, {
-  collection: 'hotels'
+  collection: 'hotels1'
 })
 
 module.exports = mongoose.model('Hotel', Hotel)
