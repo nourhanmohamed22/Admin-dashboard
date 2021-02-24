@@ -1,3 +1,4 @@
+import { HotelCategory } from './hotel-category';
 import { Injectable } from '@angular/core';
 import { Hotel } from './hotel';
 import { Observable, throwError } from 'rxjs';
@@ -25,6 +26,11 @@ export class Api2Service {
   GetHotels() {
     return this.http.get(`${this.endpoint}`);
   }
+   // Get all hotel categories
+   GetHotelCategories() { 
+    return this.http.get(`${this.endpoint}`);
+  }
+
    // Get restaurant
    GetHotel(id): Observable<any> {
     let API_URL = `${this.endpoint}/read-hotel/${id}`;
