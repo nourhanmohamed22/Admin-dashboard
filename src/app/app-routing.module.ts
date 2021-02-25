@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { AuthGuard } from './auth/auth.guard';
 import { LoginComponent } from './auth/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
+import { UsersListComponent } from './components/users-list/users-list.component';
 
 const routes: Routes = [
 
@@ -25,8 +26,6 @@ const routes: Routes = [
   { path: 'update-hotel/:id', component: UpdateHotelComponent,canActivate: [AuthGuard,] },
   { path: 'hotel-list', component: HotelsListComponent,canActivate: [AuthGuard,] }
   ] */
- 
-
   { path: '',component: HomeComponent, canActivate: [AuthGuard] ,
   children: [
   { path: '', pathMatch: 'full', redirectTo: '' },
@@ -35,7 +34,8 @@ const routes: Routes = [
   { path: 'restaurant-list', component: RestaurantsListComponent },
   { path: 'add-hotel', component: AddHotelComponent },
   { path: 'update-hotel/:id', component: UpdateHotelComponent },
-  { path: 'hotel-list', component: HotelsListComponent }
+  { path: 'hotel-list', component: HotelsListComponent },
+  { path: 'user-list', component: UsersListComponent },
   ]
   }];
 

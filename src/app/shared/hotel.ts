@@ -1,8 +1,7 @@
-
 export class Hotel {
     _id: String;
     images: Array<string>;
-    deals: Array<string>;
+    deals: Array<object>;
     amenities: Array<string>;
     style: Array<string>;
     descripation:Object;

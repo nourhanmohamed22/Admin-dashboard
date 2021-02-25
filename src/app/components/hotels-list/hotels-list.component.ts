@@ -17,8 +17,8 @@ export class HotelsListComponent implements OnInit {
     displayedColumns: string[] = ['name', 'deals', 'booking', 'rooms', 'action'];
   
     constructor(private hotelApi: Api2Service,
-      private hotelCategoryApi: Api2Service) {
-      this.hotelApi. GetHotels().subscribe(data => {
+      private hotelCategoryApi: Api3Service) {
+      this.hotelApi.GetHotels().subscribe(data => {
         this.HotelData = data;
         this.dataSource = new MatTableDataSource<Hotel>(this.HotelData);
         setTimeout(() => {
