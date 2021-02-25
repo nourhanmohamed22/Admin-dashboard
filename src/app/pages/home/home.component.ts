@@ -12,9 +12,8 @@ export class HomeComponent implements OnInit {
 
 
   @ViewChild('sidenav', { static: true }) sidenav: MatSidenav;
-
+ /*  @Output('sidenav') Snav: MatSidenav; */
   ngOnInit(): void {
-   
     console.log(window.innerWidth)
     if (window.innerWidth < 768) {
       this.sidenav.fixedTopGap = 55;

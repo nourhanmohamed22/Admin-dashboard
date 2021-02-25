@@ -1,5 +1,6 @@
 import { Hotel } from './../../shared/hotel';
 import { Api2Service } from './../../shared/api2.service';
+import { Api3Service } from './../../shared/api3.service';
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatPaginator} from '@angular/material/paginator'
 import {MatTableDataSource } from '@angular/material/table'
@@ -13,16 +14,17 @@ export class HotelsListComponent implements OnInit {
     HotelData: any = [];
     dataSource: MatTableDataSource<Hotel>;
     @ViewChild(MatPaginator,{ static: false }) paginator: MatPaginator;
-    displayedColumns: string[] = ['name', 'images', 'booking', 'rooms', 'action'];
+    displayedColumns: string[] = ['name', 'deals', 'booking', 'rooms', 'action'];
   
-    constructor(private hotelApi: Api2Service) {
+    constructor(private hotelApi: Api2Service,
+      private hotelCategoryApi: Api2Service) {
       this.hotelApi. GetHotels().subscribe(data => {
         this.HotelData = data;
         this.dataSource = new MatTableDataSource<Hotel>(this.HotelData);
         setTimeout(() => {
           this.dataSource.paginator = this.paginator;
         }, 0);
-      })    
+      })
     }
   
     ngOnInit() { }

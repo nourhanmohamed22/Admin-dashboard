@@ -1,9 +1,10 @@
 const express = require('express');
 const app = express();
 const hotelRoute = express.Router();
-
+/* const HotelCategoryRoute = express.Router(); */
 // Hotel model
 let Hotel = require('../model/Hotel');
+/* let HotelCategory = require('../model/Hotel-category') */
 
 // Add Hotel
 hotelRoute.route('/add-hotel').post((req, res, next) => {
@@ -17,7 +18,7 @@ hotelRoute.route('/add-hotel').post((req, res, next) => {
 });
 
 // Get all hotels
-hotelRoute.route('/').get((req, res) => {
+hotelRoute.route('/').get((req, res) => { 
   Hotel.find((error, data) => {
     if (error) {
       return next(error)
@@ -26,6 +27,18 @@ hotelRoute.route('/').get((req, res) => {
     }
   })
 })
+
+/* //Get hotel categories
+HotelCategoryRoute.route('/').get((req, res) => { 
+  HotelCategory.find((error, data) => {
+    if (error) {
+      return next(error)
+    } else {
+      res.json(data)
+    }
+  })
+})
+ */
 
 // Get single hotel
 hotelRoute.route('/read-hotel/:id').get((req, res) => {

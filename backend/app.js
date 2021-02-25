@@ -67,6 +67,7 @@ app.use(function (err, req, res, next) {
 });
 
 
+
 // // edited hotel 
 const hotelRoute = require('./routes/hotel.route')
 const app2 = express();
@@ -107,6 +108,53 @@ app2.get('*', (req, res) => {
 
 // error handler
 app2.use(function (err, req, res, next) {
+  console.error(err.message);
+  if (!err.statusCode) err.statusCode = 500;
+  res.status(err.statusCode).send(err.message);
+});
+
+
+//Hotel category
+
+const hotelCategory = require('./routes/hotel-category.route')
+const app3 = express();
+app3.use(bodyParser.json());
+app3.use(bodyParser.urlencoded({
+  extended: false
+}));
+app3.use(cors());
+
+// Setting up static directory
+app3.use(express.static(path.join(__dirname, 'dist/admin_dashboard')));
+
+
+// RESTful API root
+
+app3.use('/api', hotelCategory)
+
+// PORT
+const port3 = process.env.PORT || 8010;
+
+app3.listen(port3, () => {
+  console.log('Connected to port ' + port)
+})
+
+// Find 404 and hand over to error handler
+app3.use((req, res, next) => {
+  next(createError(404));
+});
+
+// Index Route 
+app3.get('/', (req, res) => {
+  res.send('invaild endpoint');
+});
+
+app3.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/admin-dashboard/index.html'));
+});
+
+// error handler
+app3.use(function (err, req, res, next) {
   console.error(err.message);
   if (!err.statusCode) err.statusCode = 500;
   res.status(err.statusCode).send(err.message);

@@ -1,3 +1,4 @@
+import { HotelCategory } from './hotel-category';
 import { Injectable } from '@angular/core';
 import { Hotel } from './hotel';
 import { Observable, throwError } from 'rxjs';
@@ -10,6 +11,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 export class Api2Service {
 
   endpoint: string = 'http://localhost:8008/api';
+  endpointCategory: string = 'http://localhost:8010/api';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   constructor(private http: HttpClient) { }
 
@@ -25,6 +27,11 @@ export class Api2Service {
   GetHotels() {
     return this.http.get(`${this.endpoint}`);
   }
+   // Get all hotel categories
+ /*   GetHotelCategories() { 
+    return this.http.get(`${this.endpointCategory}`);
+  }
+ */
    // Get restaurant
    GetHotel(id): Observable<any> {
     let API_URL = `${this.endpoint}/read-hotel/${id}`;
