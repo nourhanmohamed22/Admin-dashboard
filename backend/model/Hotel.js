@@ -18,9 +18,6 @@ let Hotel = new Schema({
   name: {
     type: String
   },
-  booking: {
-    type: Array
-  },
  map: {
     type: Object
   },

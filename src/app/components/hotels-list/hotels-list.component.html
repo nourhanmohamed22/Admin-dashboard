@@ -19,11 +19,6 @@
           <td mat-cell *matCellDef="let element"> {{element.deals}} </td>
         </ng-container>
   
-        <ng-container matColumnDef="booking">
-          <th mat-header-cell *matHeaderCellDef> Booking Price</th>
-          <td mat-cell *matCellDef="let element"> {{element.booking[0].price}} </td>
-        </ng-container>
-  
         <ng-container matColumnDef="rooms">
           <th mat-header-cell *matHeaderCellDef> Rooms </th>
           <td mat-cell *matCellDef="let element"> {{element.rooms}} </td>

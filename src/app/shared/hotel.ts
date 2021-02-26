@@ -6,7 +6,6 @@ export class Hotel {
     style: Array<string>;
     descripation:Object;
     name:string;
-    booking:Array<object>;
     map:Object;
     rooms:Number;
     distance:Object; 
