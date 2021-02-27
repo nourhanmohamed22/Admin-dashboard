@@ -7,6 +7,7 @@ import { Api2Service } from './../../shared/api2.service';
 import { Api3Service } from './../../shared/api3.service';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { HttpEvent, HttpEventType } from '@angular/common/http';
+import { HotelCategory } from 'src/app/shared/hotel-category';
 
 export interface Distance {
   mainStreet: number,
@@ -51,10 +52,18 @@ Pricedeals:PriceDeals[]=[];
 langaugeSpoken:string[];
 selected:string;
 checkedStyles:any = [];
+HotelCategoryData:any=[];
   constructor(public fb: FormBuilder,
     public router: Router,
     private ngZone: NgZone,
-    public hotelApi: Api2Service) { }
+    public hotelApi: Api2Service,
+    public hotelCategoryApi: Api3Service) { 
+
+      this.hotelCategoryApi.GetHotelCategories().subscribe(data => {
+        this.HotelCategoryData=data
+        console.log(this.HotelCategoryData);
+      })
+    }
 
   ngOnInit(): void {
     this.HotelFormData();

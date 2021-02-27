@@ -79,6 +79,12 @@
                 <mat-checkbox  [value]="elem" (change)="changeOutput($event)" >{{elem}}</mat-checkbox>
             </section>
           </div> 
+          <div class="misc-bottom-padding">
+            <mat-label>Deals:</mat-label>
+            <section  *ngFor="let elem of HotelCategoryData[0].deals; let i=index"  > 
+                <mat-checkbox  [value]="elem.name" (change)="changeOutput($event)">{{elem.name}}</mat-checkbox>
+            </section>
+          </div> 
          </div>
       </mat-card>
   
