@@ -22,8 +22,6 @@ import { MatSortModule } from '@angular/material/sort';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
-
-
 @NgModule({
    imports: [
       CommonModule,
@@ -47,8 +45,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
       MatAutocompleteModule,
       MatSortModule,
       MatCheckboxModule
-      
-      
+
    ],
    exports: [
       MatButtonModule,

@@ -29,7 +29,7 @@ const storage = multer.diskStorage({
 
 ///
   
-// POST User
+// POST Restaurant
 restaurantRoute.post('/add-restaurant', multer({ storage: storage }).single("image_path"), (req, res, next) => {
   const url = req.protocol + '://' + req.get('host')
   const restaurant = new Restaurant({

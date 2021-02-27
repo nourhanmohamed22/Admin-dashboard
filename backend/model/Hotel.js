@@ -9,6 +9,9 @@ let Hotel = new Schema({
   deals:{
       type: Array
   },
+  amenities:{
+    type:Array
+  },
   style: {
     type: Array
   },
@@ -17,6 +20,9 @@ let Hotel = new Schema({
   },
   name: {
     type: String
+  },
+  booking:{
+    type:Array
   },
  map: {
     type: Object
@@ -41,6 +47,12 @@ let Hotel = new Schema({
 },
 rating:{
     type:Array
+},
+class:{
+  type:String
+},
+popular:{
+  type:Array
 }
 }, {
   collection: 'hotels1'

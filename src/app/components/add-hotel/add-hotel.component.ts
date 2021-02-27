@@ -6,6 +6,7 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { Api2Service } from './../../shared/api2.service';
 import { Api3Service } from './../../shared/api3.service';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { HttpEvent, HttpEventType } from '@angular/common/http';
 
 export interface Distance {
   mainStreet: number,
@@ -33,7 +34,8 @@ export class AddHotelComponent implements OnInit {
   selectable = true;
   removable = true;
   addOnBlur = true;
-  styleslist=["Family Resort","Reserve now, pay at stay","Business"]
+  styleslist=["a","b","c"]
+
   @ViewChild('chipListHotel') chipList;
   @ViewChild('resetHotelForm') myNgForm;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
@@ -50,19 +52,19 @@ langaugeSpoken:string[];
 selected:string;
 checkedStyles:any = [];
   constructor(public fb: FormBuilder,
-    private router: Router,
+    public router: Router,
     private ngZone: NgZone,
-    private hotelApi: Api2Service) { }
+    public hotelApi: Api2Service) { }
 
   ngOnInit(): void {
     this.HotelFormData();
   }
 
-  HotelFormData() {
+  HotelFormData() { 
     this.hotelForm = this.fb.group({
       deals: [this.deals],
       amenities: [this.amenities],
-      style: [this.style],
+      style: [this.checkedStyles],
       name: ['', [Validators.required]],
       map: [this.map],
       rooms:[, [Validators.required]],
@@ -106,25 +108,66 @@ checkedStyles:any = [];
       console.log(this.checkedStyles);
       console.log(this.style);
     }
-    
-      
-
-  
   }
-  
+
   /* Get errors */
   public handleError = (controlName: string, errorName: string) => {
     return this.hotelForm.controls[controlName].hasError(errorName);
   }  
 
-  /* Submit book */
+  /* Submit hotel */
+  // submitHotelForm() { 
+  //   this.hotelApi.AddHotel(
+  //    this.hotelForm.value
+  //   ).subscribe((event: HttpEvent<any>) => {
+  //     switch (event.type) {
+  //       case HttpEventType.Sent:
+  //         console.log('Request has been made!');
+  //         break;
+  //       case HttpEventType.ResponseHeader:
+  //         console.log('Response header has been received!');
+  //         break;
+        
+  //       case HttpEventType.Response:
+  //         console.log('User successfully created!', event.body);
+          
+  //         this.router.navigateByUrl('/hotel-list') 
+  //     } 
+  //   }) 
+  // }      
   submitHotelForm() {
     
-    if (this.hotelForm) {
-      this.hotelApi.AddHotel(this.hotelForm.value).subscribe(res => {
-        this.ngZone.run(() => this.router.navigateByUrl('/hotel-list'))
-      });
+      // console.log(this.style)
+    if (this.hotelForm) {/*  */
+    //   this.checkedStyles.forEach(item => {  
+    //     this.style.push(item);  
+    // });
+      this.hotelApi.AddHotel(this.hotelForm.value.name,this.hotelForm.value.style)
+      console.log(this.hotelForm.value.style)
+      // this.hotelApi.AddHotel(this.hotelForm.value).subscribe(res => {
+      //   this.ngZone.run(() => this.router.navigateByUrl('/hotel-list'))
+      // });
+      /* this.hotelApi.AddHotel(
+        this.hotelForm.value.name,
+        this.hotelForm.value.style
+      ).subscribe((event: HttpEvent<any>) => {
+        switch (event.type) {
+          case HttpEventType.Sent:
+            console.log('Request has been made!');
+            break;
+          case HttpEventType.ResponseHeader:
+            console.log('Response header has been received!');
+            break;
+          
+          case HttpEventType.Response:
+            console.log('User successfully created!', event.body);
+            
+            this.router.navigateByUrl('/hotel-list') 
+        } 
+      })  */
     }
-  }
+  
+    }
+  
 
 }

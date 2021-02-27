@@ -10,13 +10,13 @@
       <!-- Left block -->
       <mat-card>
         <div class="controlers-wrapper">
-          <!-- Name -->
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="Hotel name" formControlName="name">
-            <mat-error *ngIf="handleError('name', 'required')">
-              You must provide a <strong>hotel name</strong>
-            </mat-error>
-          </mat-form-field>
+        <!-- Name -->
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Hotel Name" formControlName="name">
+          <mat-error *ngIf="handleError('name', 'required')">
+            You must provide a <strong>hotel name</strong>
+          </mat-error> 
+        </mat-form-field>
   
           <!-- Email -->
           <!-- <mat-form-field class="example-full-width">
@@ -41,8 +41,8 @@
       </mat-card> 
   
       <!-- Right block -->
-      <mat-card>
-        <div class="controlers-wrapper">
+       <mat-card>
+        <div class="controlers-wrapper"> 
           <!-- Add styles -->
           <!-- <mat-form-field class="multiple-items">
             <mat-chip-list #chipListHotel>
@@ -70,15 +70,16 @@
               Date of birth is required
             </mat-error>
           </mat-form-field> -->
-      
-         <!-- Style -->
-         <div class="misc-bottom-padding">
-          <mat-label>Style:</mat-label>
-          <section  *ngFor="let elem of styleslist" > 
-            <mat-checkbox  [value]="elem" (change)="changeOutput($event)" >{{elem}}</mat-checkbox>
-          </section>
-        </div> 
-        </div>
+
+
+          <!-- Style -->
+           <div class="misc-bottom-padding">
+            <mat-label>Style:</mat-label>
+            <section  *ngFor="let elem of styleslist" > 
+                <mat-checkbox  [value]="elem" (change)="changeOutput($event)" >{{elem}}</mat-checkbox>
+            </section>
+          </div> 
+         </div>
       </mat-card>
   
       <!-- Submit & Reset -->
