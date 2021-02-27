@@ -1,29 +1,58 @@
-import { HotelCategory } from './hotel-category';
+
 import { Injectable } from '@angular/core';
 import { Hotel } from './hotel';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Subject } from "rxjs";
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
 })
 export class Api2Service {
-
+  private hotels: Hotel[] = [];
+  private hotelsUpdated = new Subject<Hotel[]>();
   endpoint: string = 'http://localhost:8008/api';
   endpointCategory: string = 'http://localhost:8010/api';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private router: Router) { }
 
    // Add hotel
-   AddHotel(data: Hotel): Observable<any> {
-    let API_URL = `${this.endpoint}/add-hotel`;
-    return this.http.post(API_URL, data)
-      .pipe(
-        catchError(this.errorMgmt)
-      ) 
+
+   addHotel(name:string,style:Array<string>) {
+    const hotel: Hotel = { name:name ,style:style};
+    this.http
+      .post<{ message: string; id: string }>(
+        `${this.endpoint}/add-hotel`,
+        hotel
+      )
+      .subscribe(responseData => {
+        // const id = responseData.id;
+        // hotel.id = id;
+        this.hotels.push(hotel);
+        this.hotelsUpdated.next([...this.hotels]);
+        this.router.navigate(["/hotel-list"]);
+      });
   }
+   
+  //  AddHotel(name: string): Observable<any> {
+  //   var formData: any = new FormData(); 
+  //   formData.append("name", name);
+  //   return this.http.post<Hotel>(`${this.endpoint}/add-hotel`, formData, {
+  //     reportProgress: true,
+  //     observe: 'events'
+  //   })
+  // }
+  //  AddHotel(data: Hotel): Observable<any> {
+  //   let API_URL = `${this.endpoint}/add-hotel`;
+  //   return this.http.post(API_URL, data)
+  //     .pipe(
+  //       catchError(this.errorMgmt)
+  //     ) 
+  // }
    // Get all hotels
+  
   GetHotels() {
     return this.http.get(`${this.endpoint}`);
   }

@@ -17,7 +17,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
-
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
    imports: [
@@ -39,6 +39,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
       MatTooltipModule,
       MatTableModule,
       MatPaginatorModule,
+      MatCheckboxModule
       
    ],
    exports: [
@@ -58,6 +59,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
       MatTooltipModule,
       MatTableModule,
       MatPaginatorModule,
+      MatCheckboxModule 
    ],
    providers: [
       MatDatepickerModule,

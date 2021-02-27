@@ -14,7 +14,7 @@ export class HotelsListComponent implements OnInit {
     HotelData: any = [];
     dataSource: MatTableDataSource<Hotel>;
     @ViewChild(MatPaginator,{ static: false }) paginator: MatPaginator;
-    displayedColumns: string[] = ['name', 'deals', 'rooms', 'action'];
+    displayedColumns: string[] = ['name', 'deals', 'rooms','style', 'action'];
   
     constructor(private hotelApi: Api2Service,
       private hotelCategoryApi: Api3Service) {

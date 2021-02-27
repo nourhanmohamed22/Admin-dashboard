@@ -7,15 +7,41 @@ let Hotel = require('../model/Hotel');
 /* let HotelCategory = require('../model/Hotel-category') */
 
 // Add Hotel
-hotelRoute.route('/add-hotel').post((req, res, next) => {
-  Hotel.create(req.body, (error, data) => {
-    if (error) {
-      return next(error)
-    } else {
-      res.json(data)
-    }
+
+hotelRoute.post('/add-hotel', (req, res, next) => {
+  // const url = req.protocol + '://' + req.get('host')
+  const hotel = new Hotel({
+    // _id: new mongoose.Types.ObjectId(),
+    name: req.body.name,
+    // image_path: url + '/images/' + req.file.filename,
+    // restaurant_features:req.body.restaurant_features,
+    // establishment_type:req.body.establishment_type,
+    // meals:req.body.meals,
+    // price_range:req.body.price_range, 
+    // cuisine:req.body.cuisine,
+    // dietary_restrictions:req.body.dietary_restrictions,
+    // location:req.body.location,
+    // phone:req.body.phone
+
+  });
+  hotel.save().then(result => {
+    console.log(result);
+    res.status(201).json({
+      message: "data saved successfully!",
+        id: result._id
+      
+    })   
   })
-});
+})
+// hotelRoute.route('/add-hotel').post((req, res, next) => {
+//   Hotel.create(req.body, (error, data) => {
+//     if (error) {
+//       return next(error)
+//     } else {
+//       res.json(data)
+//     }
+//   })
+// });
 
 // Get all hotels
 hotelRoute.route('/').get((req, res) => { 

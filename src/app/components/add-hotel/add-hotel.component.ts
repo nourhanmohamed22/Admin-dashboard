@@ -6,6 +6,7 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { Api2Service } from './../../shared/api2.service';
 import { Api3Service } from './../../shared/api3.service';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { HttpEvent, HttpEventType } from '@angular/common/http';
 
 export interface Distance {
   mainStreet: number,
@@ -33,6 +34,7 @@ export class AddHotelComponent implements OnInit {
   selectable = true;
   removable = true;
   addOnBlur = true;
+  styleslist=["a","b","c"]
   @ViewChild('chipListHotel') chipList;
   @ViewChild('resetHotelForm') myNgForm;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
@@ -40,27 +42,27 @@ export class AddHotelComponent implements OnInit {
 images:string[];
 deals:string[];
 amenities:string[];
-style:string[];
+style:any=[];
 map:Map;
 rooms:number;
 distance:Distance;
 Pricedeals:PriceDeals[]=[];
 langaugeSpoken:string[];
-selected:string;
+checkedStyles:any = [];
   constructor(public fb: FormBuilder,
-    private router: Router,
+    public router: Router,
     private ngZone: NgZone,
-    private hotelApi: Api2Service) { }
+    public hotelApi: Api2Service) { }
 
   ngOnInit(): void {
     this.HotelFormData();
   }
 
-  HotelFormData() {
+  HotelFormData() { 
     this.hotelForm = this.fb.group({
       deals: [this.deals],
       amenities: [this.amenities],
-      style: [this.style],
+      style: [[],this.style],
       name: ['', [Validators.required]],
       map: [this.map],
       rooms:[, [Validators.required]],
@@ -92,18 +94,53 @@ selected:string;
   //   }
   // } 
 
+  changeOutput(event){
+    console.log(event); 
+    if(event.checked){
+      this.checkedStyles.push(event.source.value);
+      console.log( this.checkedStyles);
+    }else{
+      this.checkedStyles=this.checkedStyles.filter((p)=>p!==event.source.value);
+      console.log(this.checkedStyles);
+    }
   
+  }
   /* Get errors */
   public handleError = (controlName: string, errorName: string) => {
     return this.hotelForm.controls[controlName].hasError(errorName);
   }  
 
-  /* Submit book */
+  /* Submit hotel */
+  // submitHotelForm() { 
+  //   this.hotelApi.AddHotel(
+  //    this.hotelForm.value
+  //   ).subscribe((event: HttpEvent<any>) => {
+  //     switch (event.type) {
+  //       case HttpEventType.Sent:
+  //         console.log('Request has been made!');
+  //         break;
+  //       case HttpEventType.ResponseHeader:
+  //         console.log('Response header has been received!');
+  //         break;
+        
+  //       case HttpEventType.Response:
+  //         console.log('User successfully created!', event.body);
+          
+  //         this.router.navigateByUrl('/hotel-list') 
+  //     } 
+  //   }) 
+  // }      
   submitHotelForm() {
-    if (this.hotelForm) {
-      this.hotelApi.AddHotel(this.hotelForm.value).subscribe(res => {
-        this.ngZone.run(() => this.router.navigateByUrl('/hotel-list'))
-      });
+    
+      // console.log(this.style)
+    if (this.hotelForm) {/*  */
+    //   this.checkedStyles.forEach(item => {  
+    //     this.style.push(item);  
+    // });
+      this.hotelApi.addHotel(this.hotelForm.value.name,this.hotelForm.value.style)
+      // this.hotelApi.AddHotel(this.hotelForm.value).subscribe(res => {
+      //   this.ngZone.run(() => this.router.navigateByUrl('/hotel-list'))
+      // });
     }
   }
 
