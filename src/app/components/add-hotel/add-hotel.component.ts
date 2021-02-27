@@ -33,6 +33,7 @@ export class AddHotelComponent implements OnInit {
   selectable = true;
   removable = true;
   addOnBlur = true;
+  styleslist=["Family Resort","Reserve now, pay at stay","Business"]
   @ViewChild('chipListHotel') chipList;
   @ViewChild('resetHotelForm') myNgForm;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
@@ -40,13 +41,14 @@ export class AddHotelComponent implements OnInit {
 images:string[];
 deals:string[];
 amenities:string[];
-style:string[];
+style:string[]=[];
 map:Map;
 rooms:number;
 distance:Distance;
 Pricedeals:PriceDeals[]=[];
 langaugeSpoken:string[];
 selected:string;
+checkedStyles:any = [];
   constructor(public fb: FormBuilder,
     private router: Router,
     private ngZone: NgZone,
@@ -91,7 +93,24 @@ selected:string;
   //     this.style.splice(index, 1);
   //   }
   // } 
+  changeOutput(event){
+    console.log(event); 
+    if(event.checked){
+      this.checkedStyles.push(event.source.value);
+      this.style.push(event.source.value)
+      console.log( this.checkedStyles);
+      console.log(this.style);
+    }else{
+      this.checkedStyles=this.checkedStyles.filter((p)=>p!==event.source.value);
+      this.style=this.style.filter((p)=>p!==event.source.value)
+      console.log(this.checkedStyles);
+      console.log(this.style);
+    }
+    
+      
 
+  
+  }
   
   /* Get errors */
   public handleError = (controlName: string, errorName: string) => {
@@ -100,6 +119,7 @@ selected:string;
 
   /* Submit book */
   submitHotelForm() {
+    
     if (this.hotelForm) {
       this.hotelApi.AddHotel(this.hotelForm.value).subscribe(res => {
         this.ngZone.run(() => this.router.navigateByUrl('/hotel-list'))

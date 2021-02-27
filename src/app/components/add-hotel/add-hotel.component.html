@@ -70,16 +70,14 @@
               Date of birth is required
             </mat-error>
           </mat-form-field> -->
-  
-          <!-- Gender -->
-          <div class="misc-bottom-padding">
-            <mat-label>Style:</mat-label>
-            <mat-radio-group aria-label="Select an option" formControlName="style" multiple >
-                <mat-radio-button class = "tp-radio-button" value="Family-friendly">Family-friendly</mat-radio-button>
-                <mat-radio-button class = "tp-radio-button" value="Romantic">Romantic</mat-radio-button>
-                <mat-radio-button  class = "tp-radio-button" value="Business">Business</mat-radio-button>
-            </mat-radio-group>
-          </div>
+      
+         <!-- Style -->
+         <div class="misc-bottom-padding">
+          <mat-label>Style:</mat-label>
+          <section  *ngFor="let elem of styleslist" > 
+            <mat-checkbox  [value]="elem" (change)="changeOutput($event)" >{{elem}}</mat-checkbox>
+          </section>
+        </div> 
         </div>
       </mat-card>
   

@@ -37,6 +37,9 @@ import { Api2Service } from './shared/api2.service';
 
 
 
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,8 +61,8 @@ import { Api2Service } from './shared/api2.service';
     AngularMaterialModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
-
+    FormsModule,
+  
   ],
   providers:[{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
