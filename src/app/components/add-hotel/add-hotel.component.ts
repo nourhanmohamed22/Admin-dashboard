@@ -1,6 +1,5 @@
 
 import { HotelCategory } from './../../shared/hotel-category';
-
 import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
@@ -9,7 +8,9 @@ import { Api2Service } from './../../shared/api2.service';
 import { Api3Service } from './../../shared/api3.service';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { HttpEvent, HttpEventType } from '@angular/common/http';
-import { HotelCategory } from 'src/app/shared/hotel-category';
+import { Variable } from '@angular/compiler/src/render3/r3_ast';
+import { MapOperator } from 'rxjs/internal/operators/map';
+
 
 
 export interface Distance {
@@ -51,42 +52,31 @@ deals:string[]=[];
 popular:string[]=[];
 amenities:string[]=[];
 style:string[]=[];
-map:Map[]=[];
+map:Map={latitude: null,longitude: null};
 rooms:number;
 distance:Distance;
-<<<<<<< HEAD
-Pricedeals:PriceDeals[]=[];
-langaugeSpoken:string[];
-selected:string;
-checkedStyles:any = [];
-HotelCategoryData:any=[];
-=======
 pricedeals:PriceDeals[]=[];
 langaugeSpoken:string[]=[];
 HotelCategoryData:any=[];
 categories: HotelCategory ;
 class:string;
 // checkedStyles:any = [];
->>>>>>> 03b60789e9d1a5fd4e4acab45acabfd7cc48610e
   constructor(public fb: FormBuilder,
     public router: Router,
     private ngZone: NgZone,
     public hotelApi: Api2Service,
     public hotelCategoryApi: Api3Service) { 
-<<<<<<< HEAD
 
-      this.hotelCategoryApi.GetHotelCategories().subscribe(data => {
-        this.HotelCategoryData=data
-        console.log(this.HotelCategoryData);
-      })
-=======
+
       this.hotelCategoryApi.GetHotelCategories().subscribe(data=>{
         this.HotelCategoryData=data;
         console.log(this.HotelCategoryData)
               })
       
->>>>>>> 03b60789e9d1a5fd4e4acab45acabfd7cc48610e
+
     }
+
+
 
   ngOnInit(): void { 
     this.HotelFormData();
@@ -178,6 +168,20 @@ class:string;
     }
   }
   
+
+  addMap(val,name:String){
+    if(name=="latitude"){
+      this.map['latitude']=parseFloat(val);
+    }
+
+    if(name=="longitude"){
+      this.map['longitude']=parseFloat(val);
+    }
+    console.log(val);
+   
+    console.log(this.map);
+
+  }
 
    
 
