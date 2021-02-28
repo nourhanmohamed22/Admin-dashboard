@@ -11,7 +11,7 @@ export class Hotel {
     rooms?:Number;
     distance?:Object; 
     likes?: Number;
-    Pricedeals?: Array<Object>;
+    Pricedeals?: Array<object>;
     langaugeSpoken?:Array<string>;
     rating?:Array<object>;
     class?:String;

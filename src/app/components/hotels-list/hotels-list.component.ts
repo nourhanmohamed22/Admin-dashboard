@@ -14,7 +14,7 @@ export class HotelsListComponent implements OnInit {
     HotelData: any = [];
     dataSource: MatTableDataSource<Hotel>;
     @ViewChild(MatPaginator,{ static: false }) paginator: MatPaginator;
-    displayedColumns: string[] = ['name', 'style', 'rooms', 'action'];
+    displayedColumns: string[] = ['name', 'style','deals', 'rooms', 'amenities', 'action'];
 
   
     constructor(private hotelApi: Api2Service,
@@ -26,9 +26,12 @@ export class HotelsListComponent implements OnInit {
           this.dataSource.paginator = this.paginator;
         }, 0);
       })
+     
     }
   
-    ngOnInit() { }
+    ngOnInit() { 
+      
+    }
 
     DeleteHotel(index: number, e){
       if(window.confirm('Are you sure')) {

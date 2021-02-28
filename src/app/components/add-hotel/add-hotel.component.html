@@ -17,6 +17,50 @@
             You must provide a <strong>hotel name</strong>
           </mat-error> 
         </mat-form-field>
+
+           <!--Rooms-->
+   <mat-form-field class="example-full-width">
+    <input matInput type="number" placeholder="Hotel Rooms" formControlName="rooms">
+    <mat-error *ngIf="handleError('rooms', 'required')">
+      You must provide a <strong>hotel rooms</strong>
+    </mat-error>
+  </mat-form-field>
+ 
+          <!--Map-->
+          <mat-form-field class="example-full-width">
+            <input matInput type="number" placeholder="Map Latitude" formControlName="map" value="map.latitude">
+            <!-- <mat-error *ngIf="handleError('map', 'required')">
+              You must provide a <strong>hotel rooms</strong>
+            </mat-error> -->
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput type="number" placeholder="Map longitude" formControlName="map" value="map.longitude">
+            <!-- <mat-error *ngIf="handleError('map', 'required')">
+              You must provide a <strong>hotel rooms</strong>
+            </mat-error> -->
+          </mat-form-field>
+          <div class="misc-bottom-padding">
+            <mat-label>Hotel Class:</mat-label>
+            <mat-radio-group *ngFor="let classes of HotelCategoryData[0].hotelClass" formControlName="class">
+              <mat-radio-button class = "tp-radio-button" [value]="classes._id" >{{classes.name}}</mat-radio-button>
+              <!-- <mat-radio-button class = "tp-radio-button" value="Mid-range">Mid-range</mat-radio-button>
+              <mat-radio-button  class = "tp-radio-button" value="Fine Dining">Fine Dining</mat-radio-button> -->
+            </mat-radio-group>
+          </div>
+            <!--popular-->
+  <div class="misc-bottom-padding">
+    <mat-label>Popular :</mat-label>
+    <section  *ngFor="let popular of HotelCategoryData[0].popular let i = index" > 
+        <mat-checkbox [value]="popular._id"  (change)="changeOutputPopular($event)">{{popular.name}}</mat-checkbox>
+    </section>
+  </div> 
+          <!--language spoken-->
+          <div class="misc-bottom-padding">
+            <mat-label>Popular :</mat-label>
+            <section  *ngFor="let language of HotelCategoryData[0].languageSpoken" > 
+                <mat-checkbox [value]="language._id"  (change)="changeOutputlanguageSpoken($event)">{{language.name}}</mat-checkbox>
+            </section>
+          </div> 
   
           <!-- Email -->
           <!-- <mat-form-field class="example-full-width">
@@ -76,7 +120,19 @@
            <div class="misc-bottom-padding">
             <mat-label>Style:</mat-label>
             <section  *ngFor="let elem of styleslist" > 
-                <mat-checkbox  [value]="elem" (change)="changeOutput($event)" >{{elem}}</mat-checkbox>
+                <mat-checkbox  [value]="elem" (change)="changeOutputStyle($event)" >{{elem}}</mat-checkbox>
+            </section>
+          </div> 
+          <div class="misc-bottom-padding">
+            <mat-label>Deals:</mat-label>
+            <section  *ngFor="let deals of HotelCategoryData[0].deals let i = index" > 
+                <mat-checkbox [value]="deals._id"  (change)="changeOutputDeals($event)">{{deals.name}}</mat-checkbox>
+            </section>
+          </div> 
+          <div class="misc-bottom-padding">
+            <mat-label>Amenities:</mat-label>
+            <section  *ngFor="let amenities of HotelCategoryData[0].amenities let i = index" > 
+                <mat-checkbox [value]="amenities._id"  (change)="changeOutputAmenities($event)">{{amenities.name}}</mat-checkbox>
             </section>
           </div> 
           <div class="misc-bottom-padding">
