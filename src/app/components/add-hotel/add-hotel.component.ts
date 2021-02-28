@@ -1,4 +1,6 @@
 
+import { HotelCategory } from './../../shared/hotel-category';
+
 import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
@@ -8,6 +10,7 @@ import { Api3Service } from './../../shared/api3.service';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { HttpEvent, HttpEventType } from '@angular/common/http';
 
+
 export interface Distance {
   mainStreet: number,
   beach: number,
@@ -15,9 +18,10 @@ export interface Distance {
   cityCenter : number
 }
 export interface PriceDeals {
-  name: string,
-    link: string,
-    pricePerNight : number
+  _id?:string,
+  name?: string,
+     link?: string,
+     pricePerNight ?: number
 }
 export interface Map {
   latitude: number;
@@ -34,81 +38,131 @@ export class AddHotelComponent implements OnInit {
   selectable = true;
   removable = true;
   addOnBlur = true;
-  styleslist=["a","b","c"]
+  styleslist=["Family-Friendly","Romantic","Business"]
 
-  @ViewChild('chipListHotel') chipList;
+  @ViewChild('chipList') chipList;
+  @ViewChild('chipList2') chipList2;
   @ViewChild('resetHotelForm') myNgForm;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   hotelForm: FormGroup;
 images:string[];
-deals:string[];
-amenities:string[];
+deals:string[]=[];
+popular:string[]=[];
+amenities:string[]=[];
 style:string[]=[];
-map:Map;
+map:Map[]=[];
 rooms:number;
 distance:Distance;
-Pricedeals:PriceDeals[]=[];
-langaugeSpoken:string[];
-selected:string;
-checkedStyles:any = [];
+pricedeals:PriceDeals[]=[];
+langaugeSpoken:string[]=[];
+HotelCategoryData:any=[];
+categories: HotelCategory ;
+class:string;
+// checkedStyles:any = [];
   constructor(public fb: FormBuilder,
     public router: Router,
     private ngZone: NgZone,
-    public hotelApi: Api2Service) { }
+    public hotelApi: Api2Service,
+    public hotelCategoryApi: Api3Service) { 
+      this.hotelCategoryApi.GetHotelCategories().subscribe(data=>{
+        this.HotelCategoryData=data;
+        console.log(this.HotelCategoryData)
+              })
+      
+    }
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
     this.HotelFormData();
+    
   }
 
   HotelFormData() { 
     this.hotelForm = this.fb.group({
       deals: [this.deals],
       amenities: [this.amenities],
-      style: [this.checkedStyles],
+      style: [this.style],
       name: ['', [Validators.required]],
       map: [this.map],
-      rooms:[, [Validators.required]],
+      rooms:['', [Validators.required]],
       distance:[this.distance],
-      Pricedeals:[this.Pricedeals],
+      Pricedeals:[this.pricedeals],
+      class:[this.class,[Validators.required]],
+      popular:[this.popular],
       langaugeSpoken:[this.langaugeSpoken]
-    })
+    }) 
   }
 
-    /* Add dynamic styles */
-    // addStyle(event: MatChipInputEvent): void {
-    //   const input = event.input;
-    //   const value = event.value;
-    //   // Add style
-    //   if ((value || '').trim() && this.style.length < 5) {
-    //     this.style.push(value.trim())
-    //   }
-    //   // Reset the input value
-    //   if (input) {
-    //     input.value = '';
-    //   }
-    // }
 
-      /* Remove style */
-  // removeStyle(index:number): void {
-  //   const index = this.style.indexOf();
-  //   if (index >= 0) {
-  //     this.style.splice(index, 1);
-  //   }
-  // } 
-  changeOutput(event){
+
+
+
+  changeOutputStyle(event){
     console.log(event); 
     if(event.checked){
-      this.checkedStyles.push(event.source.value);
+      // this.checkedStyles.push(event.source.value);
       this.style.push(event.source.value)
-      console.log( this.checkedStyles);
+      // console.log( this.checkedStyles);
       console.log(this.style);
     }else{
-      this.checkedStyles=this.checkedStyles.filter((p)=>p!==event.source.value);
+      // this.checkedStyles=this.checkedStyles.filter((p)=>p!==event.source.value);
       this.style=this.style.filter((p)=>p!==event.source.value)
-      console.log(this.checkedStyles);
+      // console.log(this.checkedStyles);
       console.log(this.style);
     }
   }
+
+  changeOutputDeals(event){
+    console.log(event); 
+    if(event.checked){
+      // this.checkedStyles.push(event.source.value);
+      this.deals.push(event.source.value)
+      // console.log( this.checkedStyles);
+      console.log(this.deals);
+    }else{
+      // this.checkedStyles=this.checkedStyles.filter((p)=>p!==event.source.value);
+      this.deals=this.deals.filter((p)=>p!==event.source.value)
+      // console.log(this.checkedStyles);
+      console.log(this.deals);
+    }
+  }
+  changeOutputAmenities(event){
+    console.log(event); 
+    if(event.checked){
+      // this.checkedStyles.push(event.source.value);
+      this.amenities.push(event.source.value)
+      // console.log( this.checkedStyles);
+      console.log(this.amenities);
+    }else{
+      // this.checkedStyles=this.checkedStyles.filter((p)=>p!==event.source.value);
+      this.amenities=this.amenities.filter((p)=>p!==event.source.value)
+      // console.log(this.checkedStyles);
+      console.log(this.amenities);
+    }
+  }
+  changeOutputPopular(event){
+    console.log(event); 
+    if(event.checked){
+      this.popular.push(event.source.value)
+      console.log(this.popular);
+    }else{
+      this.popular=this.popular.filter((p)=>p!==event.source.value);
+      console.log(this.popular);
+    }
+  }
+
+  changeOutputlanguageSpoken(event){
+    console.log(event); 
+    if(event.checked){
+      this.langaugeSpoken.push(event.source.value)
+      console.log(this.langaugeSpoken);
+    }else{
+      this.langaugeSpoken=this.langaugeSpoken.filter((p)=>p!==event.source.value);
+      console.log(this.langaugeSpoken);
+    }
+  }
+  
+
+   
 
   /* Get errors */
   public handleError = (controlName: string, errorName: string) => {
@@ -142,8 +196,12 @@ checkedStyles:any = [];
     //   this.checkedStyles.forEach(item => {  
     //     this.style.push(item);  
     // });
-      this.hotelApi.AddHotel(this.hotelForm.value.name,this.hotelForm.value.style)
+      this.hotelApi.AddHotel(this.hotelForm.value.name,this.hotelForm.value.style,
+        this.hotelForm.value.deals,this.hotelForm.value.amenities,this.hotelForm.value.rooms,
+        this.hotelForm.value.map,this.hotelForm.value.class,this.hotelForm.value.Pricedeals,
+        this.hotelForm.value.popular,this.hotelForm.value.langaugeSpoken)
       console.log(this.hotelForm.value.style)
+      console.log(this.hotelForm.value.deals)
       // this.hotelApi.AddHotel(this.hotelForm.value).subscribe(res => {
       //   this.ngZone.run(() => this.router.navigateByUrl('/hotel-list'))
       // });

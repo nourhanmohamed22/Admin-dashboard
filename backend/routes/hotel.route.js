@@ -12,8 +12,19 @@ hotelRoute.post('/add-hotel', (req, res, next) => {
   // const url = req.protocol + '://' + req.get('host')
   const hotel = new Hotel({
     // _id: new mongoose.Types.ObjectId(),
-    name: req.body.name,
+    name: req.body.name, 
     style: req.body.style,
+    deals:req.body.deals,
+    amenities:req.body.amenities,
+    rooms:req.body.rooms,
+    map:req.body.map,
+    class:req.body.class,
+    Pricedeals:req.body.Pricedeals,
+    popular:req.body.popular,
+    langaugeSpoken:req.body.langaugeSpoken
+
+
+     
     // image_path: url + '/images/' + req.file.filename,
     // restaurant_features:req.body.restaurant_features,
     // establishment_type:req.body.establishment_type,

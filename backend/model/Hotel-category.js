@@ -14,10 +14,10 @@ safety:{
     type: Array
   },
   distance: {
-    type: Object
+    type: Array
   },
   amenities: {
-    type: String
+    type: Array
   },
   hotelClass: {
     type: Array

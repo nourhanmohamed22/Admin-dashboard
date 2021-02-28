@@ -49,11 +49,11 @@ rating:{
     type:Array
 },
 class:{
-  type:String
+  type:mongoose.Schema.Types.ObjectId
 },
 popular:{
   type:Array
-}
+}  
 }, {
   collection: 'hotels1'
 })
