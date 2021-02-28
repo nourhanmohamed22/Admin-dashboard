@@ -7,8 +7,8 @@
   <span class="nav-tool-items">
     <mat-icon (click)="sidenav.toggle()" class="hamburger">menu</mat-icon>
   </span>
-  <a class="nav-item nav-link login" *ngIf="!currentUser" routerLink="/login">Login</a>
-  <a class="nav-item nav-link login" *ngIf="currentUser" (click)="logout()">Logout</a>
+  <a class="nav-item nav-link login" *ngIf="!currentUser" routerLink="/login"><span style="font-size: 10px;color:black"><i class="fas fa-lock"></i></span> Login</a>
+  <a class="nav-item nav-link login" *ngIf="currentUser" (click)="logout()"><span style="font-size: 10px;color:black"><i class="fas fa-lock-open"></i></span> Logout</a>
 </mat-toolbar>
 
 <router-outlet></router-outlet>

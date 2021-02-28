@@ -13,7 +13,7 @@ import { Router } from "@angular/router";
 export class Api2Service {
   private hotels: Hotel[] = [];
   private hotelsUpdated = new Subject<Hotel[]>();
-  endpoint: string = 'http://localhost:8008/api';
+  endpoint: string = 'http://localhost:8000/api/hotel';
 /*   endpointCategory: string = 'http://localhost:8010/api'; */
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   constructor(private http: HttpClient,private router: Router) { }

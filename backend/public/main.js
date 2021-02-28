@@ -28,7 +28,7 @@ class Api2Service {
         this.router = router;
         this.hotels = [];
         this.hotelsUpdated = new rxjs__WEBPACK_IMPORTED_MODULE_0__["Subject"]();
-        this.endpoint = 'http://localhost:8008/api';
+        this.endpoint = 'http://localhost:8000/api/hotel';
         /*   endpointCategory: string = 'http://localhost:8010/api'; */
         this.headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().set('Content-Type', 'application/json');
     }
@@ -1172,14 +1172,20 @@ __webpack_require__.r(__webpack_exports__);
 const _c0 = ["sidenav"];
 function AppComponent_a_8_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "a", 6);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, "Login");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "span", 7);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](2, "i", 8);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](3, " Login");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } }
 function AppComponent_a_9_Template(rf, ctx) { if (rf & 1) {
     const _r3 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "a", 7);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "a", 9);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function AppComponent_a_9_Template_a_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r3); const ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r2.logout(); });
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, "Logout");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "span", 7);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](2, "i", 10);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](3, " Logout");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } }
 class AppComponent {
@@ -1206,7 +1212,7 @@ AppComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCompo
     } if (rf & 2) {
         let _t;
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵloadQuery"]()) && (ctx.sidenav = _t.first);
-    } }, decls: 11, vars: 2, consts: [["color", "primary", 1, "header"], ["src", "https://static.tacdn.com/img2/brand_refresh/Tripadvisor_lockup_horizontal_secondary_registered.svg", 1, "logo"], [1, "nav-tool-items"], [1, "hamburger", 3, "click"], ["class", "nav-item nav-link login", "routerLink", "/login", 4, "ngIf"], ["class", "nav-item nav-link login", 3, "click", 4, "ngIf"], ["routerLink", "/login", 1, "nav-item", "nav-link", "login"], [1, "nav-item", "nav-link", "login", 3, "click"]], template: function AppComponent_Template(rf, ctx) { if (rf & 1) {
+    } }, decls: 11, vars: 2, consts: [["color", "primary", 1, "header"], ["src", "https://static.tacdn.com/img2/brand_refresh/Tripadvisor_lockup_horizontal_secondary_registered.svg", 1, "logo"], [1, "nav-tool-items"], [1, "hamburger", 3, "click"], ["class", "nav-item nav-link login", "routerLink", "/login", 4, "ngIf"], ["class", "nav-item nav-link login", 3, "click", 4, "ngIf"], ["routerLink", "/login", 1, "nav-item", "nav-link", "login"], [2, "font-size", "10px", "color", "black"], [1, "fas", "fa-lock"], [1, "nav-item", "nav-link", "login", 3, "click"], [1, "fas", "fa-lock-open"]], template: function AppComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "mat-toolbar", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "img", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div");
@@ -1220,8 +1226,8 @@ AppComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCompo
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](7, "menu");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](8, AppComponent_a_8_Template, 2, 0, "a", 4);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](9, AppComponent_a_9_Template, 2, 0, "a", 5);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](8, AppComponent_a_8_Template, 4, 0, "a", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](9, AppComponent_a_9_Template, 4, 0, "a", 5);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](10, "router-outlet");
     } if (rf & 2) {
@@ -2073,7 +2079,7 @@ class ApiService {
         this.router = router;
         this.restaurants = [];
         this.restaurantsUpdated = new rxjs__WEBPACK_IMPORTED_MODULE_0__["Subject"]();
-        this.endpoint = 'http://localhost:8000/api';
+        this.endpoint = 'http://localhost:8000/api/restaurant';
         this.headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().set('Content-Type', 'application/json');
     }
     // Add restaurant
@@ -2181,7 +2187,7 @@ __webpack_require__.r(__webpack_exports__);
 class Api3Service {
     constructor(http) {
         this.http = http;
-        this.endpoint = 'http://localhost:8010/api';
+        this.endpoint = 'http://localhost:8000/api/hotelCategory';
         this.headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]().set('Content-Type', 'application/json');
     }
     GetHotelCategories() {
@@ -3147,7 +3153,7 @@ __webpack_require__.r(__webpack_exports__);
 class ApiUserService {
     constructor(http) {
         this.http = http;
-        this.endpoint = 'http://localhost:8011/api';
+        this.endpoint = 'http://localhost:8000/api/user';
         this.headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().set('Content-Type', 'application/json');
     }
     // Get all users
