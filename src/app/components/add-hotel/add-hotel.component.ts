@@ -10,14 +10,15 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { HttpEvent, HttpEventType } from '@angular/common/http';
 import { Variable } from '@angular/compiler/src/render3/r3_ast';
 import { MapOperator } from 'rxjs/internal/operators/map';
+import { BreakpointObserver } from '@angular/cdk/layout';
 
 
 
 export interface Distance {
-  mainStreet: number,
-  beach: number,
-  park: number,
-  cityCenter : number
+  beach: number;
+  park: number;
+  cityCenter : number;
+  mainStreet: number;
 }
 export interface PriceDeals {
   _id?:string,
@@ -54,7 +55,7 @@ amenities:string[]=[];
 style:string[]=[];
 map:Map={latitude: null,longitude: null};
 rooms:number;
-distance:Distance;
+distance:Distance={beach:null,park:null,cityCenter:null,mainStreet:null};
 pricedeals:PriceDeals[]=[];
 langaugeSpoken:string[]=[];
 HotelCategoryData:any=[];
@@ -91,7 +92,7 @@ class:string;
       name: ['', [Validators.required]],
       map: [this.map],
       rooms:['', [Validators.required]],
-      distance:[this.distance],
+      distance:[{},this.distance],
       Pricedeals:[this.pricedeals],
       class:[this.class,[Validators.required]],
       popular:[this.popular],
@@ -183,6 +184,27 @@ class:string;
 
   }
 
+  addDistance(val,name:String){
+    switch (name){
+    case "beach":
+      this.distance.beach=parseInt(val);
+      break;
+    case "park": 
+    this.distance.park=parseInt(val);
+    break;
+    case "cityCenter": 
+    this.distance.cityCenter=parseInt(val);
+    break;
+    case "mainStreet": 
+    this.distance.mainStreet=parseInt(val);
+    break;
+    }
+    console.log(val);
+   
+    console.log(this.distance);
+
+  }
+
    
 
   /* Get errors */
@@ -211,7 +233,8 @@ class:string;
   //   }) 
   // }      
   submitHotelForm() {
-    
+    console.log(this.distance);
+    console.log(this.hotelForm.value.distance)
       // console.log(this.style)
     if (this.hotelForm) {/*  */
     //   this.checkedStyles.forEach(item => {  
@@ -220,9 +243,10 @@ class:string;
       this.hotelApi.AddHotel(this.hotelForm.value.name,this.hotelForm.value.style,
         this.hotelForm.value.deals,this.hotelForm.value.amenities,this.hotelForm.value.rooms,
         this.hotelForm.value.map,this.hotelForm.value.class,this.hotelForm.value.Pricedeals,
-        this.hotelForm.value.popular,this.hotelForm.value.langaugeSpoken)
+        this.hotelForm.value.popular,this.hotelForm.value.distance,this.hotelForm.value.langaugeSpoken)
       console.log(this.hotelForm.value.style)
       console.log(this.hotelForm.value.deals)
+      console.log(this.hotelForm.value.distance)
       // this.hotelApi.AddHotel(this.hotelForm.value).subscribe(res => {
       //   this.ngZone.run(() => this.router.navigateByUrl('/hotel-list'))
       // });

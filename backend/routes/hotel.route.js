@@ -18,6 +18,7 @@ hotelRoute.post('/add-hotel', (req, res, next) => {
     amenities:req.body.amenities,
     rooms:req.body.rooms,
     map:req.body.map,
+    distance:req.body.distance,
     class:req.body.class,
     Pricedeals:req.body.Pricedeals,
     popular:req.body.popular,

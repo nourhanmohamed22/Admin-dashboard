@@ -21,10 +21,10 @@ export class Api2Service {
    // Add hotel
 
    AddHotel(name:string,style:Array<string>,deals:Array<string>,amenities:Array<string>,rooms:number,
-    map:Object,classh:string,Pricedeals:Array<object>,popular:Array<string>,
-    languageSpoken:Array<string>   ) {
+    map:Object,classh:string,Pricedeals:Array<object>,popular:Array<string>,distance:Object,
+    languageSpoken:Array<string> ) {
     const hotel: Hotel = { name:name ,style:style,deals:deals,amenities:amenities,rooms:rooms,
-    map:map,class:classh,Pricedeals:Pricedeals,popular:popular,langaugeSpoken:languageSpoken};
+    map:map,class:classh,Pricedeals:Pricedeals,popular:popular,distance:distance,langaugeSpoken:languageSpoken};
     this.http
       .post<{ message: string; id: string }>(
         `${this.endpoint}/add-hotel`,

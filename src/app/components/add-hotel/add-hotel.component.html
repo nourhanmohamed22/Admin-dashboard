@@ -19,27 +19,45 @@
         </mat-form-field>
 
            <!--Rooms-->
-   <mat-form-field class="example-full-width">
-    <input matInput type="number" placeholder="Hotel Rooms" formControlName="rooms">
-    <mat-error *ngIf="handleError('rooms', 'required')">
-      You must provide a <strong>hotel rooms</strong>
-    </mat-error>
-  </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput type="number" placeholder="Hotel Rooms" formControlName="rooms">
+          <mat-error *ngIf="handleError('rooms', 'required')">
+            You must provide a <strong>hotel rooms</strong>
+          </mat-error>
+        </mat-form-field>
  
           <!--Map-->
-         
           <mat-form-field class="example-full-width">
             <input matInput type="number" (change)="addMap($any($event.target).value,$any($event.target).name)"  placeholder="Map Latitude" name="latitude" [value]="map.latitude" required>
-            <!-- <mat-error *ngIf="handleError('map', 'required')">
+            <!-- <mat-error *ngIf="handleError('map','required')">
               You must provide a <strong>hotel rooms</strong>
             </mat-error> -->
           </mat-form-field>
           <mat-form-field class="example-full-width">
             <input matInput type="number" (change)="addMap($any($event.target).value,$any($event.target).name)"  placeholder="Map Longitude" name="longitude" [value]="map.longitude" required>
-           <!--  <mat-error *ngIf="handleError('map', 'required')">
+            <!-- <mat-error *ngIf="handleError('map', 'required')">
               You must provide a <strong>hotel rooms</strong>
             </mat-error> -->
           </mat-form-field>
+  
+           <!-- Distance -->
+            <label >Distance:</label>
+            <mat-card fxLayout="row wrap" >
+              <mat-form-field class="example-full-width" fxFlexFill >
+            <input formControlName="distance" matInput type="number" (change)="addDistance($any($event.target).value,$any($event.target).name)"  placeholder="Beach" name="beach" [value]="distance.beach" required fxFlex="25">
+          </mat-form-field>
+          <mat-form-field class="example-full-width" fxFlexFill >
+            <input matInput type="number" (change)="addDistance($any($event.target).value,$any($event.target).name)"  placeholder="Park" name="park" [value]="distance.park" fxFlex="25" required>
+          </mat-form-field>
+          <mat-form-field class="example-full-width" fxFlexFill>
+            <input matInput type="number" (change)="addDistance($any($event.target).value,$any($event.target).name)"  placeholder="City Center" name="cityCenter" [value]="distance.cityCenter" required fxFlex="25">
+          </mat-form-field>
+          <mat-form-field class="example-full-width" fxFlexFill>
+            <input matInput type="number" (change)="addDistance($any($event.target).value,$any($event.target).name)"  placeholder="Main Street" name="mainStreet" [value]="distance.mainStreet" required fxFlex="25">
+          </mat-form-field>
+        </mat-card>
+          
+          
   
           <div class="misc-bottom-padding">
             <mat-label>Hotel Class:</mat-label>
@@ -49,6 +67,7 @@
               <mat-radio-button  class = "tp-radio-button" value="Fine Dining">Fine Dining</mat-radio-button> -->
             </mat-radio-group>
           </div>
+
             <!--popular-->
   <div class="misc-bottom-padding">
     <mat-label>Popular :</mat-label>
@@ -58,7 +77,7 @@
   </div> 
           <!--language spoken-->
           <div class="misc-bottom-padding">
-            <mat-label>Popular :</mat-label>
+            <mat-label>Language Spoken :</mat-label>
             <section  *ngFor="let language of HotelCategoryData[0]?.languageSpoken" > 
                 <mat-checkbox [value]="language._id"  (change)="changeOutputlanguageSpoken($event)">{{language.name}}</mat-checkbox>
             </section>
