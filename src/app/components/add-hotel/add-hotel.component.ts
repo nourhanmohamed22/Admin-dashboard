@@ -1,6 +1,6 @@
 
 import { HotelCategory } from './../../shared/hotel-category';
-
+import { mimeType } from './../../shared/mime-type.validator';
 import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
@@ -58,6 +58,7 @@ langaugeSpoken:string[]=[];
 HotelCategoryData:any=[];
 categories: HotelCategory ;
 class:string;
+imagePreview: string;
 // checkedStyles:any = [];
   constructor(public fb: FormBuilder,
     public router: Router,
@@ -78,6 +79,10 @@ class:string;
 
   HotelFormData() { 
     this.hotelForm = this.fb.group({
+      images: [[], {
+        Validators: [Validators.required],
+         asyncValidators: [mimeType]
+      }],
       deals: [this.deals],
       amenities: [this.amenities],
       style: [this.style],
@@ -162,6 +167,21 @@ class:string;
   }
   
 
+  // onImagePicked(event: Event) {
+  //   const file = (event.target as HTMLInputElement).files[0];
+  //   for(var i=0;i<this.images.length;i++){
+  //   this.hotelForm.patchValue({ images: file });
+  //   }
+  //   this.hotelForm.get('images').updateValueAndValidity();
+  //   // console.log(file);
+  //   // console.log(this.restaurantForm)
+  //   const reader = new FileReader();
+
+  //   reader.onload = () => {
+  //     this.imagePreview = reader.result as string ;
+  //   };
+  //   reader.readAsDataURL(file);
+  // }
    
 
   /* Get errors */

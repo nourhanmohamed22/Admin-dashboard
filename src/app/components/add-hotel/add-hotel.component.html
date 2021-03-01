@@ -61,7 +61,11 @@
                 <mat-checkbox [value]="language._id"  (change)="changeOutputlanguageSpoken($event)">{{language.name}}</mat-checkbox>
             </section>
           </div> 
-  
+     <!-- Image -->
+     <div class="form-group">
+      <input type="file" name="images" multiple/> 
+    </div>
+    <button type="submit" class="btn btn-info">upload</button>
           <!-- Email -->
           <!-- <mat-form-field class="example-full-width">
             <input matInput placeholder="Student email" formControlName="student_email">
