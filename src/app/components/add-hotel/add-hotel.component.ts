@@ -90,6 +90,7 @@ imagePreview: string;
       map: [this.map],
       rooms:['', [Validators.required]],
       distance:[this.distance],
+     likes:[''],
       Pricedeals:[this.pricedeals],
       class:[this.class,[Validators.required]],
       popular:[this.popular],
@@ -168,20 +169,19 @@ imagePreview: string;
   
 
   // onImagePicked(event: Event) {
-  //   const file = (event.target as HTMLInputElement).files[0];
-  //   for(var i=0;i<this.images.length;i++){
-  //   this.hotelForm.patchValue({ images: file });
-  //   }
+  //   const file = (event.target as HTMLInputElement).files;
+  //   this.hotelForm.patchValue({ image_path: file });
   //   this.hotelForm.get('images').updateValueAndValidity();
   //   // console.log(file);
   //   // console.log(this.restaurantForm)
   //   const reader = new FileReader();
 
   //   reader.onload = () => {
-  //     this.imagePreview = reader.result as string ;
+  //     this.imagePreview = reader.result as string;
   //   };
   //   reader.readAsDataURL(file);
   // }
+
    
 
   /* Get errors */

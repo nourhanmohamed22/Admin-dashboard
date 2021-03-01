@@ -10,6 +10,7 @@ export class Hotel {
     map?:Object;
     rooms?:Number;
     distance?:Object; 
+    reviews?:Array<object>;
     likes?: Number;
     Pricedeals?: Array<object>;
     langaugeSpoken?:Array<string>;
