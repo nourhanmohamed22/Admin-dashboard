@@ -24,7 +24,12 @@ export class Api2Service {
     map:Object,classh:string,Pricedeals:Array<object>,popular:Array<string>,distance:Object,
     languageSpoken:Array<string> ) {
     const hotel: Hotel = { name:name ,style:style,deals:deals,amenities:amenities,rooms:rooms,
+<<<<<<< HEAD
     map:map,class:classh,Pricedeals:Pricedeals,popular:popular,distance:distance,langaugeSpoken:languageSpoken};
+=======
+    map:map,class:classh,Pricedeals:Pricedeals,popular:popular,langaugeSpoken:languageSpoken,
+  };
+>>>>>>> 0f3a1f100229e5a86ed6e1885ff21eb6999e45ba
     this.http
       .post<{ message: string; id: string }>(
         `${this.endpoint}/add-hotel`,

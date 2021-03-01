@@ -1,17 +1,38 @@
 const express = require('express');
+const multer = require("multer");
 const app = express();
 const hotelRoute = express.Router();
 /* const HotelCategoryRoute = express.Router(); */
 // Hotel model
 let Hotel = require('../model/Hotel');
 /* let HotelCategory = require('../model/Hotel-category') */
-
+const MIME_TYPE_MAP = {
+  'image/png': 'png',
+  'image/jpeg': 'jpg',
+  'image/jpg': 'jpg'
+};
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    const isValid = MIME_TYPE_MAP[file.mimetype];
+    let error = new Error("Invalid mime type");
+    if (isValid) {
+      error = null;
+    }
+    cb(error, "./images"); 
+  },
+  filename: (req, file, cb) => {
+    const name = file.originalname.toLowerCase().split(' ').join('-');
+    const ext = MIME_TYPE_MAP[file.mimetype];
+    cb(null, name + '-' + Date.now() + '.' + ext);
+  }
+}); 
 // Add Hotel
 
-hotelRoute.post('/add-hotel', (req, res, next) => {
+hotelRoute.post('/add-hotel',multer({ storage: storage }).array("images",5), (req, res, next) => {
   // const url = req.protocol + '://' + req.get('host')
   const hotel = new Hotel({
     // _id: new mongoose.Types.ObjectId(),
+    images:url + '/images/' + req.files.filename,
     name: req.body.name, 
     style: req.body.style,
     deals:req.body.deals,
