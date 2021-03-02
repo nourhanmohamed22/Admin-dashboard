@@ -24,8 +24,7 @@ export class UpdateHotelComponent implements OnInit {
   @ViewChild('resethotelForm') myNgForm;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   hotelForm: FormGroup;
-  subjectArray: Subject[] = [];
-  SectioinArray: any = ['A', 'B', 'C', 'D', 'E'];
+
 
   ngOnInit() {
     this.updateBookForm();
@@ -40,8 +39,7 @@ export class UpdateHotelComponent implements OnInit {
   ) { 
     var id = this.actRoute.snapshot.paramMap.get('id');
     this.hotelApi.GetHotel(id).subscribe(data => {
-      console.log(data.subjects)
-      this.subjectArray = data.subjects;
+      console.log(data)
       this.hotelForm = this.fb.group({
         name: [data.name, [Validators.required]],
         booking: [data.booking, [Validators.required]],
@@ -70,21 +68,21 @@ export class UpdateHotelComponent implements OnInit {
     const input = event.input;
     const value = event.value;
     // Add language
-    if ((value || '').trim() && this.subjectArray.length < 5) {
+    /* if ((value || '').trim() && this.subjectArray.length < 5) {
       this.subjectArray.push({ name: value.trim() })
     }
     // Reset the input value
     if (input) {
       input.value = '';
-    }
+    } */
   }
 
   /* Remove dynamic languages */
   remove(subject: Subject): void {
-    const index = this.subjectArray.indexOf(subject);
+    /* const index = this.subjectArray.indexOf(subject);
     if (index >= 0) {
       this.subjectArray.splice(index, 1);
-    }
+    } */
   }
 
   /* Date */

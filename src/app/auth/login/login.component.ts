@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl: string;
+  hide = true;
   error = '';
 
   constructor(
@@ -63,4 +64,6 @@ export class LoginComponent implements OnInit {
                   this.loading = false;
               });
   }
+
+  
 }

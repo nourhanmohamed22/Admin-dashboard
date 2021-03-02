@@ -37,6 +37,7 @@ export class HotelsListComponent implements OnInit {
     }
 
     DeleteHotel(index: number, e){
+      
       if(window.confirm('Are you sure')) {
         const data = this.dataSource.data;
         data.splice((this.paginator.pageIndex * this.paginator.pageSize) + index, 1);

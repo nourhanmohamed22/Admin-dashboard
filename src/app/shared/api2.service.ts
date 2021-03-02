@@ -14,7 +14,6 @@ export class Api2Service {
   private hotels: Hotel[] = [];
   private hotelsUpdated = new Subject<Hotel[]>();
   endpoint: string = 'http://localhost:8000/api/hotel';
-/*   endpointCategory: string = 'http://localhost:8010/api'; */
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   constructor(private http: HttpClient,private router: Router) { }
 
@@ -23,13 +22,8 @@ export class Api2Service {
    AddHotel(name:string,style:Array<string>,deals:Array<string>,amenities:Array<string>,rooms:number,
     map:Object,classh:string,Pricedeals:Array<object>,popular:Array<string>,distance:Object,
     languageSpoken:Array<string> ) {
-    const hotel: Hotel = { name:name ,style:style,deals:deals,amenities:amenities,rooms:rooms,
-<<<<<<< HEAD
+    const hotel: Hotel = {name:name ,style:style,deals:deals,amenities:amenities,rooms:rooms,
     map:map,class:classh,Pricedeals:Pricedeals,popular:popular,distance:distance,langaugeSpoken:languageSpoken};
-=======
-    map:map,class:classh,Pricedeals:Pricedeals,popular:popular,langaugeSpoken:languageSpoken,
-  };
->>>>>>> 0f3a1f100229e5a86ed6e1885ff21eb6999e45ba
     this.http
       .post<{ message: string; id: string }>(
         `${this.endpoint}/add-hotel`,

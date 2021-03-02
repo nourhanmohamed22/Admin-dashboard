@@ -5,6 +5,9 @@
   </div>
   
   <p *ngIf="RestaurantData.length <= 0" class="no-data">There is no restaurant added yet!</p>
+  <div class="no-data" *ngIf="RestaurantData.length <= 0" style="display: flex;justify-content: center;align-items: center;position: absolute;top: 300px;left: 800px;" >
+    <mat-spinner color="primary"></mat-spinner>
+  </div>
   
   <div class="container" *ngIf="RestaurantData.length > 0">
     <div class="mat-elevation-z8">

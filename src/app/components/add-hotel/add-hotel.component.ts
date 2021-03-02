@@ -1,9 +1,6 @@
 
 import { HotelCategory } from './../../shared/hotel-category';
-<<<<<<< HEAD
-=======
-import { mimeType } from './../../shared/mime-type.validator';
->>>>>>> 0f3a1f100229e5a86ed6e1885ff21eb6999e45ba
+/* import { mimeType } from './../../shared/mime-type.validator'; */
 import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
@@ -52,7 +49,7 @@ export class AddHotelComponent implements OnInit {
   @ViewChild('resetHotelForm') myNgForm;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   hotelForm: FormGroup;
-images:string[];
+/* images:string[]; */
 deals:string[]=[];
 popular:string[]=[];
 amenities:string[]=[];
@@ -65,7 +62,7 @@ langaugeSpoken:string[]=[];
 HotelCategoryData:any=[];
 categories: HotelCategory ;
 class:string;
-imagePreview: string;
+/* imagePreview: string; */
 // checkedStyles:any = [];
   constructor(public fb: FormBuilder,
     public router: Router,
@@ -91,10 +88,10 @@ imagePreview: string;
 
   HotelFormData() { 
     this.hotelForm = this.fb.group({
-      images: [[], {
+     /*  images: [[], {
         Validators: [Validators.required],
          asyncValidators: [mimeType]
-      }],
+      }], */
       deals: [this.deals],
       amenities: [this.amenities],
       style: [this.style],
@@ -178,8 +175,6 @@ imagePreview: string;
     }
   }
   
-
-<<<<<<< HEAD
   addMap(val,name:String){
     if(name=="latitude"){
       this.map['latitude']=parseFloat(val);
@@ -215,7 +210,6 @@ imagePreview: string;
 
   }
 
-=======
   // onImagePicked(event: Event) {
   //   const file = (event.target as HTMLInputElement).files[0];
   //   for(var i=0;i<this.images.length;i++){
@@ -231,7 +225,7 @@ imagePreview: string;
   //   };
   //   reader.readAsDataURL(file);
   // }
->>>>>>> 0f3a1f100229e5a86ed6e1885ff21eb6999e45ba
+
    
 
   /* Get errors */
