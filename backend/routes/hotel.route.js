@@ -39,22 +39,12 @@ hotelRoute.post('/add-hotel', (req, res, next) => {
     amenities:req.body.amenities,
     rooms:req.body.rooms,
     map:req.body.map,
+    distance:req.body.distance,
     class:req.body.class,
     Pricedeals:req.body.Pricedeals,
     popular:req.body.popular,
     langaugeSpoken:req.body.langaugeSpoken
 
-
-     
-    // image_path: url + '/images/' + req.file.filename,
-    // restaurant_features:req.body.restaurant_features,
-    // establishment_type:req.body.establishment_type,
-    // meals:req.body.meals,
-    // price_range:req.body.price_range, 
-    // cuisine:req.body.cuisine,
-    // dietary_restrictions:req.body.dietary_restrictions,
-    // location:req.body.location,
-    // phone:req.body.phone
 
   });
   hotel.save().then(result => {

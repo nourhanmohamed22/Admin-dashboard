@@ -10,16 +10,52 @@
       <!-- Left block -->
       <mat-card>
         <div class="controlers-wrapper">
-          <!-- Name -->
+          <!-- Name --> 
           <mat-form-field class="example-full-width">
             <input matInput placeholder="Restaurant Name" formControlName="name">
             <mat-error *ngIf="handleError('name', 'required')">
               You must provide a <strong>restaurant name</strong>
             </mat-error>
           </mat-form-field>
-  
+
+            <!--Address-->
+            <mat-form-field class="example-full-width">
+              <input matInput  (change)="addAddress($any($event.target).value,$any($event.target).name)"  placeholder=" Add Street Name" name="streetname" [value]="address.streetname" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput type="number" (change)="addAddress($any($event.target).value,$any($event.target).name)"  placeholder="Add Zip Code" name="zipcode" [value]="address.zipcode" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput type="number" (change)="addAddress($any($event.target).value,$any($event.target).name)"  placeholder="Add Latitude" name="location.latitude" [value]="address.location.latitude" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput type="number" (change)="addAddress($any($event.target).value,$any($event.target).name)"  placeholder="Add Longitude" name="location.longitude" [value]="address.location.longitude" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput  (change)="addDescription($any($event.target).value,$any($event.target).name)"  placeholder=" Add Restaurant Description" name="text" [value]="descripation.text" required>
+            </mat-form-field>
+          </div>
+        </mat-card>
+        <mat-card>
+          <div class="controlers-wrapper">
+              <!--Contact-->
+              <mat-label class="label">Contact Info:</mat-label>
+              <mat-form-field class="example-full-width">
+                <input matInput type="number" (change)="addContact($any($event.target).value,$any($event.target).name)"  placeholder=" Add telephone" name="telephone" [value]="contact.telephone" required>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <input matInput  (change)="addContact($any($event.target).value,$any($event.target).name)"  placeholder="Add Email" name="Email" [value]="contact.Email" required>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <input matInput  (change)="addContact($any($event.target).value,$any($event.target).name)"  placeholder="Add Website Link" name="website" [value]="contact.website" required>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <input matInput  (change)="addContact($any($event.target).value,$any($event.target).name)"  placeholder="Add Restaurant Open Hours" name="openhours" [value]="contact.openhours" required>
+              </mat-form-field>
+              </div>
+              </mat-card>
           <!-- Establishments -->
-          <mat-form-field class="multiple-items">
+          <!-- <mat-form-field class="multiple-items">
             <mat-chip-list #chipList2>
               <mat-chip *ngFor="let establishmentArray of establishmentArray" [selectable]="selectable" [removable]="removable"
                 (removed)="removeEstablishment(establishmentArray)">
@@ -33,10 +69,10 @@
             <i class="material-icons tooltip-info" matTooltip="Enter establishment name and press enter to add establishment types">
               info
             </i>
-          </mat-form-field>
+          </mat-form-field> -->
   
           <!-- Meals -->
-          <mat-form-field class="multiple-items">
+          <!-- <mat-form-field class="multiple-items">
             <mat-chip-list #chipList3>
               <mat-chip *ngFor="let mealArray of mealArray" [selectable]="selectable" [removable]="removable"
                 (removed)="removeMeals(mealArray)">
@@ -50,9 +86,9 @@
             <i class="material-icons tooltip-info" matTooltip="Enter meals name and press enter to add meals">
               info
             </i>
-          </mat-form-field>
+          </mat-form-field> -->
                <!-- Cuisines -->
-               <mat-form-field class="multiple-items">
+               <!-- <mat-form-field class="multiple-items">
                 <mat-chip-list #chipList4>
                   <mat-chip *ngFor="let cuisineArray of cuisineArray" [selectable]="selectable" [removable]="removable"
                     (removed)="removeCuisines(cuisineArray)">
@@ -66,9 +102,9 @@
                 <i class="material-icons tooltip-info" matTooltip="Enter cuisines name and press enter to add cuisines">
                   info
                 </i>
-              </mat-form-field>
+              </mat-form-field> -->
                 <!-- Dietary Restrictions -->
-                <mat-form-field class="multiple-items">
+                <!-- <mat-form-field class="multiple-items">
                   <mat-chip-list #chipList5>
                     <mat-chip *ngFor="let dietaryArray of dietaryArray" [selectable]="selectable" [removable]="removable"
                       (removed)="removeRestriction(dietaryArray)">
@@ -82,16 +118,15 @@
                   <i class="material-icons tooltip-info" matTooltip="Enter restriction name and press enter to add dietary restrictions">
                     info
                   </i>
-                </mat-form-field>
+                </mat-form-field> -->
               
-        </div>
-      </mat-card>
+      
   
       <!-- Right block -->
       <mat-card>
         <div class="controlers-wrapper">
           <!-- Add features -->
-          <mat-form-field class="multiple-items">
+          <!-- <mat-form-field class="multiple-items">
             <mat-chip-list #chipList>
               <mat-chip *ngFor="let featuresArray of featuresArray" [selectable]="selectable" [removable]="removable"
                 (removed)="remove(featuresArray)">
@@ -106,39 +141,39 @@
               info
             </i>
            
-          </mat-form-field>
+          </mat-form-field> -->
      <!-- Location -->
-     <mat-form-field class="example-full-width">
+     <!-- <mat-form-field class="example-full-width">
       <input matInput placeholder="Restaurant Location" formControlName="location">
       <mat-error *ngIf="handleError('location', 'required')">
         You must provide a <strong>restaurant location</strong>
       </mat-error>
-    </mat-form-field>
+    </mat-form-field> -->
    <!-- Phone-->
-   <mat-form-field class="example-full-width">
+   <!-- <mat-form-field class="example-full-width">
     <input matInput type="number" placeholder="Restaurant Phone" formControlName="phone">
     <mat-error *ngIf="handleError('phone', 'required')">
       You must provide a <strong>restaurant phone</strong>
     </mat-error>
-  </mat-form-field>
+  </mat-form-field> -->
   
           <!-- Price -->   
-          <div class="misc-bottom-padding">
+          <!-- <div class="misc-bottom-padding">
             <mat-label>Price Range:</mat-label>
             <mat-radio-group aria-label="Select an option" formControlName="price_range">
               <mat-radio-button class = "tp-radio-button" value="Cheap Eats">Cheap Eats</mat-radio-button>
               <mat-radio-button class = "tp-radio-button" value="Mid-range">Mid-range</mat-radio-button>
               <mat-radio-button  class = "tp-radio-button" value="Fine Dining">Fine Dining</mat-radio-button>
             </mat-radio-group>
-          </div>
+          </div> -->
           <!-- Image -->
-            <div>
+            <!-- <div>
             <button mat-stroked-button type="button" (click)="filePicker.click()">Pick Image</button>
             <input type="file" #filePicker (change)="onImagePicked($event)" >
             </div>
-        <div class="image-preview" *ngIf="imagePreview !=='' && imagePreview  && restaurantForm.get('image_path').valid">
+        <div class="image-preview" *ngIf="imagePreview !=='' && imagePreview  && restaurantForm.get('imageUrls').valid">
           <img [src]="imagePreview" [alt]="restaurantForm.value.name">
-          </div>
+          </div>  -->
         </div>
       </mat-card>
   

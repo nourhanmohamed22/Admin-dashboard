@@ -20,6 +20,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatAutocompleteModule} from '@angular/material/autocomplete';
 import { MatSortModule } from '@angular/material/sort';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
       MatPaginatorModule,
       MatAutocompleteModule,
       MatSortModule,
-      MatCheckboxModule
+      MatCheckboxModule,
+      MatMenuModule
 
    ],
    exports: [
@@ -66,7 +68,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
       MatPaginatorModule,
       MatAutocompleteModule,
       MatSortModule,
-      MatCheckboxModule
+      MatCheckboxModule,
+      MatMenuModule
       
    ],
    providers: [

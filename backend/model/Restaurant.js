@@ -15,7 +15,7 @@ let Restaurant = new Schema({
   contact: {
     type: Object
   },
-  description: {
+  descripation: {
     type: Object
   }, 
 Establishment: {

@@ -12,3 +12,10 @@
 .image-preview img{
     height: 100%;
 }
+.label{
+    font-weight: bold;
+    font-size: 17px;
+}
+section{
+    margin-top: 6px;
+}

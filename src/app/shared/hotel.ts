@@ -9,8 +9,8 @@ export class Hotel {
     booking?:Array<Object>;
     map?:Object;
     rooms?:Number;
-    distance?:Object; 
     reviews?:Array<object>;
+    distance:Object; 
     likes?: Number;
     Pricedeals?: Array<object>;
     langaugeSpoken?:Array<string>;

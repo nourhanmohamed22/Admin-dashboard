@@ -1,15 +1,19 @@
 export class Restaurant {
     _id?: String;
     name: String;
-    image_path: String;
-    restaurant_features?: Array<object>;
-    establishment_type?: Array<string>;
+    imageUrls?: Array<string>;
+    address?: Object;
+    contact?: Object;
+    descripation?:Object;
+    Establishment?: Array<string>;
+    features?:Array<string>;
     meals?:Array<string>;
-    price_range?: String;
+    Pricerange?:String;
     cuisine?:Array<string>;
-    dietary_restrictions?:Array<string>;
-    location?:String;
-    phone?:Number;
+    dishes?:Array<string>;
+    DietaryRestrictions?:Array<string>; 
+    goodFor?:Array<string>; 
+    menu?:Array<string>;
     reviews?:Array<object>;
-    stars?:Number; 
+    rating?:Array<object>;
  }

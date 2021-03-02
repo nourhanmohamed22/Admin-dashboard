@@ -13,19 +13,20 @@ import { Router } from "@angular/router";
 export class Api2Service {
   private hotels: Hotel[] = [];
   private hotelsUpdated = new Subject<Hotel[]>();
-  endpoint: string = 'http://localhost:8008/api';
-  endpointCategory: string = 'http://localhost:8010/api';
+  endpoint: string = 'http://localhost:8000/api/hotel';
+/*   endpointCategory: string = 'http://localhost:8010/api'; */
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   constructor(private http: HttpClient,private router: Router) { }
 
    // Add hotel
 
    AddHotel(name:string,style:Array<string>,deals:Array<string>,amenities:Array<string>,rooms:number,
-    map:Object,classh:string,Pricedeals:Array<object>,popular:Array<string>,
-    languageSpoken:Array<string>   ) {
+    map:Object,classh:string,Pricedeals:Array<object>,popular:Array<string>,distance:Object,
+    languageSpoken:Array<string> ) {
     const hotel: Hotel = { name:name ,style:style,deals:deals,amenities:amenities,rooms:rooms,
-    map:map,class:classh,Pricedeals:Pricedeals,popular:popular,langaugeSpoken:languageSpoken,
-  };
+
+    map:map,class:classh,Pricedeals:Pricedeals,popular:popular,distance:distance,langaugeSpoken:languageSpoken};
+
     this.http
       .post<{ message: string; id: string }>(
         `${this.endpoint}/add-hotel`,
