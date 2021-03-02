@@ -6,33 +6,33 @@ const hotelRoute = express.Router();
 // Hotel model
 let Hotel = require('../model/Hotel');
 /* let HotelCategory = require('../model/Hotel-category') */
-const MIME_TYPE_MAP = {
-  'image/png': 'png',
-  'image/jpeg': 'jpg',
-  'image/jpg': 'jpg'
-};
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    const isValid = MIME_TYPE_MAP[file.mimetype];
-    let error = new Error("Invalid mime type");
-    if (isValid) {
-      error = null;
-    }
-    cb(error, "./images"); 
-  },
-  filename: (req, file, cb) => {
-    const name = file.originalname.toLowerCase().split(' ').join('-');
-    const ext = MIME_TYPE_MAP[file.mimetype];
-    cb(null, name + '-' + Date.now() + '.' + ext);
-  }
-}); 
+// const MIME_TYPE_MAP = {
+//   'image/png': 'png',
+//   'image/jpeg': 'jpg',
+//   'image/jpg': 'jpg'
+// };
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     const isValid = MIME_TYPE_MAP[file.mimetype];
+//     let error = new Error("Invalid mime type");
+//     if (isValid) {
+//       error = null;
+//     }
+//     cb(error, "./images"); 
+//   },
+//   filename: (req, file, cb) => {
+//     const name = file.originalname.toLowerCase().split(' ').join('-');
+//     const ext = MIME_TYPE_MAP[file.mimetype];
+//     cb(null, name + '-' + Date.now() + '.' + ext);
+//   }
+// }); 
 // Add Hotel
 
-hotelRoute.post('/add-hotel',multer({ storage: storage }).array("images",5), (req, res, next) => {
-  // const url = req.protocol + '://' + req.get('host')
+hotelRoute.post('/add-hotel', (req, res, next) => {
+   //const url = req.protocol + '://' + req.get('host')
   const hotel = new Hotel({
     // _id: new mongoose.Types.ObjectId(),
-    images:url + '/images/' + req.files.filename,
+    //images:url + '/images/' + req.files.filename,
     name: req.body.name, 
     style: req.body.style,
     deals:req.body.deals,
@@ -45,17 +45,6 @@ hotelRoute.post('/add-hotel',multer({ storage: storage }).array("images",5), (re
     popular:req.body.popular,
     langaugeSpoken:req.body.langaugeSpoken
 
-
-     
-    // image_path: url + '/images/' + req.file.filename,
-    // restaurant_features:req.body.restaurant_features,
-    // establishment_type:req.body.establishment_type,
-    // meals:req.body.meals,
-    // price_range:req.body.price_range, 
-    // cuisine:req.body.cuisine,
-    // dietary_restrictions:req.body.dietary_restrictions,
-    // location:req.body.location,
-    // phone:req.body.phone
 
   });
   hotel.save().then(result => {

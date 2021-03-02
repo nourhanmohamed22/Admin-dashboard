@@ -18,14 +18,14 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 export interface Distance {
   beach: number;
   park: number;
-  cityCenter : number;
+  cityCenter: number;
   mainStreet: number;
 }
 export interface PriceDeals {
-  _id?:string,
+  _id?: string,
   name?: string,
-     link?: string,
-     pricePerNight ?: number
+  link?: string,
+  pricePerNight?: number
 }
 export interface Map {
   latitude: number;
@@ -42,7 +42,7 @@ export class AddHotelComponent implements OnInit {
   selectable = true;
   removable = true;
   addOnBlur = true;
-  styleslist=["Family-Friendly","Romantic","Business"]
+  styleslist = ["Family-Friendly", "Romantic", "Business"]
 
   @ViewChild('chipList') chipList;
   @ViewChild('chipList2') chipList2;
@@ -68,25 +68,25 @@ class:string;
     public router: Router,
     private ngZone: NgZone,
     public hotelApi: Api2Service,
-    public hotelCategoryApi: Api3Service) { 
+    public hotelCategoryApi: Api3Service) {
 
 
-      this.hotelCategoryApi.GetHotelCategories().subscribe(data=>{
-        this.HotelCategoryData=data;
-        console.log(this.HotelCategoryData)
-              })
-      
-
-    }
+    this.hotelCategoryApi.GetHotelCategories().subscribe(data => {
+      this.HotelCategoryData = data;
+      console.log(this.HotelCategoryData)
+    })
 
 
-
-  ngOnInit(): void { 
-    this.HotelFormData();
-    
   }
 
-  HotelFormData() { 
+
+
+  ngOnInit(): void {
+    this.HotelFormData();
+
+  }
+
+  HotelFormData() {
     this.hotelForm = this.fb.group({
      /*  images: [[], {
         Validators: [Validators.required],
@@ -97,80 +97,73 @@ class:string;
       style: [this.style],
       name: ['', [Validators.required]],
       map: [this.map],
-      rooms:['', [Validators.required]],
-      distance:[{},this.distance],
-      Pricedeals:[this.pricedeals],
-      class:[this.class,[Validators.required]],
-      popular:[this.popular],
-      langaugeSpoken:[this.langaugeSpoken]
-    }) 
+      rooms: ['', [Validators.required]],
+      likes: [''],
+      distance: [this.distance],
+      Pricedeals: [this.pricedeals],
+      class: [this.class, [Validators.required]],
+      popular: [this.popular],
+      langaugeSpoken: [this.langaugeSpoken]
+    })
   }
 
 
 
 
 
-  changeOutputStyle(event){
-    console.log(event); 
-    if(event.checked){
+  changeOutputStyle(event) {
+    console.log(event);
+    if (event.checked) {
       // this.checkedStyles.push(event.source.value);
       this.style.push(event.source.value)
       // console.log( this.checkedStyles);
       console.log(this.style);
-    }else{
+    } else {
       // this.checkedStyles=this.checkedStyles.filter((p)=>p!==event.source.value);
-      this.style=this.style.filter((p)=>p!==event.source.value)
+      this.style = this.style.filter((p) => p !== event.source.value)
       // console.log(this.checkedStyles);
       console.log(this.style);
     }
   }
 
-  changeOutputDeals(event){
-    console.log(event); 
-    if(event.checked){
-      // this.checkedStyles.push(event.source.value);
+  changeOutputDeals(event) {
+    console.log(event);
+    if (event.checked) {
       this.deals.push(event.source.value)
-      // console.log( this.checkedStyles);
       console.log(this.deals);
-    }else{
-      // this.checkedStyles=this.checkedStyles.filter((p)=>p!==event.source.value);
-      this.deals=this.deals.filter((p)=>p!==event.source.value)
-      // console.log(this.checkedStyles);
+    } else {
+      this.deals = this.deals.filter((p) => p !== event.source.value)
       console.log(this.deals);
     }
   }
-  changeOutputAmenities(event){
-    console.log(event); 
-    if(event.checked){
-      // this.checkedStyles.push(event.source.value);
+  changeOutputAmenities(event) {
+    console.log(event);
+    if (event.checked) {
       this.amenities.push(event.source.value)
-      // console.log( this.checkedStyles);
       console.log(this.amenities);
-    }else{
-      // this.checkedStyles=this.checkedStyles.filter((p)=>p!==event.source.value);
-      this.amenities=this.amenities.filter((p)=>p!==event.source.value)
-      // console.log(this.checkedStyles);
+    } else {
+      this.amenities = this.amenities.filter((p) => p !== event.source.value);
       console.log(this.amenities);
     }
   }
-  changeOutputPopular(event){
-    console.log(event); 
-    if(event.checked){
+  changeOutputPopular(event) {
+    console.log(event);
+    if (event.checked) {
       this.popular.push(event.source.value)
       console.log(this.popular);
-    }else{
-      this.popular=this.popular.filter((p)=>p!==event.source.value);
+    } else {
+      this.popular = this.popular.filter((p) => p !== event.source.value);
       console.log(this.popular);
     }
   }
 
-  changeOutputlanguageSpoken(event){
-    console.log(event); 
-    if(event.checked){
+  changeOutputlanguageSpoken(event) {
+    console.log(event);
+    if (event.checked) {
       this.langaugeSpoken.push(event.source.value)
       console.log(this.langaugeSpoken);
-    }else{
-      this.langaugeSpoken=this.langaugeSpoken.filter((p)=>p!==event.source.value);
+    } else {
+      this.langaugeSpoken = this.langaugeSpoken.filter((p) => p !== event.source.value);
       console.log(this.langaugeSpoken);
     }
   }
@@ -180,48 +173,45 @@ class:string;
       this.map['latitude']=parseFloat(val);
     }
 
-    if(name=="longitude"){
-      this.map['longitude']=parseFloat(val);
+    if (name == "longitude") {
+      this.map['longitude'] = parseFloat(val);
     }
     console.log(val);
-   
+
     console.log(this.map);
 
   }
 
-  addDistance(val,name:String){
-    switch (name){
-    case "beach":
-      this.distance.beach=parseInt(val);
-      break;
-    case "park": 
-    this.distance.park=parseInt(val);
-    break;
-    case "cityCenter": 
-    this.distance.cityCenter=parseInt(val);
-    break;
-    case "mainStreet": 
-    this.distance.mainStreet=parseInt(val);
-    break;
+  addDistance(val, name: String) {
+    if (name == "beach") {
+      this.distance['beach'] = parseInt(val);
+    }
+
+    if (name == "park") {
+      this.distance['park'] = parseInt(val);
+    }
+    if (name == "cityCenter") {
+      this.distance['cityCenter'] = parseInt(val);
+    }
+    if (name == "mainStreet") {
+      this.distance['mainStreet'] = parseInt(val);
     }
     console.log(val);
-   
+
     console.log(this.distance);
 
   }
 
   // onImagePicked(event: Event) {
-  //   const file = (event.target as HTMLInputElement).files[0];
-  //   for(var i=0;i<this.images.length;i++){
-  //   this.hotelForm.patchValue({ images: file });
-  //   }
+  //   const file = (event.target as HTMLInputElement).files;
+  //   this.hotelForm.patchValue({ image_path: file });
   //   this.hotelForm.get('images').updateValueAndValidity();
   //   // console.log(file);
   //   // console.log(this.restaurantForm)
   //   const reader = new FileReader();
 
   //   reader.onload = () => {
-  //     this.imagePreview = reader.result as string ;
+  //     this.imagePreview = reader.result as string;
   //   };
   //   reader.readAsDataURL(file);
   // }
@@ -231,7 +221,7 @@ class:string;
   /* Get errors */
   public handleError = (controlName: string, errorName: string) => {
     return this.hotelForm.controls[controlName].hasError(errorName);
-  }  
+  }
 
   /* Submit hotel */
   // submitHotelForm() { 
@@ -245,10 +235,10 @@ class:string;
   //       case HttpEventType.ResponseHeader:
   //         console.log('Response header has been received!');
   //         break;
-        
+
   //       case HttpEventType.Response:
   //         console.log('User successfully created!', event.body);
-          
+
   //         this.router.navigateByUrl('/hotel-list') 
   //     } 
   //   }) 
@@ -256,15 +246,18 @@ class:string;
   submitHotelForm() {
     console.log(this.distance);
     console.log(this.hotelForm.value.distance)
-      // console.log(this.style)
+    // console.log(this.style)
     if (this.hotelForm) {/*  */
-    //   this.checkedStyles.forEach(item => {  
-    //     this.style.push(item);  
-    // });
-      this.hotelApi.AddHotel(this.hotelForm.value.name,this.hotelForm.value.style,
-        this.hotelForm.value.deals,this.hotelForm.value.amenities,this.hotelForm.value.rooms,
-        this.hotelForm.value.map,this.hotelForm.value.class,this.hotelForm.value.Pricedeals,
-        this.hotelForm.value.popular,this.hotelForm.value.distance,this.hotelForm.value.langaugeSpoken)
+      //   this.checkedStyles.forEach(item => {  
+      //     this.style.push(item);  
+      // });
+      this.hotelApi.AddHotel(
+        this.hotelForm.value.name, this.hotelForm.value.style,
+        this.hotelForm.value.deals, this.hotelForm.value.amenities,
+        this.hotelForm.value.rooms, this.hotelForm.value.map,
+        this.hotelForm.value.class, this.hotelForm.value.Pricedeals,
+        this.hotelForm.value.popular, this.hotelForm.value.distance,
+        this.hotelForm.value.langaugeSpoken)
       console.log(this.hotelForm.value.style)
       console.log(this.hotelForm.value.deals)
       console.log(this.hotelForm.value.distance)
@@ -290,8 +283,8 @@ class:string;
         } 
       })  */
     }
-  
-    }
-  
+
+  }
+
 
 }
