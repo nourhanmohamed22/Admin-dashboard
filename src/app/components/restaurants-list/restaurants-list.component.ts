@@ -3,6 +3,7 @@ import { ApiService } from './../../shared/api.service';
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatPaginator} from '@angular/material/paginator'
 import {MatTableDataSource } from '@angular/material/table'
+import { MatSort } from '@angular/material/sort';
 import {MatChipsModule} from '@angular/material/chips';
 
 @Component({
@@ -14,6 +15,7 @@ export class RestaurantsListComponent implements OnInit {
    //restaurants:Restaurant[]=[];
   RestaurantData: any = [];
   dataSource: MatTableDataSource<Restaurant>;
+  @ViewChild(MatSort,{ static: false }) sort: MatSort;
   @ViewChild(MatPaginator,{ static: false }) paginator: MatPaginator;
   displayedColumns: string[] = ['name','address','contact-telephone','contact-email', 'action'];
 
@@ -23,6 +25,7 @@ export class RestaurantsListComponent implements OnInit {
       this.dataSource = new MatTableDataSource<Restaurant>(this.RestaurantData);
       setTimeout(() => {
         this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       }, 0);
     })    
   }
@@ -38,4 +41,7 @@ export class RestaurantsListComponent implements OnInit {
     }
   }
 
+  public doFilter = (value: string) => {
+    this.dataSource.filter = value.trim().toLocaleLowerCase();
+  }
 }
