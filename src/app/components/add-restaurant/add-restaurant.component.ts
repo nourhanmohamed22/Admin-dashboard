@@ -118,7 +118,7 @@ export class AddRestaurantComponent implements OnInit {
       this.contact['telephone'] = parseInt(val);
     }
         
-    if (name == "Email") {
+    if (name == "Email") {  
       this.contact['Email'] = val; 
     }
     if (name == "website") {
