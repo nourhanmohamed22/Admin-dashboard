@@ -6,6 +6,7 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { ApiService } from './../../shared/api.service';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { HttpEvent, HttpEventType } from '@angular/common/http';
+import { ApiRestauratCatService } from 'src/app/shared/api-restaurat-cat.service';
 
 
 export interface Address {
@@ -60,7 +61,7 @@ export class AddRestaurantComponent implements OnInit {
   dishes: string[] = [];
   DietaryRestrictions: string[] = [];
   goodFor: string[] = [];
-  menu: string[] = [];
+  RestaurantCategoryData: any = [];
 
 
   ngOnInit(): void {
@@ -69,7 +70,12 @@ export class AddRestaurantComponent implements OnInit {
   constructor(public fb: FormBuilder,
     public router: Router,
     private ngZone: NgZone,
-    public restaurantApi: ApiService) {
+    public restaurantApi: ApiService,
+    public RestaurantCategoryApi:ApiRestauratCatService) {
+      this.RestaurantCategoryApi.GetRestaurantCategories().subscribe(data => {
+        this.RestaurantCategoryData = data;
+        console.log(this.RestaurantCategoryData)
+      })
   }
   /* Reactive book form */
   submitBookForm() {
@@ -90,7 +96,7 @@ export class AddRestaurantComponent implements OnInit {
       dishes: [this.dishes, [Validators.required]],
       DietaryRestrictions: [this.DietaryRestrictions, [Validators.required]],
       goodFor: [this.goodFor, [Validators.required]],
-      menu: [this.menu, [Validators.required]]
+      
     })
   }
 
@@ -142,6 +148,76 @@ export class AddRestaurantComponent implements OnInit {
     console.log(this.descripation);
 
   }
+  changeOutputEstablishment(event) {
+    console.log(event);
+    if (event.checked) {
+      this.Establishment.push(event.source.value)
+      console.log(this.Establishment);
+    } else {
+      this.Establishment = this.Establishment.filter((p) => p !== event.source.value)
+      console.log(this.Establishment);
+    }
+  }
+  changeOutputFeatures(event) {
+    console.log(event);
+    if (event.checked) {
+      this.features.push(event.source.value)
+      console.log(this.features);
+    } else {
+      this.features = this.features.filter((p) => p !== event.source.value)
+      console.log(this.features);
+    }
+  }
+  changeOutputMeals(event) {
+    console.log(event);
+    if (event.checked) {
+      this.meals.push(event.source.value)
+      console.log(this.meals);
+    } else {
+      this.meals = this.meals.filter((p) => p !== event.source.value)
+      console.log(this.meals);
+    }
+  }
+  changeOutputCuisine(event) {
+    console.log(event);
+    if (event.checked) {
+      this.cuisine.push(event.source.value)
+      console.log(this.cuisine);
+    } else {
+      this.cuisine = this.cuisine.filter((p) => p !== event.source.value)
+      console.log(this.cuisine);
+    }
+  }
+  changeOutputDishes(event) {
+    console.log(event);
+    if (event.checked) {
+      this.dishes.push(event.source.value)
+      console.log(this.dishes);
+    } else {
+      this.dishes = this.dishes.filter((p) => p !== event.source.value)
+      console.log(this.dishes);
+    }
+  }
+  changeOutputDietary(event) {
+    console.log(event);
+    if (event.checked) {
+      this.DietaryRestrictions.push(event.source.value)
+      console.log(this.DietaryRestrictions);
+    } else {
+      this.DietaryRestrictions = this.DietaryRestrictions.filter((p) => p !== event.source.value)
+      console.log(this.DietaryRestrictions);
+    }
+  }
+  changeOutputGoodFor(event) {
+    console.log(event);
+    if (event.checked) {
+      this.goodFor.push(event.source.value)
+      console.log(this.goodFor);
+    } else {
+      this.goodFor = this.goodFor.filter((p) => p !== event.source.value)
+      console.log(this.goodFor);
+    }
+  }
   // onImagePicked(event: Event) {
   //   const file = (event.target as HTMLInputElement).files[0];
   //   this.restaurantForm.patchValue({ image_path: file });
@@ -184,7 +260,16 @@ export class AddRestaurantComponent implements OnInit {
         this.restaurantForm.value.name,
         this.restaurantForm.value.address,
         this.restaurantForm.value.contact,
-        this.restaurantForm.value.descripation
+        this.restaurantForm.value.descripation,
+        this.restaurantForm.value.features,
+        this.restaurantForm.value.Establishment,
+        this.restaurantForm.value.meals,
+        this.restaurantForm.value.Pricerange,
+        this.restaurantForm.value.cuisine,
+        this.restaurantForm.value.dishes,
+        this.restaurantForm.value.DietaryRestrictions,
+        this.restaurantForm.value.goodFor
+
       )
 
     }

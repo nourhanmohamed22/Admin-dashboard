@@ -34,6 +34,18 @@
             <mat-form-field class="example-full-width">
               <input matInput  (change)="addDescription($any($event.target).value,$any($event.target).name)"  placeholder=" Add Restaurant Description" name="text" [value]="descripation.text" required>
             </mat-form-field>
+            <div class="misc-bottom-padding">
+              <mat-label class="label">Features:</mat-label>
+              <section  *ngFor="let features of RestaurantCategoryData[0]?.features let i = index" > 
+                  <mat-checkbox [value]="features._id"  (change)="changeOutputFeatures($event)">{{features.name}}</mat-checkbox>
+              </section>
+            </div>
+            <div class="misc-bottom-padding">
+              <mat-label class="label">Cuisines:</mat-label>
+              <section  *ngFor="let cuisines of RestaurantCategoryData[0]?.cuisine.slice(0,8) let i = index" > 
+                  <mat-checkbox [value]="cuisines._id"  (change)="changeOutputCuisine($event)">{{cuisines.name}}</mat-checkbox>
+              </section>
+            </div>
           </div>
         </mat-card>
         <mat-card>
@@ -52,6 +64,42 @@
               <mat-form-field class="example-full-width">
                 <input matInput  (change)="addContact($any($event.target).value,$any($event.target).name)"  placeholder="Add Restaurant Open Hours" name="openhours" [value]="contact.openhours" required>
               </mat-form-field>
+              <div class="misc-bottom-padding">
+                <mat-label class="label">Establishments:</mat-label>
+                <section  *ngFor="let establishments of RestaurantCategoryData[0]?.Establishment let i = index" > 
+                    <mat-checkbox [value]="establishments._id"  (change)="changeOutputEstablishment($event)">{{establishments.name}}</mat-checkbox>
+                </section>
+              </div>
+              <div class="misc-bottom-padding">
+                <mat-label class="label">Meals:</mat-label> 
+                <section  *ngFor="let meals of RestaurantCategoryData[0]?.meals let i = index" > 
+                    <mat-checkbox [value]="meals._id"  (change)="changeOutputMeals($event)">{{meals.name}}</mat-checkbox>
+                </section>
+              </div>
+              <div class="misc-bottom-padding">
+                <mat-label>Price Range:</mat-label>
+                <mat-radio-group  aria-label="Select an option" formControlName="Pricerange">
+                  <mat-radio-button class = "tp-radio-button"  *ngFor="let prices of RestaurantCategoryData[0]?.Pricerange" [value]="prices._id" >{{prices.name}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+              <div class="misc-bottom-padding">
+                <mat-label class="label">Dishes:</mat-label> 
+                <section  *ngFor="let dishes of RestaurantCategoryData[0]?.dishes.slice(0,5) let i = index" > 
+                    <mat-checkbox [value]="dishes._id"  (change)="changeOutputDishes($event)">{{dishes.name}}</mat-checkbox>
+                </section>
+              </div>
+              <div class="misc-bottom-padding">
+                <mat-label class="label">Dietary Restrictions:</mat-label> 
+                <section  *ngFor="let dietary of RestaurantCategoryData[0]?.DietaryRestrictions let i = index" > 
+                    <mat-checkbox [value]="dietary._id"  (change)="changeOutputDietary($event)">{{dietary.name}}</mat-checkbox>
+                </section>
+              </div>
+              <div class="misc-bottom-padding">
+                <mat-label class="label">Good For:</mat-label> 
+                <section  *ngFor="let goods of RestaurantCategoryData[0]?.goodFor let i = index" > 
+                    <mat-checkbox [value]="goods._id"  (change)="changeOutputGoodFor($event)">{{goods.name}}</mat-checkbox>
+                </section>
+              </div>
               </div>
               </mat-card>
           <!-- Establishments -->

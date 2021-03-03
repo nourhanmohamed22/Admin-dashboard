@@ -42,9 +42,6 @@ DietaryRestrictions:{
 goodFor:{
   type:Array
 },
-menu:{
-  type:Array
-},
 reviews:{
   type:Array
 },

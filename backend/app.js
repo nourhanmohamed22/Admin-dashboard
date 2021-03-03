@@ -22,6 +22,7 @@ mongoose.connect(dataBaseConfig.db, {
 const restaurantRoute = require('./routes/restaurant.route')
 const userRoute = require('./routes/user.route');
 const hotelCategory = require('./routes/hotel-category.route')
+const restaurantCategory= require('./routes/restaurant-category-route')
 const hotelRoute = require('./routes/hotel.route')
 
 const app = express();
@@ -43,6 +44,7 @@ app.use('/api/restaurant', restaurantRoute)
 app.use('/api/hotel', hotelRoute)
 app.use('/api/user', userRoute)
 app.use('/api/hotelCategory', hotelCategory)
+app.use('/api/restaurantCategory', restaurantCategory)
 
 // PORT
 const port = process.env.PORT || 8000;

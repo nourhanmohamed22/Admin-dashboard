@@ -13,7 +13,6 @@ export class Restaurant {
     dishes?:Array<string>;
     DietaryRestrictions?:Array<string>; 
     goodFor?:Array<string>; 
-    menu?:Array<string>;
     reviews?:Array<object>;
     rating?:Array<object>;
  }

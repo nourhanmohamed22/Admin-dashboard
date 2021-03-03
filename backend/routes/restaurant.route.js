@@ -37,7 +37,15 @@ restaurantRoute.post('/add-restaurant',  (req, res, next) => {
     name: req.body.name,
     address:req.body.address,
     contact:req.body.contact,
-    descripation:req.body.descripation
+    descripation:req.body.descripation,
+    features:req.body.features,
+    Establishment:req.body.Establishment,
+    meals:req.body.meals,
+    Pricerange:req.body.Pricerange,
+    cuisine:req.body.cuisine,
+dishes:req.body.dishes,
+DietaryRestrictions:req.body.DietaryRestrictions,
+goodFor:req.body.goodFor
 
     // imageUrls: url + '/images/' + req.file.filename,
   

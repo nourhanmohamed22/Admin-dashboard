@@ -16,9 +16,19 @@ export class ApiService {
   constructor(private http: HttpClient,private router: Router) { }
 
    // Add restaurant
-   AddRestaurant(name:string,address:Object,contact:Object,description:Object) {
+   AddRestaurant(name:string,address:Object,
+    contact:Object,description:Object,
+    features:Array<string>,Establishment:Array<string>,
+    meals:Array<string>,Pricerange:string,
+    cuisine:Array<string>,dishes:Array<string>,
+    DietaryRestrictions:Array<string>,
+    goodFor:Array<string> ) {
     const restaurant: Restaurant = { name:name,address:address,
-    contact:contact,descripation:description};
+    contact:contact,descripation:description,
+  features:features,Establishment:Establishment,meals:meals,
+Pricerange:Pricerange,cuisine:cuisine,
+dishes:dishes,DietaryRestrictions:DietaryRestrictions,
+goodFor:goodFor};
     this.http
       .post<{ message: string; id: string }>(
         `${this.endpoint}/add-restaurant`,
