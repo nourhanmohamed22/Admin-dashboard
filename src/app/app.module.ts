@@ -32,6 +32,8 @@ import { fakeBackendProvider } from './auth/_helpers/fake-backend';
 /// api services
 import { ApiService } from './shared/api.service';
 import { Api2Service } from './shared/api2.service';
+import { PopdialogComponent } from './features/popdialog/popdialog.component';
+
 
 
 
@@ -51,7 +53,8 @@ import { Api2Service } from './shared/api2.service';
     UpdateHotelComponent,
     LoginComponent,
     HomeComponent,
-    UsersListComponent
+    UsersListComponent,
+    
   
   ],
   imports: [ 
@@ -62,12 +65,13 @@ import { Api2Service } from './shared/api2.service';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-  
+
   ],
   providers:[{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   fakeBackendProvider,DatePipe],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  entryComponents:[PopdialogComponent]
 })
 export class AppModule { }

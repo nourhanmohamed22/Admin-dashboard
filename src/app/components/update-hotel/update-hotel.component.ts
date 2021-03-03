@@ -27,7 +27,8 @@ export class UpdateHotelComponent implements OnInit {
 
 
   ngOnInit() {
-    this.updateBookForm();
+    this.updatehotelForm();
+    
   }
 
   constructor(
@@ -43,20 +44,22 @@ export class UpdateHotelComponent implements OnInit {
       this.hotelForm = this.fb.group({
         name: [data.name, [Validators.required]],
         booking: [data.booking, [Validators.required]],
-        map: [data.map, [Validators.required]],
+        latitude: [data.map.latitude, [Validators.required]],
+        longitude: [data.map.longitude, [Validators.required]],
         Pricedeals: [data.Pricedeals],
         rooms: [data.rooms, [Validators.required]],
         images: [data.images]
       })      
-    })    
+    })  
+   
   }
 
-  /* Reactive book form */
-  updateBookForm() {
+  /* Reactive hotel form */
+  updatehotelForm() {
     this.hotelForm = this.fb.group({
       name: ['', [Validators.required]],
       booking: ['', [Validators.required]],
-      map: ['', [Validators.required]],
+      latitude: ['', [Validators.required]],
       Pricedeals: [''],
       rooms: ['', [Validators.required]],
       images: ['']
@@ -86,12 +89,12 @@ export class UpdateHotelComponent implements OnInit {
   }
 
   /* Date */
-  formatDate(e) {
+/*   formatDate(e) {
     var convertDate = new Date(e.target.value).toISOString().substring(0, 10);
     this.hotelForm.get('dob').setValue(convertDate, {
       onlyself: true
     })
-  }
+  } */
 
   /* Get errors */
   public handleError = (controlName: string, errorName: string) => {

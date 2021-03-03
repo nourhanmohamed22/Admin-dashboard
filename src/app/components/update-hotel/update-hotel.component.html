@@ -18,9 +18,9 @@
             </mat-error>
           </mat-form-field>
   
-          <!-- Booking -->
+          <!-- Images -->
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Booking" formControlName="images">
+            <input matInput placeholder="Images" formControlName="images">
             <mat-error *ngIf="handleError('images', 'required')">
               You must provide a<strong>hotel Images</strong>
             </mat-error>
@@ -60,14 +60,18 @@
             </i>
           </mat-form-field>
   
-          <!-- Date of birth -->
+          <!-- Number of rooms -->
           <mat-form-field>
-            <input matInput readonly [matDatepicker]="picker" placeholder="Room" formControlName="rooms"
-              (dateChange)="formatDate($event)">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
+            <input matInput placeholder="Hotel room" formControlName="rooms">
             <mat-error *ngIf="handleError('rooms', 'required')">
-              Number of rooms
+              You must provide a<strong>hotel room</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="Latitude" formControlName="latitude"/>
+            <mat-error *ngIf="handleError('latitude', 'required')">
+              You must provide a<strong>hotel Map</strong>
             </mat-error>
           </mat-form-field>
   

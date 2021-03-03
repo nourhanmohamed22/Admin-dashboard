@@ -6,7 +6,7 @@
   
   <!-- Form -->
   <div class="inner-wrapper">
-    <form [formGroup]="hotelForm" (ngSubmit)="submitHotelForm()" #resetHotelForm="ngForm" novalidate>
+    <form [formGroup]="hotelForm"  #resetHotelForm="ngForm" novalidate>
       <!-- Left block -->
       <mat-card>
         <div class="controlers-wrapper">
@@ -55,8 +55,40 @@
             <input matInput type="number" (change)="addDistance($any($event.target).value,$any($event.target).name)"  placeholder="From Main Street" name="mainStreet" [value]="distance.mainStreet" required>
           </mat-form-field>
   
+
+                     <!-- Price deals -->
+                     <mat-label class="label" >Pricedeals:</mat-label>
+                     <mat-form-field class="example-full-width">
+                      <input matInput type="text" (change)="addPricedeals($any($event.target).value,$any($event.target).name)"  placeholder="name" #name name="name" [value]="pricedealsObj.name" required>
+                    </mat-form-field>
+                     <mat-form-field class="example-full-width">
+                      <input matInput type="text" (change)="addPricedeals($any($event.target).value,$any($event.target).name)"  placeholder="link" #link name="link" [value]="pricedealsObj.link" required>
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width">
+                      <input matInput type="number" (change)="addPricedeals($any($event.target).value,$any($event.target).name)"  placeholder="pricepernight" #pricepernight name="pricepernight" [value]="pricedealsObj.pricePerNight" required>
+                    </mat-form-field>
+                    
+                    <mat-form-field class="multiple-items">
+                      <mat-chip-list #chipList>
+                        <button style="width:60px !important" mat-stroked-button color="primary" type="button" (click)="AddToArray()">Add</button>
+                        <mat-chip *ngFor="let Array of this.pricedeals" [selectable]="selectable" [removable]="removable"
+                          (removed)="remove(Array)">
+                          {{Array.name}}, {{Array.link}}, {{Array.pricePerNight}}
+                          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                        </mat-chip>
+                      <!--   <input placeholder="Add Pricedeals" [matChipInputFor]="chipList"
+                          [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                          (matChipInputTokenEnd)="add($event)"> -->
+                      </mat-chip-list>
+                      <!-- <i class="material-icons tooltip-info" matTooltip="Enter subject name and press enter to add subjects">
+                        info
+                      </i> -->
+                    </mat-form-field>
+
+
+
           <div class="misc-bottom-padding">
-            <mat-label>Hotel Class:</mat-label>
+            <mat-label class="label">Hotel Class:</mat-label>
             <mat-radio-group  aria-label="Select an option" formControlName="class">
               <mat-radio-button class = "tp-radio-button"  *ngFor="let classes of HotelCategoryData[0]?.hotelClass" [value]="classes._id" >{{classes.name}}</mat-radio-button>
               <!-- <mat-radio-button class = "tp-radio-button" value="Mid-range">Mid-range</mat-radio-button>
@@ -64,21 +96,6 @@
             </mat-radio-group>
           </div>
 
-            <!--popular-->
-  <div class="misc-bottom-padding">
-    <mat-label class="label">Popular :</mat-label>
-    
-    <section   *ngFor="let popular of HotelCategoryData[0]?.popular let i = index" > 
-        <mat-checkbox [value]="popular._id"  (change)="changeOutputPopular($event)">{{popular.name}}</mat-checkbox>
-    </section>
-  </div> 
-          <!--language spoken-->
-          <div class="misc-bottom-padding">
-            <mat-label class="label">Language Spoken :</mat-label>
-            <section  *ngFor="let language of HotelCategoryData[0]?.languageSpoken" > 
-                <mat-checkbox [value]="language._id"  (change)="changeOutputlanguageSpoken($event)">{{language.name}}</mat-checkbox>
-            </section>
-          </div> 
      <!-- Image -->
      <!-- <div class="form-group">
       <input type="file" name="images" multiple/> 
@@ -91,6 +108,8 @@
       <!-- Right block -->
        <mat-card>
         <div class="controlers-wrapper"> 
+          <div class="row">
+            <div class="col-6">
           <!-- Style -->
            <div class="misc-bottom-padding">
             <mat-label class="label">Style:</mat-label>
@@ -104,20 +123,43 @@
                 <mat-checkbox [value]="deals._id"  (change)="changeOutputDeals($event)">{{deals.name}}</mat-checkbox>
             </section>
           </div> 
+          <!--language spoken-->
           <div class="misc-bottom-padding">
-            <mat-label class="label">Amenities:</mat-label>
-            <section  *ngFor="let amenities of HotelCategoryData[0]?.amenities let i = index" > 
-                <mat-checkbox [value]="amenities._id"  (change)="changeOutputAmenities($event)">{{amenities.name}}</mat-checkbox>
+            <mat-label class="label">Language Spoken :</mat-label>
+            <section  *ngFor="let language of HotelCategoryData[0]?.languageSpoken" > 
+                <mat-checkbox [value]="language._id"  (change)="changeOutputlanguageSpoken($event)">{{language.name}}</mat-checkbox>
             </section>
           </div> 
+        
+        </div>
+      <div class="col-6">
+                     <!--popular-->
+  <div class="misc-bottom-padding">
+    <mat-label class="label">Popular :</mat-label>
+    
+    <section   *ngFor="let popular of HotelCategoryData[0]?.popular let i = index" > 
+        <mat-checkbox [value]="popular._id"  (change)="changeOutputPopular($event)">{{popular.name}}</mat-checkbox>
+    </section>
+  </div> 
+  <div class="misc-bottom-padding">
+    <mat-label class="label">Amenities:</mat-label>
+    <section  *ngFor="let amenities of HotelCategoryData[0]?.amenities let i = index" > 
+        <mat-checkbox [value]="amenities._id"  (change)="changeOutputAmenities($event)">{{amenities.name}}</mat-checkbox>
+    </section>
+  </div> 
+        </div>
+          </div>
          </div>
       </mat-card>
+
+
   
       <!-- Submit & Reset -->
       <mat-card>
         <div class="full-wrapper button-wrapper">
           <div class="button-wrapper">
-            <button mat-flat-button color="warn">Submit</button>
+            <button mat-flat-button color="warn" type="submit" (click)="submitHotelForm()">Submit</button>
+            <button mat-flat-button color="primary" type="reset" (click)="reset()" >Reset</button>
           </div>
         </div>
       </mat-card>

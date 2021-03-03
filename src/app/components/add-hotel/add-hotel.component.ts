@@ -9,9 +9,9 @@ import { Api2Service } from './../../shared/api2.service';
 import { Api3Service } from './../../shared/api3.service';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { HttpEvent, HttpEventType } from '@angular/common/http';
-import { Variable } from '@angular/compiler/src/render3/r3_ast';
-import { MapOperator } from 'rxjs/internal/operators/map';
-import { BreakpointObserver } from '@angular/cdk/layout';
+import {MatDialog,MatDialogConfig} from '@angular/material/dialog'
+import { PopdialogComponent } from 'src/app/features/popdialog/popdialog.component';
+
 
 
 
@@ -22,7 +22,7 @@ export interface Distance {
   mainStreet: number;
 }
 export interface PriceDeals {
-  _id?: string,
+  _id?,
   name?: string,
   link?: string,
   pricePerNight?: number
@@ -57,7 +57,8 @@ style:string[]=[];
 map:Map={latitude: null,longitude: null};
 rooms:number;
 distance:Distance={beach:null,park:null,cityCenter:null,mainStreet:null};
-pricedeals:PriceDeals[]=[];
+pricedealsObj?:PriceDeals ={_id:null,name:'',link:'',pricePerNight:null};
+pricedeals:Array<PriceDeals>=[];
 langaugeSpoken:string[]=[];
 HotelCategoryData:any=[];
 categories: HotelCategory ;
@@ -68,7 +69,8 @@ class:string;
     public router: Router,
     private ngZone: NgZone,
     public hotelApi: Api2Service,
-    public hotelCategoryApi: Api3Service) {
+    public hotelCategoryApi: Api3Service,
+    private dialog:MatDialog) {
 
 
     this.hotelCategoryApi.GetHotelCategories().subscribe(data => {
@@ -99,7 +101,7 @@ class:string;
       map: [this.map],
       rooms: ['', [Validators.required]],
       likes: [''],
-      distance: [this.distance],
+      distance: [this.distance,[Validators.required]],
       Pricedeals: [this.pricedeals],
       class: [this.class, [Validators.required]],
       popular: [this.popular],
@@ -202,6 +204,53 @@ class:string;
 
   }
 
+  addPricedeals(value,name){
+  if(name == "name"){
+    this.pricedealsObj.name=value;
+  }
+
+  if(name == "link"){
+    this.pricedealsObj.link=value;
+  }
+  
+  if(name == "pricepernight"){
+    this.pricedealsObj.pricePerNight=value;
+  }
+  console.log( this.pricedealsObj)
+  }
+  add(event: MatChipInputEvent): void {
+   /*  const input = event.input;
+    const value = event.value; */
+    // Add 
+/*     if ((value).trim() && this.pricedeals.length < 5) {
+      this.pricedeals.push({ name: value.trim(),link:value.trim(),})
+    }
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+    console.log(this.pricedeals) */
+  }
+
+  /* Remove  */
+  remove(subject: PriceDeals): void {
+    const index = this.pricedeals.indexOf(subject);
+    if (index >= 0) {
+      this.pricedeals.splice(index, 1);
+    }
+  }
+
+  AddToArray():void{
+    
+  if(this.pricedealsObj.name && this.pricedealsObj.link && this.pricedealsObj.pricePerNight && this.pricedeals.length<4){
+   this.pricedeals.push(this.pricedealsObj)
+  }
+      console.log(this.pricedeals)
+      console.log( this.pricedealsObj)
+     
+    
+}
+
   // onImagePicked(event: Event) {
   //   const file = (event.target as HTMLInputElement).files;
   //   this.hotelForm.patchValue({ image_path: file });
@@ -222,6 +271,20 @@ class:string;
   public handleError = (controlName: string, errorName: string) => {
     return this.hotelForm.controls[controlName].hasError(errorName);
   }
+
+
+  reset(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.width="20%";
+    dialogConfig.height="30%";
+    dialogConfig.disableClose=true;
+    const dialogRef=this.dialog.open(PopdialogComponent,dialogConfig)
+      if (dialogRef.componentInstance.data){
+        this.hotelForm.reset();
+      }
+  
+  }
+  
 
   /* Submit hotel */
   // submitHotelForm() { 
@@ -244,10 +307,16 @@ class:string;
   //   }) 
   // }      
   submitHotelForm() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.width="20%";
+    dialogConfig.height="35%";
+    
     console.log(this.distance);
     console.log(this.hotelForm.value.distance)
     // console.log(this.style)
-    if (this.hotelForm) {/*  */
+    if (this.hotelForm.valid) {
+      this.dialog.open(PopdialogComponent,dialogConfig)
+      if (this.hotelForm.valid && this.dialog.afterAllClosed){/*  */
       //   this.checkedStyles.forEach(item => {  
       //     this.style.push(item);  
       // });
@@ -282,6 +351,10 @@ class:string;
             this.router.navigateByUrl('/hotel-list') 
         } 
       })  */
+    }
+  }
+    else{
+      alert("Pleese fill all data")
     }
 
   }

@@ -21,14 +21,14 @@ import { MatAutocompleteModule} from '@angular/material/autocomplete';
 import { MatSortModule } from '@angular/material/sort';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatMenuModule} from '@angular/material/menu';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
+import { MatDialogModule } from '@angular/material/dialog';;
 
 
 
 @NgModule({
    imports: [
       CommonModule,
-      MatButtonModule,
       MatToolbarModule,
       MatIconModule,
       MatSidenavModule,
@@ -49,11 +49,12 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
       MatSortModule,
       MatCheckboxModule,
       MatMenuModule,
-      MatProgressSpinnerModule
+      MatProgressSpinnerModule,
+      MatDialogModule,
+      MatButtonModule,
 
    ],
    exports: [
-      MatButtonModule,
       MatToolbarModule,
       MatIconModule,
       MatSidenavModule,
@@ -73,7 +74,9 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
       MatSortModule,
       MatCheckboxModule,
       MatMenuModule,
-      MatProgressSpinnerModule
+      MatProgressSpinnerModule,
+      MatDialogModule,
+      MatButtonModule,
       
    ],
    providers: [
