@@ -4,9 +4,12 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { Api2Service } from './../../shared/api2.service';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { HotelCategory } from 'src/app/shared/hotel-category';
+import { Api3Service } from 'src/app/shared/api3.service';
 
-export interface Subject {
-  name: string;
+export interface Map {
+  latitude: number;
+  longitude: number;
 }
 
 @Component({
@@ -24,6 +27,9 @@ export class UpdateHotelComponent implements OnInit {
   @ViewChild('resethotelForm') myNgForm;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   hotelForm: FormGroup;
+  map:Map={latitude: null,longitude: null};
+  HotelCategoryData:any=[];
+  categories: HotelCategory ;
 
 
   ngOnInit() {
@@ -36,7 +42,8 @@ export class UpdateHotelComponent implements OnInit {
     private router: Router,
     private ngZone: NgZone,
     private actRoute: ActivatedRoute,
-    private hotelApi: Api2Service
+    private hotelApi: Api2Service,
+    public hotelCategoryApi: Api3Service
   ) { 
     var id = this.actRoute.snapshot.paramMap.get('id');
     this.hotelApi.GetHotel(id).subscribe(data => {
@@ -48,11 +55,19 @@ export class UpdateHotelComponent implements OnInit {
         longitude: [data.map.longitude, [Validators.required]],
         Pricedeals: [data.Pricedeals],
         rooms: [data.rooms, [Validators.required]],
-        images: [data.images]
+        images: [data.images],
+        map:[data.map],
+        class:[data.class]
       })      
-    })  
+  })
+    this.hotelCategoryApi.GetHotelCategories().subscribe(data => {
+      this.HotelCategoryData = data;
+    
    
-  }
+  })
+
+}
+
 
   /* Reactive hotel form */
   updatehotelForm() {
@@ -62,39 +77,25 @@ export class UpdateHotelComponent implements OnInit {
       latitude: ['', [Validators.required]],
       Pricedeals: [''],
       rooms: ['', [Validators.required]],
-      images: ['']
+      images: [''],
+      map:[""],
+      class:['']
     })
   }
-
-  /* Add dynamic languages */
-  add(event: MatChipInputEvent): void {
-    const input = event.input;
-    const value = event.value;
-    // Add language
-    /* if ((value || '').trim() && this.subjectArray.length < 5) {
-      this.subjectArray.push({ name: value.trim() })
+  addMap(val,name:String){
+    if(name=="latitude"){
+      this.map['latitude']=parseFloat(val);
     }
-    // Reset the input value
-    if (input) {
-      input.value = '';
-    } */
+
+    if (name == "longitude") {
+      this.map['longitude'] = parseFloat(val);
+    }
+    console.log(val);
+
+    console.log(this.map);
+
   }
 
-  /* Remove dynamic languages */
-  remove(subject: Subject): void {
-    /* const index = this.subjectArray.indexOf(subject);
-    if (index >= 0) {
-      this.subjectArray.splice(index, 1);
-    } */
-  }
-
-  /* Date */
-/*   formatDate(e) {
-    var convertDate = new Date(e.target.value).toISOString().substring(0, 10);
-    this.hotelForm.get('dob').setValue(convertDate, {
-      onlyself: true
-    })
-  } */
 
   /* Get errors */
   public handleError = (controlName: string, errorName: string) => {

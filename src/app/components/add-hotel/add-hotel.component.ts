@@ -1,7 +1,7 @@
 
 import { HotelCategory } from './../../shared/hotel-category';
 /* import { mimeType } from './../../shared/mime-type.validator'; */
-import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
+import { Component, OnInit, ViewChild, NgZone, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
@@ -11,9 +11,6 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { HttpEvent, HttpEventType } from '@angular/common/http';
 import {MatDialog,MatDialogConfig} from '@angular/material/dialog'
 import { PopdialogComponent } from 'src/app/features/popdialog/popdialog.component';
-
-
-
 
 export interface Distance {
   beach: number;
@@ -38,6 +35,7 @@ export interface Map {
   styleUrls: ['./add-hotel.component.css']
 })
 export class AddHotelComponent implements OnInit {
+
   visible = true;
   selectable = true;
   removable = true;
@@ -58,7 +56,7 @@ map:Map={latitude: null,longitude: null};
 rooms:number;
 distance:Distance={beach:null,park:null,cityCenter:null,mainStreet:null};
 pricedealsObj?:PriceDeals ={_id:null,name:'',link:'',pricePerNight:null};
-pricedeals:Array<PriceDeals>=[];
+pricedeals:Array<PriceDeals>=[{}];
 langaugeSpoken:string[]=[];
 HotelCategoryData:any=[];
 categories: HotelCategory ;
@@ -243,7 +241,8 @@ class:string;
   AddToArray():void{
     
   if(this.pricedealsObj.name && this.pricedealsObj.link && this.pricedealsObj.pricePerNight && this.pricedeals.length<4){
-   this.pricedeals.push(this.pricedealsObj)
+    this.pricedeals.push(this.pricedealsObj)
+ 
   }
       console.log(this.pricedeals)
       console.log( this.pricedealsObj)
@@ -273,15 +272,16 @@ class:string;
   }
 
 
-  reset(){
+  Reset(){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.width="20%";
     dialogConfig.height="30%";
     dialogConfig.disableClose=true;
     const dialogRef=this.dialog.open(PopdialogComponent,dialogConfig)
-      if (dialogRef.componentInstance.data){
+       if (dialogRef.componentInstance.data==="T"){
+        console.log("hii")
         this.hotelForm.reset();
-      }
+      } 
   
   }
   

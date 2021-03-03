@@ -1,4 +1,4 @@
-import { Component, Inject, Injectable, OnInit } from '@angular/core';
+import { Component, Inject, Injectable, OnInit, Output } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA,} from '@angular/material/dialog';
 
 
@@ -8,19 +8,20 @@ import { MatDialogRef, MAT_DIALOG_DATA,} from '@angular/material/dialog';
   styleUrls: ['./popdialog.component.css']
 })
 export class PopdialogComponent implements OnInit {
-  data=false;
+ 
   constructor( public dialogRef: MatDialogRef<PopdialogComponent>,
-   ) { }
+    @Inject(MAT_DIALOG_DATA) public data : String) { }
 
   ngOnInit(): void {
   }
   onClick(){
-    this.data=true
+    this.data="T"
     this.dialogRef.close(this.data);
+    console.log(this.data)
     return this.data;
   }
   onNoClick() {
-    this.data=false
+    this.data="N"
     this.dialogRef.close(this.data);
     return this.data;
   }
