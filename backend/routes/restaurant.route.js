@@ -30,7 +30,7 @@ let Restaurant = require('../model/Restaurant');
 ///multer({ storage: storage }).single("image_path"),
    
 // POST Restaurant
-restaurantRoute.post('/add-restaurant',  (req, res, next) => {
+restaurantRoute.post('/add-restaurant', (req, res, next) => {
   // const url = req.protocol + '://' + req.get('host')
   const restaurant = new Restaurant({
     //_id: new mongoose.Types.ObjectId(),

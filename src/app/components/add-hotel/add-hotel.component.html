@@ -54,39 +54,26 @@
           <mat-form-field class="example-full-width">
             <input matInput type="number" (change)="addDistance($any($event.target).value,$any($event.target).name)"  placeholder="From Main Street" name="mainStreet" [value]="distance.mainStreet" required>
           </mat-form-field>
-  
-
-                     <!-- Price deals -->
-                     <mat-label class="label" >Pricedeals:</mat-label>
-                     <mat-form-field class="example-full-width">
-                      <input matInput type="text" (change)="addPricedeals($any($event.target).value,$any($event.target).name)"  placeholder="name" #name name="name" [value]="pricedealsObj.name" required>
-                    </mat-form-field>
-                     <mat-form-field class="example-full-width">
-                      <input matInput type="text" (change)="addPricedeals($any($event.target).value,$any($event.target).name)"  placeholder="link" #link name="link" [value]="pricedealsObj.link" required>
-                    </mat-form-field>
-                    <mat-form-field class="example-full-width">
-                      <input matInput type="number" (change)="addPricedeals($any($event.target).value,$any($event.target).name)"  placeholder="pricepernight" #pricepernight name="pricepernight" [value]="pricedealsObj.pricePerNight" required>
-                    </mat-form-field>
-                    
-                    <mat-form-field class="multiple-items">
-                      <mat-chip-list #chipList>
-                        <button style="width:60px !important" mat-stroked-button color="primary" type="button" (click)="AddToArray()">Add</button>
-                        <mat-chip *ngFor="let Array of this.pricedeals" [selectable]="selectable" [removable]="removable"
-                          (removed)="remove(Array)">
-                          {{Array.name}}, {{Array.link}}, {{Array.pricePerNight}}
-                          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                        </mat-chip>
-                      <!--   <input placeholder="Add Pricedeals" [matChipInputFor]="chipList"
-                          [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
-                          (matChipInputTokenEnd)="add($event)"> -->
-                      </mat-chip-list>
-                      <!-- <i class="material-icons tooltip-info" matTooltip="Enter subject name and press enter to add subjects">
-                        info
-                      </i> -->
-                    </mat-form-field>
-
-
-
+        <!--add price deals-->
+        <mat-label class="label" >Price Deals:</mat-label>
+        <div
+        formArrayName="Pricedeals"
+        *ngFor="let info of hotelForm.get('Pricedeals')['controls']; let i = index;"
+      >
+        <div [formGroupName]="i">
+          <mat-form-field class="example-full-width">
+          <input matInput formControlName="name"  placeholder="Deal Name">
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+          <input matInput formControlName="link"  placeholder="Website Link">
+         </mat-form-field>
+         <mat-form-field class="example-full-width">
+             <input matInput formControlName="pricePerNight" type="number"  placeholder="Price per night">
+            </mat-form-field>
+        </div>
+        <!-- Exposed item name: {{ cruiseForm.controls.travelers.controls[].controls.passengers.value }} -->
+      </div>
+      <button mat-raised-button type="button" (click)="addPriceDeals()">Add Price Deals</button>
           <div class="misc-bottom-padding">
             <mat-label class="label">Hotel Class:</mat-label>
             <mat-radio-group  aria-label="Select an option" formControlName="class">
@@ -159,7 +146,7 @@
         <div class="full-wrapper button-wrapper">
           <div class="button-wrapper">
             <button mat-flat-button color="warn" type="submit" (click)="submitHotelForm()">Submit</button>
-            <button mat-flat-button color="primary"  (click)="Reset()" >Reset</button>
+            <!-- <button mat-flat-button color="primary"  (click)="Reset()" >Reset</button> -->
           </div>
         </div>
       </mat-card>

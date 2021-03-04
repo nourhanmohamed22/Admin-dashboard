@@ -63,7 +63,7 @@ export class Api2Service {
     return this.http.get(`${this.endpointCategory}`);
   }
  */
-   // Get restaurant
+   // Get Hotel
    GetHotel(id): Observable<any> {
     let API_URL = `${this.endpoint}/read-hotel/${id}`;
     return this.http.get(API_URL, { headers: this.headers })

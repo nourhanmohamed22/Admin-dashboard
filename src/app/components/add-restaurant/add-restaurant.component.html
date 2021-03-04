@@ -77,7 +77,7 @@
                 </section>
               </div>
               <div class="misc-bottom-padding">
-                <mat-label>Price Range:</mat-label>
+                <mat-label class="label">Price Range:</mat-label>
                 <mat-radio-group  aria-label="Select an option" formControlName="Pricerange">
                   <mat-radio-button class = "tp-radio-button"  *ngFor="let prices of RestaurantCategoryData[0]?.Pricerange" [value]="prices._id" >{{prices.name}}</mat-radio-button>
                 </mat-radio-group>
@@ -102,118 +102,11 @@
               </div>
               </div>
               </mat-card>
-          <!-- Establishments -->
-          <!-- <mat-form-field class="multiple-items">
-            <mat-chip-list #chipList2>
-              <mat-chip *ngFor="let establishmentArray of establishmentArray" [selectable]="selectable" [removable]="removable"
-                (removed)="removeEstablishment(establishmentArray)">
-                {{establishmentArray.name}}
-                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-              </mat-chip>
-              <input placeholder="Add Establishment Type" [matChipInputFor]="chipList2"
-                [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
-                (matChipInputTokenEnd)="addEstablishment($event)"> 
-            </mat-chip-list>
-            <i class="material-icons tooltip-info" matTooltip="Enter establishment name and press enter to add establishment types">
-              info
-            </i>
-          </mat-form-field> -->
-  
-          <!-- Meals -->
-          <!-- <mat-form-field class="multiple-items">
-            <mat-chip-list #chipList3>
-              <mat-chip *ngFor="let mealArray of mealArray" [selectable]="selectable" [removable]="removable"
-                (removed)="removeMeals(mealArray)">
-                {{mealArray.name}}
-                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-              </mat-chip>
-              <input placeholder="Add Meals" [matChipInputFor]="chipList3"
-                [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
-                (matChipInputTokenEnd)="addMeals($event)"> 
-            </mat-chip-list>
-            <i class="material-icons tooltip-info" matTooltip="Enter meals name and press enter to add meals">
-              info
-            </i>
-          </mat-form-field> -->
-               <!-- Cuisines -->
-               <!-- <mat-form-field class="multiple-items">
-                <mat-chip-list #chipList4>
-                  <mat-chip *ngFor="let cuisineArray of cuisineArray" [selectable]="selectable" [removable]="removable"
-                    (removed)="removeCuisines(cuisineArray)">
-                    {{cuisineArray.name}}
-                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                  </mat-chip>
-                  <input placeholder="Add Cuisines" [matChipInputFor]="chipList4"
-                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
-                    (matChipInputTokenEnd)="addCuisine($event)"> 
-                </mat-chip-list>
-                <i class="material-icons tooltip-info" matTooltip="Enter cuisines name and press enter to add cuisines">
-                  info
-                </i>
-              </mat-form-field> -->
-                <!-- Dietary Restrictions -->
-                <!-- <mat-form-field class="multiple-items">
-                  <mat-chip-list #chipList5>
-                    <mat-chip *ngFor="let dietaryArray of dietaryArray" [selectable]="selectable" [removable]="removable"
-                      (removed)="removeRestriction(dietaryArray)">
-                      {{dietaryArray.name}}
-                      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                    </mat-chip>
-                    <input placeholder="Add Dietary Restrictions" [matChipInputFor]="chipList5"
-                      [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
-                      (matChipInputTokenEnd)="addRestriction($event)"> 
-                  </mat-chip-list>
-                  <i class="material-icons tooltip-info" matTooltip="Enter restriction name and press enter to add dietary restrictions">
-                    info
-                  </i>
-                </mat-form-field> -->
-              
-      
   
       <!-- Right block -->
       <mat-card>
         <div class="controlers-wrapper">
-          <!-- Add features -->
-          <!-- <mat-form-field class="multiple-items">
-            <mat-chip-list #chipList>
-              <mat-chip *ngFor="let featuresArray of featuresArray" [selectable]="selectable" [removable]="removable"
-                (removed)="remove(featuresArray)">
-                {{featuresArray.name}}
-                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-              </mat-chip>
-              <input placeholder="Add restaurant feature" [matChipInputFor]="chipList"
-                [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
-                (matChipInputTokenEnd)="add($event)" formControlName="restaurant_features">
-            </mat-chip-list>
-            <i class="material-icons tooltip-info" matTooltip="Enter feature name and press enter to add features">
-              info
-            </i>
-           
-          </mat-form-field> -->
-     <!-- Location -->
-     <!-- <mat-form-field class="example-full-width">
-      <input matInput placeholder="Restaurant Location" formControlName="location">
-      <mat-error *ngIf="handleError('location', 'required')">
-        You must provide a <strong>restaurant location</strong>
-      </mat-error>
-    </mat-form-field> -->
-   <!-- Phone-->
-   <!-- <mat-form-field class="example-full-width">
-    <input matInput type="number" placeholder="Restaurant Phone" formControlName="phone">
-    <mat-error *ngIf="handleError('phone', 'required')">
-      You must provide a <strong>restaurant phone</strong>
-    </mat-error>
-  </mat-form-field> -->
   
-          <!-- Price -->   
-          <!-- <div class="misc-bottom-padding">
-            <mat-label>Price Range:</mat-label>
-            <mat-radio-group aria-label="Select an option" formControlName="price_range">
-              <mat-radio-button class = "tp-radio-button" value="Cheap Eats">Cheap Eats</mat-radio-button>
-              <mat-radio-button class = "tp-radio-button" value="Mid-range">Mid-range</mat-radio-button>
-              <mat-radio-button  class = "tp-radio-button" value="Fine Dining">Fine Dining</mat-radio-button>
-            </mat-radio-group>
-          </div> -->
           <!-- Image -->
             <!-- <div>
             <button mat-stroked-button type="button" (click)="filePicker.click()">Pick Image</button>

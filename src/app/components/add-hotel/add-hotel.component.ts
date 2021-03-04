@@ -7,7 +7,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { Api2Service } from './../../shared/api2.service';
 import { Api3Service } from './../../shared/api3.service';
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators,FormArray } from "@angular/forms";
 import { HttpEvent, HttpEventType } from '@angular/common/http';
 import {MatDialog,MatDialogConfig} from '@angular/material/dialog'
 import { PopdialogComponent } from 'src/app/features/popdialog/popdialog.component';
@@ -18,12 +18,12 @@ export interface Distance {
   cityCenter: number;
   mainStreet: number;
 }
-export interface PriceDeals {
-  _id?,
-  name?: string,
-  link?: string,
-  pricePerNight?: number
-}
+// export interface PriceDeals {
+//   _id?,
+//   name?: string,
+//   link?: string,
+//   pricePerNight?: number
+// }
 export interface Map {
   latitude: number;
   longitude: number;
@@ -55,8 +55,7 @@ style:string[]=[];
 map:Map={latitude: null,longitude: null};
 rooms:number;
 distance:Distance={beach:null,park:null,cityCenter:null,mainStreet:null};
-pricedealsObj?:PriceDeals ={_id:null,name:'',link:'',pricePerNight:null};
-pricedeals:Array<PriceDeals>=[{}];
+Pricedeals:FormArray;
 langaugeSpoken:string[]=[];
 HotelCategoryData:any=[];
 categories: HotelCategory ;
@@ -100,7 +99,7 @@ class:string;
       rooms: ['', [Validators.required]],
       likes: [''],
       distance: [this.distance,[Validators.required]],
-      Pricedeals: [this.pricedeals],
+      Pricedeals:this.fb.array([this.createPriceDeal()]),
       class: [this.class, [Validators.required]],
       popular: [this.popular],
       langaugeSpoken: [this.langaugeSpoken]
@@ -109,7 +108,20 @@ class:string;
 
 
 
-
+  createPriceDeal(): FormGroup{
+    return this.fb.group({
+      _id: '',
+      name:'',
+      link: '',
+      pricePerNight:''
+    });
+  }
+ //Add price deals
+ addPriceDeals(): void {
+  this.Pricedeals = this.hotelForm.get('Pricedeals') as FormArray;
+  this.Pricedeals.push(this.createPriceDeal());
+  console.log(this.Pricedeals)
+}
 
   changeOutputStyle(event) {
     console.log(event);
@@ -202,53 +214,8 @@ class:string;
 
   }
 
-  addPricedeals(value,name){
-  if(name == "name"){
-    this.pricedealsObj.name=value;
-  }
-
-  if(name == "link"){
-    this.pricedealsObj.link=value;
-  }
-  
-  if(name == "pricepernight"){
-    this.pricedealsObj.pricePerNight=value;
-  }
-  console.log( this.pricedealsObj)
-  }
-  add(event: MatChipInputEvent): void {
-   /*  const input = event.input;
-    const value = event.value; */
-    // Add 
-/*     if ((value).trim() && this.pricedeals.length < 5) {
-      this.pricedeals.push({ name: value.trim(),link:value.trim(),})
-    }
-    // Reset the input value
-    if (input) {
-      input.value = '';
-    }
-    console.log(this.pricedeals) */
-  }
-
-  /* Remove  */
-  remove(subject: PriceDeals): void {
-    const index = this.pricedeals.indexOf(subject);
-    if (index >= 0) {
-      this.pricedeals.splice(index, 1);
-    }
-  }
-
-  AddToArray():void{
-    
-  if(this.pricedealsObj.name && this.pricedealsObj.link && this.pricedealsObj.pricePerNight && this.pricedeals.length<4){
-    this.pricedeals.push(this.pricedealsObj)
  
-  }
-      console.log(this.pricedeals)
-      console.log( this.pricedealsObj)
-     
-    
-}
+ 
 
   // onImagePicked(event: Event) {
   //   const file = (event.target as HTMLInputElement).files;
@@ -272,18 +239,18 @@ class:string;
   }
 
 
-  Reset(){
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.width="20%";
-    dialogConfig.height="30%";
-    dialogConfig.disableClose=true;
-    const dialogRef=this.dialog.open(PopdialogComponent,dialogConfig)
-       if (dialogRef.componentInstance.data==="T"){
-        console.log("hii")
-        this.hotelForm.reset();
-      } 
+  // Reset(){
+  //   const dialogConfig = new MatDialogConfig();
+  //   dialogConfig.width="20%";
+  //   dialogConfig.height="30%";
+  //   dialogConfig.disableClose=true;
+  //   const dialogRef=this.dialog.open(PopdialogComponent,dialogConfig)
+  //      if (dialogRef.componentInstance.data==="T"){
+  //       console.log("hii")
+  //       this.hotelForm.reset();
+  //     } 
   
-  }
+  // }
   
 
   /* Submit hotel */
@@ -307,16 +274,16 @@ class:string;
   //   }) 
   // }      
   submitHotelForm() {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.width="20%";
-    dialogConfig.height="35%";
+    // const dialogConfig = new MatDialogConfig();
+    // dialogConfig.width="20%";
+    // dialogConfig.height="35%";
     
     console.log(this.distance);
     console.log(this.hotelForm.value.distance)
     // console.log(this.style)
-    if (this.hotelForm.valid) {
-      this.dialog.open(PopdialogComponent,dialogConfig)
-      if (this.hotelForm.valid && this.dialog.afterAllClosed){/*  */
+    if (this.hotelForm) {
+      // this.dialog.open(PopdialogComponent,dialogConfig)
+      // if (this.hotelForm.valid && this.dialog.afterAllClosed){
       //   this.checkedStyles.forEach(item => {  
       //     this.style.push(item);  
       // });
@@ -351,11 +318,11 @@ class:string;
             this.router.navigateByUrl('/hotel-list') 
         } 
       })  */
-    }
+    // }
   }
-    else{
-      alert("Pleese fill all data")
-    }
+    // else{
+    //   alert("Please fill all data")
+    // }
 
   }
 

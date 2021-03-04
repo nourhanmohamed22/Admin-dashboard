@@ -24,6 +24,7 @@ const userRoute = require('./routes/user.route');
 const hotelCategory = require('./routes/hotel-category.route')
 const restaurantCategory= require('./routes/restaurant-category-route')
 const hotelRoute = require('./routes/hotel.route')
+const cruiseRoute=require('./routes/cruise.route')
 
 const app = express();
 app.use(bodyParser.json());
@@ -45,7 +46,7 @@ app.use('/api/hotel', hotelRoute)
 app.use('/api/user', userRoute)
 app.use('/api/hotelCategory', hotelCategory)
 app.use('/api/restaurantCategory', restaurantCategory)
-
+app.use('/api/cruise', cruiseRoute) 
 // PORT
 const port = process.env.PORT || 8000;
 
