@@ -1,5 +1,5 @@
 import { Component, ViewChild, HostListener, OnInit, Output } from '@angular/core';
-import { MatSidenav } from '@angular/material/sidenav';
+import { MatSidenav, MatSidenavContainer } from '@angular/material/sidenav';
 import * as EventEmitter from 'events';
 
 @Component({
@@ -12,6 +12,8 @@ export class HomeComponent implements OnInit {
 
 
   @ViewChild('sidenav', { static: true }) sidenav: MatSidenav;
+
+
  /*  @Output('sidenav') Snav: MatSidenav; */
   ngOnInit(): void {
     console.log(window.innerWidth)
