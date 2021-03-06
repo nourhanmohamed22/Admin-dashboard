@@ -1,7 +1,7 @@
 <!-- Title group  -->
 <div class="title-group">
     <h1 class="mat-h1">Users List</h1>
-    <mat-divider fxFlex="1 0"></mat-divider>
+    <!-- <mat-divider fxFlex="1 0"></mat-divider> -->
   </div>
   
   <p *ngIf="UserData.length <= 0" class="no-data">There is no user added yet!</p>
@@ -27,7 +27,7 @@
   </mat-form-field>
 </form> -->
 
-  <mat-form-field fxFlex="40%">
+  <mat-form-field>
     <input matInput type="text" (keyup)="doFilter($any($event.target).value)"  placeholder="Search">
   </mat-form-field>
   
