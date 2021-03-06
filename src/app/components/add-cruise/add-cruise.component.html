@@ -164,16 +164,33 @@
                <!-- Exposed item name: {{ cruiseForm.controls.travelers.controls[].controls.passengers.value }} -->
              </div>
              <button mat-raised-button type="button" (click)="addInfo()">Add Ship Information</button>
+             <br><br>
+             <!-- Add image-->
+          <mat-form-field class="multiple-items">
+            <mat-chip-list #chipList4>
+              <mat-chip *ngFor="let img of images" [selectable]="selectable" [removable]="removable"
+                (removed)="removeImg(img)">
+                {{img}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input placeholder="Add Image" [matChipInputFor]="chipList4"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="addImg($event)">
+            </mat-chip-list>
+            <i class="material-icons tooltip-info" matTooltip="Enter image link and press enter to add images">
+              info
+            </i>
+          </mat-form-field>
         </div>
       </mat-card>
   
       <!-- Submit & Reset -->
-      <mat-card>
+      
         <div class="full-wrapper button-wrapper">
           <div class="button-wrapper">
             <button mat-flat-button color="warn" type="submit" (click)="submitCruiseForm()">Submit</button>
           </div>
         </div>
-      </mat-card>
+      
     </form>
   </div>

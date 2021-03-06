@@ -34,6 +34,7 @@ export class AddCruiseComponent implements OnInit {
   @ViewChild('chipList') chipList;
   @ViewChild('chipList2') chipList2;
   @ViewChild('chipList3') chipList3;
+  @ViewChild('chipList4') chipList4;
   @ViewChild('resetCruiseForm') myNgForm;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   cruiseForm: FormGroup;
@@ -42,6 +43,7 @@ export class AddCruiseComponent implements OnInit {
   dining:string[]=[];
   travelers:FormArray;
   shipInfo:FormArray;
+  images:string[] = [];
   constructor(public fb: FormBuilder,
     public router: Router,
     private ngZone: NgZone,
@@ -66,11 +68,33 @@ this.cruiseForm=this.fb.group({
   whereTo:['',[Validators.required]],
   departsFrom:['',[Validators.required]],
   travelers:this.fb.array([this.createItem()]),
-  shipInfo:this.fb.array([this.createInfo()])
+  shipInfo:this.fb.array([this.createInfo()]),
+  images:[this.images]
 
 })
 
   }
+
+     /* Add img */
+     addImg(event: MatChipInputEvent): void {
+      const input = event.input;
+      const value = event.value;
+      // Add activity
+      if ((value || '').trim() && this.images.length < 5) {
+        this.images.push(value.trim())
+      }
+      // Reset the input value
+      if (input) {
+        input.value = '';
+      }
+    }
+         /* Remove img */
+  removeImg(img: string): void {
+    const index = this.images.indexOf(img); 
+    if (index >= 0) {
+      this.images.splice(index, 1);
+    }
+  } 
   createItem(): FormGroup {
     return this.fb.group({
       passengers: '',
@@ -193,7 +217,8 @@ this.cruiseForm=this.fb.group({
         this.cruiseForm.value.entertainment,
         this.cruiseForm.value.dining,
         this.cruiseForm.value.travelers,
-        this.cruiseForm.value.shipInfo)
+        this.cruiseForm.value.shipInfo,
+        this.cruiseForm.value.images)
 
      }
   // }

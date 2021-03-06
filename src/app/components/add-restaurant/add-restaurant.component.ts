@@ -7,7 +7,6 @@ import { ApiService } from './../../shared/api.service';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import {HttpEventType, HttpErrorResponse, HttpClient } from '@angular/common/http';
 import { ApiRestauratCatService } from 'src/app/shared/api-restaurat-cat.service';
-import{UploadImgService} from './../../shared/upload-img.service';
 import { of } from 'rxjs';  
 import { catchError, map } from 'rxjs/operators'; 
 
@@ -84,10 +83,11 @@ file;
   submitBookForm() {
     this.restaurantForm = this.fb.group({
       name: ['', [Validators.required]],
-      imageUrls: [null, {
-        Validators: [Validators.required],
-        asyncValidators: [mimeType]
-      }],
+      // imageUrls: [null, {
+      //   Validators: [Validators.required],
+      //   asyncValidators: [mimeType]
+      // }],
+      imageUrls:[this.imageUrls],
       address: [this.address,[Validators.required]],
       contact: [this.contact,[Validators.required]],
       descripation: [this.descripation,[Validators.required]],
@@ -102,6 +102,26 @@ file;
       
     })
   }
+    /* Add img */
+    addImg(event: MatChipInputEvent): void {
+      const input = event.input;
+      const value = event.value;
+      // Add activity
+      if ((value || '').trim() && this.imageUrls.length < 5) {
+        this.imageUrls.push(value.trim())
+      }
+      // Reset the input value
+      if (input) {
+        input.value = '';
+      }
+    }
+     /* Remove img */
+  removeImg(img: string): void {
+    const index = this.imageUrls.indexOf(img); 
+    if (index >= 0) {
+      this.imageUrls.splice(index, 1);
+    }
+  } 
 
   addAddress(val, name: String) {
     if (name == "streetname") {
@@ -257,11 +277,12 @@ file;
   //   }
   // }
   submitRestaurantForm() {
-    if (this.restaurantForm.invalid) {
-      return;
-    }
+    console.log(this.imageUrls)
+    // if (this.restaurantForm.invalid) {
+    //   return;
+    // }
   //   let formData = new FormData()
-
+ 
   //   formData.append('imageUrls',this.file)
 
 
@@ -281,7 +302,8 @@ file;
         this.restaurantForm.value.cuisine,
         this.restaurantForm.value.dishes,
         this.restaurantForm.value.DietaryRestrictions,
-        this.restaurantForm.value.goodFor
+        this.restaurantForm.value.goodFor,
+        this.restaurantForm.value.imageUrls 
 
       )
 

@@ -47,7 +47,7 @@ export class AddHotelComponent implements OnInit {
   @ViewChild('resetHotelForm') myNgForm;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   hotelForm: FormGroup;
-/* images:string[]; */
+ images:string[] = [];
 deals:string[]=[];
 popular:string[]=[];
 amenities:string[]=[];
@@ -91,6 +91,7 @@ class:string;
         Validators: [Validators.required],
          asyncValidators: [mimeType]
       }], */
+      images:[this.images],
       deals: [this.deals],
       amenities: [this.amenities],
       style: [this.style],
@@ -106,7 +107,27 @@ class:string;
     })
   }
 
-
+  /* Add img */
+  addImg(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+    // Add activity
+    if ((value || '').trim() && this.images.length < 5) {
+      this.images.push(value.trim())
+    }
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+    console.log(this.images)
+  }
+     /* Remove img */
+     removeImg(img: string): void {
+      const index = this.images.indexOf(img); 
+      if (index >= 0) {
+        this.images.splice(index, 1);
+      }
+    } 
 
   createPriceDeal(): FormGroup{
     return this.fb.group({
@@ -293,7 +314,8 @@ class:string;
         this.hotelForm.value.rooms, this.hotelForm.value.map,
         this.hotelForm.value.class, this.hotelForm.value.Pricedeals,
         this.hotelForm.value.popular, this.hotelForm.value.distance,
-        this.hotelForm.value.langaugeSpoken)
+        this.hotelForm.value.langaugeSpoken,
+        this.hotelForm.value.images)
       console.log(this.hotelForm.value.style)
       console.log(this.hotelForm.value.deals)
       console.log(this.hotelForm.value.distance)

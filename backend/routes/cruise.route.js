@@ -23,8 +23,8 @@ cruiseRoute.post('/add-cruise', (req, res, next) => {
  entertainment:req.body.entertainment,
  dining:req.body.dining,
  travelers:req.body.travelers,
- shipInfo:req.body.shipInfo
-
+ shipInfo:req.body.shipInfo,
+images:req.body.images
 
    });
    cruise.save().then(result => {

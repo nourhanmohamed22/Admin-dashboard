@@ -45,8 +45,8 @@ restaurantRoute.post('/add-restaurant', (req, res, next) => {
     cuisine:req.body.cuisine,
 dishes:req.body.dishes,
 DietaryRestrictions:req.body.DietaryRestrictions,
-goodFor:req.body.goodFor
-
+goodFor:req.body.goodFor,
+imageUrls:req.body.imageUrls
     // imageUrls: url + '/images/' + req.file.filename,
   
 
