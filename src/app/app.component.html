@@ -1,12 +1,10 @@
 <mat-toolbar color="primary" class="header" >
-  <img class="logo" src="https://static.tacdn.com/img2/brand_refresh/Tripadvisor_lockup_horizontal_secondary_registered.svg">
   <div>
-    <!-- <h1>Tripadvisor Records</h1> -->
-  </div> 
-
+  <img class="logo" src="https://static.tacdn.com/img2/brand_refresh/Tripadvisor_lockup_horizontal_secondary_registered.svg">
   <span class="nav-tool-items">
-    <mat-icon (click)="sidenav.toggle()" class="hamburger">menu</mat-icon>
+    <mat-icon (click)="clickMenu()" class="hamburger">menu</mat-icon>
   </span>
+</div>
   <a class="nav-item nav-link login" *ngIf="!currentUser" routerLink="/login">Login</a>
   <a class="nav-item nav-link login" *ngIf="currentUser" (click)="logout()"> Logout</a>
 </mat-toolbar>

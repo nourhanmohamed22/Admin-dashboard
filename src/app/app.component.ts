@@ -1,12 +1,8 @@
-import { Component, ViewChild, HostListener, OnInit, QueryList, Input } from '@angular/core';
-import { first } from 'rxjs/operators';
-import { MatSidenav } from '@angular/material/sidenav';
+import { Component} from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from './auth/_services/autentication.service';
-import { AdminService } from './auth/_services/admin.service';
 import { Admin} from './auth/_model/admin';
-
-
+import { SidenaveService } from './shared/sidenave.service';
 
 @Component({
   selector: 'app-root',
@@ -20,18 +16,20 @@ export class AppComponent {
   loading = false;
     users: Admin[];
 
-    @ViewChild('sidenav', { static: true }) sidenav: MatSidenav;
-
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService,
-    private adminService: AdminService
+    private sideNavService: SidenaveService
 ) {
     this.authenticationService.currentUser?.subscribe(x => this.currentUser = x);
 }
 logout() {
   this.authenticationService.logout();
   this.router.navigate(['/login']);
+}
+
+clickMenu() { 
+  this.sideNavService.toggle();
 }
  
   ngOnInit() {

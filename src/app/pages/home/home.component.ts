@@ -1,6 +1,6 @@
 import { Component, ViewChild, HostListener, OnInit, Output } from '@angular/core';
-import { MatSidenav, MatSidenavContainer } from '@angular/material/sidenav';
-import * as EventEmitter from 'events';
+import { MatSidenav} from '@angular/material/sidenav';
+import { SidenaveService } from 'src/app/shared/sidenave.service';
 
 @Component({
   selector: 'app-home',
@@ -13,8 +13,10 @@ export class HomeComponent implements OnInit {
 
   @ViewChild('sidenav', { static: true }) sidenav: MatSidenav;
 
+    constructor(private sideNavService: SidenaveService){
 
- /*  @Output('sidenav') Snav: MatSidenav; */
+    }
+
   ngOnInit(): void {
     console.log(window.innerWidth)
     if (window.innerWidth < 768) {
@@ -24,6 +26,10 @@ export class HomeComponent implements OnInit {
       this.sidenav.fixedTopGap = 55;
       this.opened = true;
     }
+
+    this.sideNavService.sideNavToggleSubject.subscribe(()=> {
+      this.sidenav.toggle();
+    });
   }
   @HostListener('window:resize', ['$event'])
   onResize(event) {

@@ -1,7 +1,7 @@
 export class Cruise{
     _id?: String;
     shipName:String;
-    price?:Number;
+    price:Number;
     discount?:Number;
     sailingDate?:Date;
     departureMonth?:String;

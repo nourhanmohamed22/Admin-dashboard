@@ -18,17 +18,140 @@
             </mat-error>
           </mat-form-field>
 
-        </div>
-      </mat-card>
-  
-      <!-- Right block -->
-      <mat-card>
-        <div class="controlers-wrapper">
-         
-       
-        </div>
-      </mat-card>
-  
+           <!--price-->
+        <mat-form-field class="example-full-width">
+          <input matInput type="number" placeholder="Price" formControlName="price">
+          <mat-error *ngIf="handleError('price', 'required')">
+            You must provide a <strong>cruise price</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <!--discount-->
+        <mat-form-field class="example-full-width">
+          <input matInput type="number" placeholder="Discount" formControlName="discount">
+          <mat-error *ngIf="handleError('discount', 'required')">
+            You must provide a <strong>cruise price</strong>
+          </mat-error>
+        </mat-form-field>
+
+         <!-- Date of sailing -->
+         <mat-form-field>
+          <input matInput readonly [matDatepicker]="picker" placeholder="Date of sailing" formControlName="sailingDate"
+            (dateChange)="formatDate($event)">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="handleError('sailingDate', 'required')">
+            Date of sailing is required
+          </mat-error>
+        </mat-form-field>
+
+          <!-- departure Month -->
+          <mat-form-field class="example-full-width">
+              <input matInput placeholder="Departure Month" formControlName="departureMonth">
+              <mat-error *ngIf="handleError('departureMonth', 'required')">
+                You must provide a <strong>departure month</strong>
+              </mat-error>
+            </mat-form-field>
+
+              <!--days-->
+        <mat-form-field class="example-full-width">
+          <input matInput type="number" placeholder="Days" formControlName="days">
+          <mat-error *ngIf="handleError('days', 'required')">
+            You must provide number of <strong>days</strong>
+          </mat-error>
+        </mat-form-field>
+         <!-- Where to -->
+         <mat-form-field class="example-full-width">
+          <input matInput placeholder="Where To" formControlName="whereTo">
+          <mat-error *ngIf="handleError('whereTo', 'required')">
+            You must provide <strong>where to</strong>
+          </mat-error>
+        </mat-form-field>
+        <!-- Departs from -->
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Departs From" formControlName="departsFrom">
+          <mat-error *ngIf="handleError('departsFrom', 'required')">
+            You must provide <strong>departs from</strong>
+          </mat-error>
+        </mat-form-field>
+              </div>
+            </mat-card>
+
+    <!-- Right block -->
+   
+     <mat-card>
+      <div class="controlers-wrapper">
+
+
+        <!-- Add activities -->
+        <mat-form-field class="multiple-items">
+          <mat-chip-list #chipList>
+            <mat-chip *ngFor="let activities of activities" [selectable]="selectable" [removable]="removable"
+              (removed)="removeActivity(activities)">
+              {{activities}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input placeholder="Add Activity" [matChipInputFor]="chipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+              (matChipInputTokenEnd)="addActivity($event)" formControlName="activities">
+          </mat-chip-list>
+          <i class="material-icons tooltip-info" matTooltip="Enter activity name and press enter to add activities">
+            info
+          </i>
+        </mat-form-field>
+
+             <!-- Add entertainment -->
+             <mat-form-field class="multiple-items">
+              <mat-chip-list #chipList2>
+                <mat-chip *ngFor="let entertainment of entertainment" [selectable]="selectable" [removable]="removable"
+                  (removed)="removeEntertainment(entertainment)">
+                  {{entertainment}}
+                  <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                </mat-chip>
+                <input placeholder="Add Entertainment" [matChipInputFor]="chipList2"
+                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                  (matChipInputTokenEnd)="addEntertainment($event)" formControlName="entertainment" >
+              </mat-chip-list>
+              <i class="material-icons tooltip-info" matTooltip="Enter entertainment name and press enter to add entertainments">
+                info
+              </i>
+            </mat-form-field>
+
+             <!-- Add dining -->
+             <mat-form-field class="multiple-items">
+              <mat-chip-list #chipList3>
+                <mat-chip *ngFor="let dining of dining" [selectable]="selectable" [removable]="removable"
+                  (removed)="removeDining(dining)">
+                  {{dining}}
+                  <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                </mat-chip>
+                <input placeholder="Add Dining" [matChipInputFor]="chipList3"
+                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                  (matChipInputTokenEnd)="addDining($event)" formControlName="dining">
+              </mat-chip-list>
+              <i class="material-icons tooltip-info" matTooltip="Enter dining name and press enter to add dinings">
+                info
+              </i>
+            </mat-form-field>
+
+               <!--add traveler-->
+              <!--  <div formArrayName="travelers" *ngFor="let traveler of cruiseForm.get('travelers')['controls']; let i = index;">
+               <div [formGroupName]="i">
+                 <mat-form-field class="example-full-width">
+                 <input matInput formControlName="passengers" type="number" placeholder="passengers" required>
+                 </mat-form-field>
+                 <mat-form-field class="example-full-width">
+                 <input matInput formControlName="crew" type="number" placeholder="crew" required>
+                </mat-form-field>
+               </div>
+              </div> -->
+              <!-- Exposed item name: {{ cruiseForm.controls.travelers.controls[].controls.passengers.value }} -->
+             <!--  <button mat-raised-button type="button" (click)="addItem()">Add Traveler</button> -->
+
+      </div>
+          </mat-card>    
+
+
       <!-- Submit & Reset -->
       <mat-card>
         <div class="full-wrapper button-wrapper">

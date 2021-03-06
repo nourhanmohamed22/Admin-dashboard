@@ -63,12 +63,12 @@
             </mat-error>
           </mat-form-field>
 
-          <mat-form-field>
+         <!--  <mat-form-field>
             <input matInput placeholder="map" formControlName="map"/>
             <mat-error *ngIf="handleError('map', 'required')">
               You must provide a<strong>hotel Map</strong>
             </mat-error>
-          </mat-form-field>
+          </mat-form-field> -->
           
           <mat-form-field class="example-full-width">
             <input matInput type="number" (change)="addMap($any($event.target).value,$any($event.target).name)"  placeholder="Map Latitude" name="latitude" [value]="map.latitude" required>
