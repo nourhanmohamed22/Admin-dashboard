@@ -11,7 +11,7 @@ import { Router } from "@angular/router";
 export class ApiCruiseService {
   private cruises: Cruise[] = [];
   private cruisesUpdated = new Subject<Cruise[]>();
-  endpoint: string = 'http://localhost:8000/api/cruise';
+  endpoint: string = 'https://tripadvisor-dashboard.herokuapp.com/api/cruise';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   constructor(private http: HttpClient,private router: Router) { }
 

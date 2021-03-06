@@ -36,7 +36,7 @@ app.use(cors());
 app.use("/images", express.static(path.join("images")));
 
 // Setting up static directory
-app.use(express.static(path.join(__dirname, 'dist/AdminDashboard')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 // RESTful API root
@@ -47,26 +47,27 @@ app.use('/api/user', userRoute)
 app.use('/api/hotelCategory', hotelCategory)
 app.use('/api/restaurantCategory', restaurantCategory)
 app.use('/api/cruise', cruiseRoute) 
-// PORT
+/* // PORT
 const port = process.env.PORT || 8000;
 
 app.listen(port, () => {
   console.log('Connected to port ' + port)
-})
+}) */
 
 // Find 404 and hand over to error handler
-app.use((req, res, next) => {
+/* app.use((req, res, next) => {
   next(createError(404));
 });
-
+ */
 // Index Route
-app.get('/', (req, res) => {
+/* app.get('/', (req, res) => {
   res.send('invaild endpoint');
-});
+}); */
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/admin-dashboard/index.html'));
+  res.sendFile(path.join(__dirname, 'public','index.html'));
 });
+
 
 // error handler 
 app.use(function (err, req, res, next) {

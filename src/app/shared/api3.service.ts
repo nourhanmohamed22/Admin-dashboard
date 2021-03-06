@@ -8,7 +8,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
   providedIn: 'root'
 })
 export class Api3Service {
-  endpoint: string = 'http://localhost:8000/api/hotelCategory';
+  endpoint: string = 'https://tripadvisor-dashboard.herokuapp.com/api/hotelCategory';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   constructor(private http: HttpClient) { }
 

@@ -2,6 +2,9 @@
  *{
   cursor:auto;
   }
+
+  body { overflow-y:hidden }
+
 html,body{height:100%;}
 body{margin:0;font-family:'Roboto', sans-serif;}
 .header{justify-content:space-between;}
@@ -42,3 +45,5 @@ body .push-right{margin-right:10px;}
 @media (max-width:767px){.nav-tool-items{margin-right:0;}
  .hamburger{visibility:visible !important;}
 }
+
+
