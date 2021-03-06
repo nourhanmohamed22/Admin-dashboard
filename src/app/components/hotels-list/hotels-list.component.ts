@@ -6,6 +6,7 @@ import { MatPaginator} from '@angular/material/paginator'
 import {MatTableDataSource } from '@angular/material/table'
 import { MatSort } from '@angular/material/sort';
 
+
 @Component({
   selector: 'app-hotels-list',
   templateUrl: './hotels-list.component.html',
@@ -13,16 +14,17 @@ import { MatSort } from '@angular/material/sort';
 })
 export class HotelsListComponent implements OnInit {
     HotelData: any = [];
+    
     dataSource: MatTableDataSource<Hotel>;
     @ViewChild(MatSort,{ static: false }) sort: MatSort;
     @ViewChild(MatPaginator,{ static: false }) paginator: MatPaginator;
-    displayedColumns: string[] = ['name', 'style', 'rooms', 'action'];
+    displayedColumns: string[] = ['name','map','rooms','booking', 'style', 'action'];
 
   
-    constructor(private hotelApi: Api2Service,
-      private hotelCategoryApi: Api3Service) {
+    constructor(private hotelApi: Api2Service) {
       this.hotelApi.GetHotels().subscribe(data => {
         this.HotelData = data;
+      
         this.dataSource = new MatTableDataSource<Hotel>(this.HotelData);
         setTimeout(() => {
           this.dataSource.paginator = this.paginator;
@@ -31,6 +33,10 @@ export class HotelsListComponent implements OnInit {
       })
      
     }
+
+      
+       
+
   
     ngOnInit() { 
       

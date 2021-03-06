@@ -2,6 +2,7 @@ import { Cruise } from './../../shared/cruise';
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { MatPaginator} from '@angular/material/paginator'
 import {MatTableDataSource } from '@angular/material/table'
+import {DatePipe} from '@angular/common';
 import { MatSort } from '@angular/material/sort';
 import {ApiCruiseService} from './../../shared/api-cruise.service';
 
@@ -17,7 +18,8 @@ export class CruiseListComponent implements OnInit {
     @ViewChild(MatPaginator,{ static: false }) paginator: MatPaginator;
     displayedColumns: string[] = ['shipName','price','discount','sailingDate','departureMonth','days',
    'whereTo' ,'departsFrom','action'];
-  constructor(private cruiseApi:ApiCruiseService) {
+  constructor(private cruiseApi:ApiCruiseService,
+    public datepipe:DatePipe) {
     this.cruiseApi.GetCruises().subscribe(data => {
       this.CruiseData = data;
       this.dataSource = new MatTableDataSource<Cruise>(this.CruiseData);

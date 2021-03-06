@@ -9,13 +9,12 @@ import { UpdateHotelComponent } from './components/update-hotel/update-hotel.com
 import{CruiseListComponent} from './components/cruise-list/cruise-list.component'
 import { UpdateRestaurantComponent } from './components/update-restaurant/update-restaurant.component';
 
-import { AppComponent } from './app.component';
-
 /// auth
 import { AuthGuard } from './auth/auth.guard';
 import { LoginComponent } from './auth/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
+import { UpdateCruiseComponent } from './components/update-cruise/update-cruise.component';
 
 const routes: Routes = [
 
@@ -32,6 +31,7 @@ const routes: Routes = [
   { path: 'hotel-list', component: HotelsListComponent },
   { path: 'cruise-list', component: CruiseListComponent },
   {path:'add-cruise',component:AddCruiseComponent},
+  {path:'update-cruise/:id',component:UpdateCruiseComponent},
   { path: 'user-list', component: UsersListComponent },
   ]
   }];

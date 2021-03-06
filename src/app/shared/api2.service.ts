@@ -13,7 +13,7 @@ import { Router } from "@angular/router";
 export class Api2Service {
   private hotels: Hotel[] = [];
   private hotelsUpdated = new Subject<Hotel[]>();
-  endpoint: string = 'http://localhost:8000/api/hotel';
+  endpoint: string = 'https://tripadvisor-dashboard.herokuapp.com/api/hotel';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   constructor(private http: HttpClient,private router: Router) { }
 

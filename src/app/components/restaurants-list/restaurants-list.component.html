@@ -11,7 +11,7 @@
   </div>
   
   <p *ngIf="RestaurantData.length <= 0" class="no-data">There is no restaurant added yet!</p>
-  <div class="no-data" *ngIf="RestaurantData.length <= 0" style="display: flex;justify-content: center;align-items: center;position: absolute;top: 300px;left: 800px;" >
+  <div class="no-data" *ngIf="RestaurantData.length <= 0" style="display: flex;justify-content: center;align-items: center;position: absolute;top: 10px;height:100%;width: 100%;" >
     <mat-spinner color="primary"></mat-spinner>
   </div>
   
@@ -32,18 +32,35 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Address </th>
           <td mat-cell *matCellDef="let element"> {{element.address.streetname}}</td>
         </ng-container>
+
+        <ng-container matColumnDef="contact">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Information</th>
+          <td mat-cell *matCellDef="let element">
+            <mat-form-field>
+              <mat-select placeholder="Platform & Working hour">
+                <mat-option>--</mat-option>
+                <mat-option>
+                  <b>email:</b> {{element.contact['Email']}}
+                </mat-option>
+                <mat-option> <b>website:</b> {{element.contact['website']}}</mat-option>
+                <mat-option><b>openhours:</b> {{element.contact['openhours']}}</mat-option>
+              </mat-select>
+           </mat-form-field>
+           </td>
+        </ng-container>
   
         <!-- <ng-container matColumnDef="imageUrls">
           <th mat-header-cell *matHeaderCellDef> Image </th>
-          <td mat-cell *matCellDef="let element"> {{element.imageUrls}} </td> -->
-           <!-- <div class="image-post">
-          <img mat-cell *matCellDef="let element" [src]="element.imageUrls" [alt]="element.imageUrls" style="height: 5rem;width: 10rem;">
+
+           <td mat-cell *matCellDef="let element"> {{element.image_path}} </td> -->
+          <!-- <div class="image-post">
+          <img mat-cell *matCellDef="let element" [src]="element.image_path" [alt]="element.image_path" style="height: 5rem;width: 10rem;">
         </div>
         </ng-container> --> 
   
         <ng-container matColumnDef="contact-telephone">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Telephone </th>
-          <td mat-cell *matCellDef="let element"> {{element.contact.telephone}} </td>
+          <th mat-header-cell *matHeaderCellDef> Telephone </th>
+          <td mat-cell *matCellDef="let element"> {{element.contact['telephone']}} </td>
         </ng-container>
         <ng-container matColumnDef="contact-email">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
