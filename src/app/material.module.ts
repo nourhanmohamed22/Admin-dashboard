@@ -23,8 +23,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
 import { MatDialogModule } from '@angular/material/dialog';;
-
-
+import {MatCardModule} from '@angular/material/card';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
    imports: [
@@ -52,6 +52,8 @@ import { MatDialogModule } from '@angular/material/dialog';;
       MatProgressSpinnerModule,
       MatDialogModule,
       MatButtonModule,
+      MatCardModule,
+      MatProgressBarModule
 
    ],
    exports: [
@@ -77,7 +79,8 @@ import { MatDialogModule } from '@angular/material/dialog';;
       MatProgressSpinnerModule,
       MatDialogModule,
       MatButtonModule,
-      
+      MatCardModule,
+      MatProgressBarModule
    ],
    providers: [
       MatDatepickerModule,

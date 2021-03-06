@@ -6,28 +6,28 @@ const restaurantRoute = express.Router();
 // Restaurant model
 let Restaurant = require('../model/Restaurant');
 
-// const MIME_TYPE_MAP = {
-//   'image/png': 'png',
-//   'image/jpeg': 'jpg',
-//   'image/jpg': 'jpg'
-// };
-// const storage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     const isValid = MIME_TYPE_MAP[file.mimetype];
-//     let error = new Error("Invalid mime type");
-//     if (isValid) {
-//       error = null;
-//     }
-//     cb(error, "./images"); 
-//   },
-//   filename: (req, file, cb) => {
-//     const name = file.originalname.toLowerCase().split(' ').join('-');
-//     const ext = MIME_TYPE_MAP[file.mimetype];
-//     cb(null, name + '-' + Date.now() + '.' + ext);
-//   }
-// }); 
+const MIME_TYPE_MAP = {
+  'image/png': 'png',
+  'image/jpeg': 'jpg',
+  'image/jpg': 'jpg'
+};
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    const isValid = MIME_TYPE_MAP[file.mimetype];
+    let error = new Error("Invalid mime type");
+    if (isValid) {
+      error = null;
+    }
+    cb(error, "./images"); 
+  },
+  filename: (req, file, cb) => {
+    const name = file.originalname.toLowerCase().split(' ').join('-');
+    const ext = MIME_TYPE_MAP[file.mimetype];
+    cb(null, name + '-' + Date.now() + '.' + ext);
+  }
+}); 
 
-///multer({ storage: storage }).single("image_path"),
+///multer({ storage: storage }).single("imageUrls"),
    
 // POST Restaurant
 restaurantRoute.post('/add-restaurant', (req, res, next) => {
