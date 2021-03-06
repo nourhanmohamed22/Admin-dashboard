@@ -1,7 +1,7 @@
 <!-- Title group  -->
 <div class="title-group">
     <h1 class="mat-h1">Cruises List</h1>
-    <mat-divider fxFlex="1 0"></mat-divider>
+    <!-- <mat-divider fxFlex="1 0"></mat-divider> -->
     <div class="example-button-container" style="padding: 5px;">
       <button mat-mini-fab color="accent" style="margin: 5px;" class="float-right" [routerLink]="['/add-cruise/']" aria-label="Example icon button with a plus one icon">
         Add
@@ -15,7 +15,7 @@
     <mat-spinner color="primary"></mat-spinner>
   </div>
   <div class="container" *ngIf="CruiseData.length > 0">
-    <mat-form-field fxFlex="40%">
+    <mat-form-field >
       <input matInput type="text" (keyup)="doFilter($any($event.target).value)"  placeholder="Search">
     </mat-form-field>
 
