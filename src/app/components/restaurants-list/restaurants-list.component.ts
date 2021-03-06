@@ -18,7 +18,7 @@ export class RestaurantsListComponent implements OnInit {
   @ViewChild(MatSort,{ static: false }) sort: MatSort;
   @ViewChild(MatPaginator,{ static: false }) paginator: MatPaginator;
   displayedColumns: string[] = ['name','address','contact-telephone','contact-email', 'action'];
-
+                                         //'imageUrls'
   constructor(private restaurantApi: ApiService) {
     this.restaurantApi. GetRestaurants().subscribe(data => {
       this.RestaurantData = data;

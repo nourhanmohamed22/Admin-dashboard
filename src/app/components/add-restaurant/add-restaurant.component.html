@@ -6,7 +6,7 @@
    
   <!-- Form -->
   <div class="inner-wrapper">
-    <form [formGroup]="restaurantForm" (ngSubmit)="submitRestaurantForm()" #resetRestaurantForm="ngForm" novalidate>
+    <form [formGroup]="restaurantForm" (ngSubmit)="submitRestaurantForm()"  #resetRestaurantForm="ngForm" novalidate>
       <!-- Left block -->
       <mat-card>
         <div class="controlers-wrapper">
@@ -104,8 +104,8 @@
               </mat-card>
   
       <!-- Right block -->
-      <mat-card>
-        <div class="controlers-wrapper">
+      <!-- <mat-card>
+        <div class="controlers-wrapper"> -->
   
           <!-- Image -->
             <!-- <div>
@@ -115,16 +115,17 @@
         <div class="image-preview" *ngIf="imagePreview !=='' && imagePreview  && restaurantForm.get('imageUrls').valid">
           <img [src]="imagePreview" [alt]="restaurantForm.value.name">
           </div>  -->
-        </div>
-      </mat-card>
-  
+        <!-- </div>
+      </mat-card> -->
+
+
       <!-- Submit & Reset -->
-      <mat-card>
+    
         <div class="full-wrapper button-wrapper">
           <div class="button-wrapper">
             <button mat-flat-button color="warn">Submit</button>
           </div>
         </div>
-      </mat-card>
+     
     </form>
   </div>

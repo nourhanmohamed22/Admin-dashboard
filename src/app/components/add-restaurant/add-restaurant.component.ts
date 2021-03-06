@@ -1,13 +1,15 @@
 import { mimeType } from './../../shared/mime-type.validator';
-import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
+import { Component, OnInit, ViewChild, NgZone,ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { ApiService } from './../../shared/api.service';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { HttpEvent, HttpEventType } from '@angular/common/http';
+import {HttpEventType, HttpErrorResponse, HttpClient } from '@angular/common/http';
 import { ApiRestauratCatService } from 'src/app/shared/api-restaurat-cat.service';
-
+import{UploadImgService} from './../../shared/upload-img.service';
+import { of } from 'rxjs';  
+import { catchError, map } from 'rxjs/operators'; 
 
 export interface Address {
   streetname: String,
@@ -62,7 +64,7 @@ export class AddRestaurantComponent implements OnInit {
   DietaryRestrictions: string[] = [];
   goodFor: string[] = [];
   RestaurantCategoryData: any = [];
-
+file;
 
   ngOnInit(): void {
     this.submitBookForm();
@@ -71,7 +73,8 @@ export class AddRestaurantComponent implements OnInit {
     public router: Router,
     private ngZone: NgZone,
     public restaurantApi: ApiService,
-    public RestaurantCategoryApi:ApiRestauratCatService) {
+    public RestaurantCategoryApi:ApiRestauratCatService,
+    private https: HttpClient) {
       this.RestaurantCategoryApi.GetRestaurantCategories().subscribe(data => {
         this.RestaurantCategoryData = data;
         console.log(this.RestaurantCategoryData)
@@ -81,7 +84,7 @@ export class AddRestaurantComponent implements OnInit {
   submitBookForm() {
     this.restaurantForm = this.fb.group({
       name: ['', [Validators.required]],
-      imageUrls: [this.imageUrls, {
+      imageUrls: [null, {
         Validators: [Validators.required],
         asyncValidators: [mimeType]
       }],
@@ -219,8 +222,8 @@ export class AddRestaurantComponent implements OnInit {
     }
   }
   // onImagePicked(event: Event) {
-  //   const file = (event.target as HTMLInputElement).files[0];
-  //   this.restaurantForm.patchValue({ image_path: file });
+  //   this.file = (event.target as HTMLInputElement).files[0];
+  //   this.restaurantForm.patchValue({ imageUrls: this.file });
   //   this.restaurantForm.get('imageUrls').updateValueAndValidity();
   //   // console.log(file);
   //   // console.log(this.restaurantForm)
@@ -229,8 +232,10 @@ export class AddRestaurantComponent implements OnInit {
   //   reader.onload = () => {
   //     this.imagePreview = reader.result as string;
   //   };
-  //   reader.readAsDataURL(file);
+  //   reader.readAsDataURL(this.file);
   // }
+ 
+
   /* Get errors */
   public handleError = (controlName: string, errorName: string) => {
     return this.restaurantForm.controls[controlName].hasError(errorName);
@@ -255,6 +260,14 @@ export class AddRestaurantComponent implements OnInit {
     if (this.restaurantForm.invalid) {
       return;
     }
+  //   let formData = new FormData()
+
+  //   formData.append('imageUrls',this.file)
+
+
+  // this.https.post('http://localhost:8000/api/restaurant/add-restaurant', formData).subscribe((res) => {
+  //   console.log('done', res)
+  // })
     if (this.restaurantForm) {
       this.restaurantApi.AddRestaurant(
         this.restaurantForm.value.name,
