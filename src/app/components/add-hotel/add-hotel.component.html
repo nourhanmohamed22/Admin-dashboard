@@ -117,6 +117,22 @@
                 <mat-checkbox [value]="language._id"  (change)="changeOutputlanguageSpoken($event)">{{language.name}}</mat-checkbox>
             </section>
           </div> 
+          <!-- Add image-->
+          <mat-form-field class="multiple-items">
+            <mat-chip-list #chipList>
+              <mat-chip *ngFor="let img of images" [selectable]="selectable" [removable]="removable"
+                (removed)="removeImg(img)">
+                {{img}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input placeholder="Add Image" [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="addImg($event)">
+            </mat-chip-list>
+            <i class="material-icons tooltip-info" matTooltip="Enter image link and press enter to add images">
+              info
+            </i>
+          </mat-form-field>
         
         </div>
       <div class="col-6">

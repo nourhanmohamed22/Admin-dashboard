@@ -22,13 +22,13 @@ export class ApiService {
     meals:Array<string>,Pricerange:string,
     cuisine:Array<string>,dishes:Array<string>,
     DietaryRestrictions:Array<string>,
-    goodFor:Array<string> ) {
+    goodFor:Array<string> ,imageUrls:Array<string>) {
     const restaurant: Restaurant = { name:name,address:address,
     contact:contact,descripation:description,
   features:features,Establishment:Establishment,meals:meals,
 Pricerange:Pricerange,cuisine:cuisine,
 dishes:dishes,DietaryRestrictions:DietaryRestrictions,
-goodFor:goodFor};
+goodFor:goodFor,imageUrls:imageUrls};
     this.http
       .post<{ message: string; id: string }>(
         `${this.endpoint}/add-restaurant`,

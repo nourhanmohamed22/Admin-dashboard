@@ -43,8 +43,8 @@ hotelRoute.post('/add-hotel', (req, res, next) => {
     class:req.body.class,
     Pricedeals:req.body.Pricedeals,
     popular:req.body.popular,
-    langaugeSpoken:req.body.langaugeSpoken
-
+    langaugeSpoken:req.body.langaugeSpoken,
+images:req.body.images
 
   });
   hotel.save().then(result => {

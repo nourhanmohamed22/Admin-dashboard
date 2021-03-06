@@ -20,14 +20,14 @@ export class ApiCruiseService {
    AddCruise(shipName:string,price:number,discount:number,sailingDate:Date,
     departureMonth:string,days:number,whereTo:string,departsFrom:string,
     activities:Array<string>,entertainment:Array<string>,dining:Array<string>,
-    travelers:Array<object>,shipInfo:Array<object>) {
+    travelers:Array<object>,shipInfo:Array<object>,images:Array<string>) {
     const cruise: Cruise = {shipName:shipName,
     price:price,discount:discount,
   sailingDate:sailingDate,departureMonth:departureMonth,
 days:days,whereTo:whereTo,
 departsFrom:departsFrom,activities:activities,
 entertainment:entertainment,dining:dining,
-travelers:travelers,shipInfo:shipInfo};
+travelers:travelers,shipInfo:shipInfo,images:images};
     this.http
       .post<{ message: string; id: string }>(
         `${this.endpoint}/add-cruise`,
