@@ -7,7 +7,7 @@ import{RestaurantCategory} from './restaurant-category'
   providedIn: 'root'
 })
 export class ApiRestauratCatService {
-  endpoint: string = 'http://localhost:8000/api/restaurantCategory';
+  endpoint: string = 'https://tripadvisor-dashboard.herokuapp.com/api/restaurantCategory';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   constructor(private http: HttpClient) { }
 

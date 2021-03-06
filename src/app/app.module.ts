@@ -15,6 +15,8 @@ import { HomeComponent } from './pages/home/home.component';
 /// Components 
 /* cruise */
 import { CruiseListComponent } from './components/cruise-list/cruise-list.component';
+import { UpdateCruiseComponent } from './components/update-cruise/update-cruise.component';
+import { AddCruiseComponent } from './components/add-cruise/add-cruise.component';
    /* Restaurant */
 import { AddRestaurantComponent } from './components/add-restaurant/add-restaurant.component';
 import { UpdateRestaurantComponent } from './components/update-restaurant/update-restaurant.component';
@@ -35,7 +37,8 @@ import { fakeBackendProvider } from './auth/_helpers/fake-backend';
 import { ApiService } from './shared/api.service';
 import { Api2Service } from './shared/api2.service';
 import { PopdialogComponent } from './features/popdialog/popdialog.component';
-import { AddCruiseComponent } from './components/add-cruise/add-cruise.component';
+
+
 
 
 
@@ -60,6 +63,7 @@ import { AddCruiseComponent } from './components/add-cruise/add-cruise.component
     UsersListComponent,
     CruiseListComponent,
     AddCruiseComponent,
+    UpdateCruiseComponent,
     
   
   ],
