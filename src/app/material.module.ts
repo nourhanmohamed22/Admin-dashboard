@@ -25,6 +25,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
 import { MatDialogModule } from '@angular/material/dialog';;
 import {MatCardModule} from '@angular/material/card';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
    imports: [
@@ -53,7 +54,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
       MatDialogModule,
       MatButtonModule,
       MatCardModule,
-      MatProgressBarModule
+      MatProgressBarModule,
+      FlexLayoutModule
 
    ],
    exports: [
@@ -80,7 +82,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
       MatDialogModule,
       MatButtonModule,
       MatCardModule,
-      MatProgressBarModule
+      MatProgressBarModule,
+      FlexLayoutModule
    ],
    providers: [
       MatDatepickerModule,
