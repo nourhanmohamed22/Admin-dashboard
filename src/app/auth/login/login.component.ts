@@ -43,7 +43,10 @@ export class LoginComponent implements OnInit {
 
   // convenience getter for easy access to form fields
   get f() { return this.loginForm.controls; }
-
+/* Get errors */
+public handleError = (controlName: string, errorName: string) => {
+    return this.loginForm.controls[controlName].hasError(errorName);
+  }
   onSubmit() {
       this.submitted = true;
       console.log(this.loginForm)

@@ -1,1 +1,15 @@
 @import '../../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+.login-main{
+    margin-top: 5%;
+    }
+    mat-card{
+    min-width: 50%;
+    padding: 5%;
+    }
+
+    button{
+        font-size: 18px;
+        color:#0cb678;
+        border-radius: 5%;
+    }
