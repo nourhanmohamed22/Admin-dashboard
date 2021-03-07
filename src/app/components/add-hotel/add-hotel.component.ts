@@ -18,12 +18,7 @@ export interface Distance {
   cityCenter: number;
   mainStreet: number;
 }
-// export interface PriceDeals {
-//   _id?,
-//   name?: string,
-//   link?: string,
-//   pricePerNight?: number
-// }
+
 export interface Map {
   latitude: number;
   longitude: number;
@@ -95,13 +90,13 @@ class:string;
       deals: [this.deals],
       amenities: [this.amenities],
       style: [this.style],
-      name: [''],
+      name: ['', [Validators.required]],
       map: [this.map],
-      rooms: [''],
+      rooms: ['',[Validators.required]],
       likes: [''],
       distance: [this.distance,],
       Pricedeals:this.fb.array([this.createPriceDeal()]),
-      class: [this.class, ],
+      class: [this.class, [Validators.required]],
       popular: [this.popular],
       langaugeSpoken: [this.langaugeSpoken]
     })
@@ -131,7 +126,7 @@ class:string;
 
   createPriceDeal(): FormGroup{
     return this.fb.group({
-      _id: '',
+      _id: null,
       name:'',
       link: '',
       pricePerNight:''
@@ -235,8 +230,6 @@ class:string;
 
   }
 
- 
- 
 
   // onImagePicked(event: Event) {
   //   const file = (event.target as HTMLInputElement).files;
@@ -259,55 +252,12 @@ class:string;
     return this.hotelForm.controls[controlName].hasError(errorName);
   }
 
-
-  // Reset(){
-  //   const dialogConfig = new MatDialogConfig();
-  //   dialogConfig.width="20%";
-  //   dialogConfig.height="30%";
-  //   dialogConfig.disableClose=true;
-  //   const dialogRef=this.dialog.open(PopdialogComponent,dialogConfig)
-  //      if (dialogRef.componentInstance.data==="T"){
-  //       console.log("hii")
-  //       this.hotelForm.reset();
-  //     } 
-  
-  // }
-  
-
-  /* Submit hotel */
-  // submitHotelForm() { 
-  //   this.hotelApi.AddHotel(
-  //    this.hotelForm.value
-  //   ).subscribe((event: HttpEvent<any>) => {
-  //     switch (event.type) {
-  //       case HttpEventType.Sent:
-  //         console.log('Request has been made!');
-  //         break;
-  //       case HttpEventType.ResponseHeader:
-  //         console.log('Response header has been received!');
-  //         break;
-
-  //       case HttpEventType.Response:
-  //         console.log('User successfully created!', event.body);
-
-  //         this.router.navigateByUrl('/hotel-list') 
-  //     } 
-  //   }) 
-  // }      
   submitHotelForm() {
-    // const dialogConfig = new MatDialogConfig();
-    // dialogConfig.width="20%";
-    // dialogConfig.height="35%";
-    
+  
     console.log(this.distance);
     console.log(this.hotelForm.value.distance)
-    // console.log(this.style)
-    if (this.hotelForm) {
-      // this.dialog.open(PopdialogComponent,dialogConfig)
-      // if (this.hotelForm.valid && this.dialog.afterAllClosed){
-      //   this.checkedStyles.forEach(item => {  
-      //     this.style.push(item);  
-      // });
+   
+    if (this.hotelForm.valid && this.langaugeSpoken.length>0 && this.amenities.length>0) {
       this.hotelApi.AddHotel(
         this.hotelForm.value.name, this.hotelForm.value.style,
         this.hotelForm.value.deals, this.hotelForm.value.amenities,
@@ -319,32 +269,11 @@ class:string;
       console.log(this.hotelForm.value.style)
       console.log(this.hotelForm.value.deals)
       console.log(this.hotelForm.value.distance)
-      // this.hotelApi.AddHotel(this.hotelForm.value).subscribe(res => {
-      //   this.ngZone.run(() => this.router.navigateByUrl('/hotel-list'))
-      // });
-      /* this.hotelApi.AddHotel(
-        this.hotelForm.value.name,
-        this.hotelForm.value.style
-      ).subscribe((event: HttpEvent<any>) => {
-        switch (event.type) {
-          case HttpEventType.Sent:
-            console.log('Request has been made!');
-            break;
-          case HttpEventType.ResponseHeader:
-            console.log('Response header has been received!');
-            break;
-          
-          case HttpEventType.Response:
-            console.log('User successfully created!', event.body);
-            
-            this.router.navigateByUrl('/hotel-list') 
-        } 
-      })  */
-    // }
+    
   }
-    // else{
-    //   alert("Please fill all data")
-    // }
+    else{
+      alert("Please fill all data")
+    }
 
   }
 

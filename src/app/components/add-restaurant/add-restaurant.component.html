@@ -80,6 +80,7 @@
               <mat-form-field class="example-full-width">
                 <input matInput  (change)="addContact($any($event.target).value,$any($event.target).name)"  placeholder="Add Restaurant Open Hours" name="openhours" [value]="contact.openhours" required>
               </mat-form-field>
+              
               <div class="misc-bottom-padding">
                 <mat-label class="label">Establishments:</mat-label>
                 <section  *ngFor="let establishments of RestaurantCategoryData[0]?.Establishment let i = index" > 

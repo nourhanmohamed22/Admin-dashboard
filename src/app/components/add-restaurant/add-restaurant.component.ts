@@ -63,10 +63,10 @@ export class AddRestaurantComponent implements OnInit {
   DietaryRestrictions: string[] = [];
   goodFor: string[] = [];
   RestaurantCategoryData: any = [];
-file;
+  /* file; */
 
   ngOnInit(): void {
-    this.submitBookForm();
+    this.submitForm();
   }
   constructor(public fb: FormBuilder,
     public router: Router,
@@ -79,26 +79,22 @@ file;
         console.log(this.RestaurantCategoryData)
       })
   }
-  /* Reactive book form */
-  submitBookForm() {
+  /* Reactive restaurant form */
+  submitForm() {
     this.restaurantForm = this.fb.group({
       name: ['', [Validators.required]],
-      // imageUrls: [null, {
-      //   Validators: [Validators.required],
-      //   asyncValidators: [mimeType]
-      // }],
       imageUrls:[this.imageUrls],
-      address: [this.address,[Validators.required]],
-      contact: [this.contact,[Validators.required]],
-      descripation: [this.descripation,[Validators.required]],
-      Establishment: [this.Establishment, [Validators.required]],
-      features: [this.features, [Validators.required]],
-      meals: [this.meals, [Validators.required]],
-      Pricerange: [this.Pricerange, [Validators.required]],
-      cuisine: [this.cuisine, [Validators.required]],
-      dishes: [this.dishes, [Validators.required]],
-      DietaryRestrictions: [this.DietaryRestrictions, [Validators.required]],
-      goodFor: [this.goodFor, [Validators.required]],
+      address: [this.address,],
+      contact: [this.contact,],
+      descripation: [this.descripation,],
+      Establishment: [this.Establishment, ],
+      features: [this.features, ],
+      meals: [this.meals, ],
+      Pricerange: [this.Pricerange,[Validators.required] ],
+      cuisine: [this.cuisine, ],
+      dishes: [this.dishes, ],
+      DietaryRestrictions: [this.DietaryRestrictions, ],
+      goodFor: [this.goodFor, ],
       
     })
   }
@@ -260,36 +256,11 @@ file;
   public handleError = (controlName: string, errorName: string) => {
     return this.restaurantForm.controls[controlName].hasError(errorName);
   }
-  /* Submit book */
-  //  submitRestaurantForm() {
-  //    // if (this.restaurantForm.invalid) {
-  //    //   return;
-  //   //  } 
-  //   console.log("pressed1"); 
-  //   // shetl valid ===> this.restaurantForm.valid
-  //   if (this.restaurantForm) {
-  //     console.log("pressed");
-  //     this.restaurantApi.AddRestaurant(this.restaurantForm.value).subscribe(res => {
-  //       this.ngZone.run(() => this.router.navigateByUrl('/restaurant-list'))
-  //     }, (error) => {
-  //       console.log(error);
-  //     }); 
-  //   }
-  // }
+
   submitRestaurantForm() {
     console.log(this.imageUrls)
-    // if (this.restaurantForm.invalid) {
-    //   return;
-    // }
-  //   let formData = new FormData()
- 
-  //   formData.append('imageUrls',this.file)
 
-
-  // this.https.post('http://localhost:8000/api/restaurant/add-restaurant', formData).subscribe((res) => {
-  //   console.log('done', res)
-  // })
-    if (this.restaurantForm) {
+    if (this.restaurantForm.valid && this.restaurantForm.value.goodFor) {
       this.restaurantApi.AddRestaurant(
         this.restaurantForm.value.name,
         this.restaurantForm.value.address,
@@ -307,6 +278,9 @@ file;
 
       )
 
+    }
+    else{
+      alert("Please fill all data")
     }
   }
 }

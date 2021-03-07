@@ -25,69 +25,23 @@ export class ApiService {
     goodFor:Array<string> ,imageUrls:Array<string>) {
     const restaurant: Restaurant = { name:name,address:address,
     contact:contact,descripation:description,
-  features:features,Establishment:Establishment,meals:meals,
-Pricerange:Pricerange,cuisine:cuisine,
-dishes:dishes,DietaryRestrictions:DietaryRestrictions,
-goodFor:goodFor,imageUrls:imageUrls};
+    features:features,Establishment:Establishment,meals:meals,
+    Pricerange:Pricerange,cuisine:cuisine,
+    dishes:dishes,DietaryRestrictions:DietaryRestrictions,
+    goodFor:goodFor,imageUrls:imageUrls};
     this.http
       .post<{ message: string; id: string }>(
         `${this.endpoint}/add-restaurant`,
         restaurant
       )
       .subscribe(responseData => {
-        // const id = responseData.id;
-        // hotel.id = id;
         this.restaurants.push(restaurant);
         this.restaurantsUpdated.next([...this.restaurants]);
         this.router.navigate(["/restaurant-list"]);
       });
   }
-  //   AddRestaurant(name: string, image_path: File){
-  //     const postData = new FormData();
-  //   postData.append("name", name);
-  //   postData.append("image_path", image_path);
-  //   this.http
-  //   .post<{ message: string; restaurant: Restaurant }>(
-  //     `${this.endpoint}/add-restaurant`,
-  //     postData
-  //   )
-  //   .subscribe(responseData => {
-  //     const restaurant: Restaurant = {
-  //       //id: responseData.post.id,
-  //       name: name,
-        
-  //       image_path: responseData.restaurant.image_path
-  //     };
-  //     this.restaurants.push(restaurant);
-  //     this.restaurantsUpdated.next([...this.restaurants]);
-  //     this.router.navigate(["restaurant-list"]);
-  //   });
   
-  // }
-  //image_path: File,
-  // AddRestaurant(name: string,imageUrls: File): Observable<any> {
-  //   var formData: any = new FormData();
-  //   formData.append("name", name);
-  //    formData.append("imageUrls", imageUrls);
-  //   // formData.append("restaurant_features", restaurant_features);
-  //   return this.http.post<Restaurant>(`${this.endpoint}/add-restaurant`, formData, {
-  //     reportProgress: true,
-  //     observe: 'events'
-  //   })
-  // }
-  //  AddRestaurant(data: Restaurant): Observable<any> {
-  //   //const formData: FormData = new FormData();
-  //   let API_URL = `${this.endpoint}/add-restaurant`;
-  //   //   const postData = new FormData();
-  //   //  postData.append("image_path",image_path)
-  //   return this.http.post(API_URL, data)
-  //     .pipe(
-  //       catchError(this.errorMgmt)
-  //     )   
-  // }
   //Get all restaurants
-  
-   
   GetRestaurants() {
     return this.http.get(`${this.endpoint}`);
   }

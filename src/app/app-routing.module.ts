@@ -30,8 +30,8 @@ const routes: Routes = [
   { path: 'update-hotel/:id', component: UpdateHotelComponent },
   { path: 'hotel-list', component: HotelsListComponent },
   { path: 'cruise-list', component: CruiseListComponent },
-  {path:'add-cruise',component:AddCruiseComponent},
-  {path:'update-cruise/:id',component:UpdateCruiseComponent},
+  {path:  'add-cruise',component:AddCruiseComponent},
+  {path:  'update-cruise/:id',component:UpdateCruiseComponent},
   { path: 'user-list', component: UsersListComponent },
   ]
   }];

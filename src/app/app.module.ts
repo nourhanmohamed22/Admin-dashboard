@@ -33,20 +33,8 @@ import {LoginComponent} from './auth/login/login.component'
 import {ErrorInterceptor } from './auth/_helpers/error.interceptor';
 import { JwtInterceptor } from './auth/_helpers/jwt.interceptor';
 import { fakeBackendProvider } from './auth/_helpers/fake-backend';
-/// api services
-import { ApiService } from './shared/api.service';
-import { Api2Service } from './shared/api2.service';
+
 import { PopdialogComponent } from './features/popdialog/popdialog.component';
-
-
-
-
-
-
-
-
-
-
 
 
 @NgModule({

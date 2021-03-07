@@ -4,6 +4,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { ApiService } from './../../shared/api.service';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { ApiRestauratCatService } from 'src/app/shared/api-restaurat-cat.service';
 
 
 @Component({
@@ -20,6 +21,7 @@ export class UpdateRestaurantComponent implements OnInit {
   @ViewChild('resethotelForm') myNgForm;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   restaurantForm: FormGroup;
+  RestaurantCategoryData: any = [];
 
 
   ngOnInit() {
@@ -31,55 +33,75 @@ export class UpdateRestaurantComponent implements OnInit {
     private router: Router,
     private ngZone: NgZone,
     private actRoute: ActivatedRoute,
-    private restaurantApi: ApiService
+    private restaurantApi: ApiService,
+    public RestaurantCategoryApi:ApiRestauratCatService
   ) { 
     var id = this.actRoute.snapshot.paramMap.get('id');
     this.restaurantApi.GetRestaurant(id).subscribe(data => {
-      console.log(data)
+      console.log(data) 
+      this.RestaurantCategoryApi.GetRestaurantCategories().subscribe(data => {
+        this.RestaurantCategoryData = data; });
       this.restaurantForm = this.fb.group({
         name: [data.name, [Validators.required]],
+        imageUrls: [data.imageUrls, [Validators.required]],
+        contact: [data.contact, [Validators.required]],
 
       })      
     })    
   }
 
   
+
+  
   updaterestForm() {
     this.restaurantForm = this.fb.group({
       name: ['', [Validators.required]],
+      imageUrls: ['', [Validators.required]],
+      contact: ['', [Validators.required]],
    
     })
   }
-
-
-  add(event: MatChipInputEvent): void {
-    const input = event.input;
-    const value = event.value;
-  
-    /* if ((value || '').trim() && this.subjectArray.length < 5) {
-      this.subjectArray.push({ name: value.trim() })
+ 
+ /*  addContact(val, name: String) {
+    if (name == "telephone") {
+      this.contact['telephone'] = parseInt(val);
     }
-    // Reset the input value
-    if (input) {
-      input.value = '';
-    } */
-  }
+        
+    if (name == "Email") {  
+      this.contact['Email'] = val; 
+    }
+    if (name == "website") {
+      this.contact['website'] = val;
+    }
+    if (name == "openhours") {
+      this.contact['openhours'] = val;
+    }
+    console.log(val);
 
-  /* Remove dynamic languages */
-  remove(): void {
-    /* const index = this.subjectArray.indexOf(subject);
-    if (index >= 0) {
-      this.subjectArray.splice(index, 1);
-    } */
-  }
+    console.log(this.contact);
 
-  /* Date */
-  /* formatDate(e) {
-    var convertDate = new Date(e.target.value).toISOString().substring(0, 10);
-    this.restaurantForm.get('dob').setValue(convertDate, {
-      onlyself: true
-    })
   } */
+
+  changeOutputDishes(event) {
+   /*  console.log(event);
+    if (event.checked) {
+      this.dishes.push(event.source.value)
+      console.log(this.dishes);
+    } else {
+      this.dishes = this.dishes.filter((p) => p !== event.source.value)
+      console.log(this.dishes);
+    } */
+  }
+  changeOutputDietary(event) {
+  /*   console.log(event);
+    if (event.checked) {
+      this.DietaryRestrictions.push(event.source.value)
+      console.log(this.DietaryRestrictions);
+    } else {
+      this.DietaryRestrictions = this.DietaryRestrictions.filter((p) => p !== event.source.value)
+      console.log(this.DietaryRestrictions);
+    } */
+  }
 
   /* Get errors */
   public handleError = (controlName: string, errorName: string) => {

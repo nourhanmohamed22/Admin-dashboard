@@ -18,6 +18,7 @@ export interface Map {
   styleUrls: ['./update-hotel.component.css']
 })
 export class UpdateHotelComponent implements OnInit {
+  styleslist = ["Family-Friendly", "Romantic", "Business"]
 
   visible = true;
   selectable = true;
@@ -50,14 +51,15 @@ export class UpdateHotelComponent implements OnInit {
       console.log(data)
       this.hotelForm = this.fb.group({
         name: [data.name, [Validators.required]],
-        booking: [data.booking, [Validators.required]],
         latitude: [data.map.latitude, [Validators.required]],
         longitude: [data.map.longitude, [Validators.required]],
+        style: [data.style, [Validators.required]],
         Pricedeals: [data.Pricedeals],
         rooms: [data.rooms, [Validators.required]],
         images: [data.images],
         map:[data.map],
-        class:[data.class]
+        class:[data.class],
+        distance: [data.distance],
       })      
   })
     this.hotelCategoryApi.GetHotelCategories().subscribe(data => {
@@ -75,6 +77,9 @@ export class UpdateHotelComponent implements OnInit {
       name: ['', [Validators.required]],
       booking: ['', [Validators.required]],
       latitude: ['', [Validators.required]],
+      longitude: ['', [Validators.required]],
+      style: [],
+      distance: [],
       Pricedeals: [''],
       rooms: ['', [Validators.required]],
       images: [''],
@@ -95,6 +100,102 @@ export class UpdateHotelComponent implements OnInit {
     console.log(this.map);
 
   }
+
+
+  createPriceDeal(): FormGroup{
+    return this.fb.group({
+      _id: null,
+      name:'',
+      link: '',
+      pricePerNight:''
+    });
+  }
+ //Add price deals
+ addPriceDeals(): void {
+  /* this.Pricedeals = this.hotelForm.get('Pricedeals') as FormArray;
+  this.Pricedeals.push(this.createPriceDeal());
+  console.log(this.Pricedeals) */
+}
+
+
+  changeOutputStyle(event) {
+    console.log(event);
+/*     if (event.checked) {
+      // this.checkedStyles.push(event.source.value);
+      this.style.push(event.source.value)
+      // console.log( this.checkedStyles);
+      console.log(this.style);
+    } else {
+      // this.checkedStyles=this.checkedStyles.filter((p)=>p!==event.source.value);
+      this.style = this.style.filter((p) => p !== event.source.value)
+      // console.log(this.checkedStyles);
+      console.log(this.style);
+    } */
+  }
+     /* Add img */
+  addImg(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+ /*    // Add activity
+    if ((value || '').trim() && this.images.length < 5) {
+      this.images.push(value.trim())
+    }
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+    console.log(this.images) */
+  }
+     /* Remove img */
+     removeImg(img: string): void {
+     /*  const index = this.images.indexOf(img); 
+      if (index >= 0) {
+        this.images.splice(index, 1); 
+      }*/
+    } 
+  changeOutputDeals(event) {
+   
+ /*    if (event.checked) {
+      this.deals.push(event.source.value)
+      console.log(this.deals);
+    } else {
+      this.deals = this.deals.filter((p) => p !== event.source.value)
+      console.log(this.deals);
+    } */
+  }
+
+  changeOutputAmenities(event) {
+    console.log(event);
+/*     if (event.checked) {
+      this.amenities.push(event.source.value)
+      console.log(this.amenities);
+    } else {
+      this.amenities = this.amenities.filter((p) => p !== event.source.value);
+      console.log(this.amenities);
+    } */
+  }
+  changeOutputPopular(event) {
+    console.log(event);
+  /*   if (event.checked) {
+      this.popular.push(event.source.value)
+      console.log(this.popular);
+    } else {
+      this.popular = this.popular.filter((p) => p !== event.source.value);
+      console.log(this.popular);
+    } */
+  }
+
+  changeOutputlanguageSpoken(event) {
+  /*   console.log(event);
+    if (event.checked) {
+      this.langaugeSpoken.push(event.source.value)
+      console.log(this.langaugeSpoken);
+    } else {
+      this.langaugeSpoken = this.langaugeSpoken.filter((p) => p !== event.source.value);
+      console.log(this.langaugeSpoken);
+    } */
+  }
+  
 
 
   /* Get errors */

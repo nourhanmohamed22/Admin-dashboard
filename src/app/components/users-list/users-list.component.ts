@@ -19,10 +19,6 @@ export class UsersListComponent implements OnInit{
   displayedColumns: string[] = ['FirstName', 'LastName', 'Username','Joining_date','Phone_Number', 'Home_Airport','Email', 'action'];
    
    @ViewChild(MatSort,{ static: false }) sort: MatSort;
-
-/*    myControl = new FormControl();
-  options: string[] = ['test', 'waaa', 'd'];
-  filteredOptions: Observable<string[]>; */
   
   constructor(private userApi: ApiUserService,
     public datepipe:DatePipe,) {
@@ -37,11 +33,7 @@ export class UsersListComponent implements OnInit{
   }
 
   ngOnInit() { 
-  /*    this.filteredOptions = this.myControl.valueChanges
-      .pipe(
-        startWith(''),
-        map(value => this._filter(value))
-      ); */
+
   }
 
   DeleteUser(index: number, e){
@@ -53,12 +45,6 @@ export class UsersListComponent implements OnInit{
     }
   }
 
-/*   private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
-  }
- */
  public doFilter = (value: string) => {
     this.dataSource.filter = value.trim().toLocaleLowerCase();
   }

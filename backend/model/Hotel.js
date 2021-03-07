@@ -41,10 +41,7 @@ let Hotel = new Schema({
     type: Number
   },
   Pricedeals:{
-        type:[{ _id: mongoose.Schema.Types.ObjectId,
-        name: String,
-        link: String,
-        pricePerNight: Number}]
+        type:Array
       
   },
   langaugeSpoken:{

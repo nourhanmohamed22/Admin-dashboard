@@ -17,32 +17,69 @@
               You must provide a<strong>restaurant name</strong>
             </mat-error>
           </mat-form-field>
-  
-          <!-- Booking -->
-         <!--  <mat-form-field class="example-full-width">
-            <input matInput placeholder="Booking" formControlName="images">
-            <mat-error *ngIf="handleError('images', 'required')">
-              You must provide a<strong>hotel Images</strong>
+
+           <!-- Image -->
+           <mat-form-field class="example-full-width">
+            <input matInput placeholder="Restaurant Images" formControlName="imageUrls">
+            <mat-error *ngIf="handleError('imageUrls', 'required')">
+              You must provide a<strong>restaurant name</strong>
             </mat-error>
-          </mat-form-field> -->
+          </mat-form-field>
   
-          <!-- Section -->
-   <!--        <mat-form-field>
-            <mat-label>Section</mat-label>
-            <mat-select [(value)]="selected" formControlName="section">
-              <mat-option [value]="sectioinArray" *ngFor="let sectioinArray of SectioinArray">{{sectioinArray}}
-              </mat-option>
-            </mat-select>
-            <mat-error *ngIf="handleError('section', 'required')">
-              Section is required
-            </mat-error>
-          </mat-form-field> -->
+          <!--Contact-->
+          <mat-label class="label">Contact Info:</mat-label>
+          <mat-form-field class="example-full-width">
+            <input matInput type="number" formControlName="contact"  placeholder=" Add telephone" name="telephone"  required>
+          </mat-form-field>
+         <mat-form-field class="example-full-width">
+            <input matInput  placeholder="Add Email" name="Email"  required>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput    placeholder="Add Website Link" name="website" required>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput   placeholder="Add Restaurant Open Hours" name="openhours"  required>
+          </mat-form-field>
+     
+          <div class="misc-bottom-padding">
+            <mat-label class="label">Dietary Restrictions:</mat-label> 
+            <section  *ngFor="let dietary of RestaurantCategoryData[0]?.DietaryRestrictions let i = index" > 
+                <mat-checkbox [value]="dietary._id"  (change)="changeOutputDietary($event)">{{dietary.name}}</mat-checkbox>
+            </section>
+          </div>
+          <div class="misc-bottom-padding">
+            <mat-label class="label">Good For:</mat-label> 
+            <section  *ngFor="let goods of RestaurantCategoryData[0]?.goodFor let i = index" > 
+                <mat-checkbox [value]="goods._id"  >{{goods.name}}</mat-checkbox>
+            </section>
+          </div>
+
         </div>
       </mat-card>
   
       <!-- Right block -->
       <mat-card>
         <div class="controlers-wrapper">
+
+          <div class="misc-bottom-padding">
+            <mat-label class="label">Price Range:</mat-label>
+            <mat-radio-group  aria-label="Select an option">
+              <mat-radio-button class = "tp-radio-button"  *ngFor="let prices of RestaurantCategoryData[0]?.Pricerange" [value]="prices._id" >{{prices.name}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+          <div class="misc-bottom-padding">
+            <mat-label class="label">Dishes:</mat-label> 
+            <section  *ngFor="let dishes of RestaurantCategoryData[0]?.dishes.slice(0,5) let i = index" > 
+                <mat-checkbox [value]="dishes._id"  (change)="changeOutputDishes($event)">{{dishes.name}}</mat-checkbox>
+            </section>
+          </div>
+          <div class="misc-bottom-padding">
+            <mat-label class="label">Dietary Restrictions:</mat-label> 
+            <section  *ngFor="let dietary of RestaurantCategoryData[0]?.DietaryRestrictions let i = index" > 
+                <mat-checkbox [value]="dietary._id"  (change)="changeOutputDietary($event)">{{dietary.name}}</mat-checkbox>
+            </section>
+          </div>
           <!-- Add subjects -->
           <!-- <mat-form-field class="multiple-items">
             <mat-chip-list #chipList> -->

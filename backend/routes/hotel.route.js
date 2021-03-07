@@ -53,7 +53,7 @@ hotelRoute.post('/add-hotel', (req, res, next) => {
       message: "data saved successfully!",
         id: result._id
       
-    })
+    })   
   })
 })
 // hotelRoute.route('/add-hotel').post((req, res, next) => {

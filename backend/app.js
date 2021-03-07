@@ -38,6 +38,10 @@ app.use("/images", express.static(path.join("images")));
 // Setting up static directory
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  next();
+});
 
 // RESTful API root
     

@@ -10,6 +10,7 @@ import { Router } from "@angular/router";
 @Injectable({
   providedIn: 'root'
 })
+
 export class Api2Service {
   private hotels: Hotel[] = [];
   private hotelsUpdated = new Subject<Hotel[]>();
@@ -31,8 +32,6 @@ export class Api2Service {
         hotel
       )
       .subscribe(responseData => {
-        // const id = responseData.id;
-        // hotel.id = id;
         this.hotels.push(hotel);
         this.hotelsUpdated.next([...this.hotels]);
         this.router.navigate(["/hotel-list"]);
@@ -54,16 +53,14 @@ export class Api2Service {
   //       catchError(this.errorMgmt)
   //     ) 
   // }
+
+
    // Get all hotels
   
   GetHotels() {
     return this.http.get(`${this.endpoint}`);
   }
-   // Get all hotel categories
- /*   GetHotelCategories() { 
-    return this.http.get(`${this.endpointCategory}`);
-  }
- */
+ 
    // Get Hotel
    GetHotel(id): Observable<any> {
     let API_URL = `${this.endpoint}/read-hotel/${id}`;

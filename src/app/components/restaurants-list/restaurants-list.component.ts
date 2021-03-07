@@ -12,7 +12,6 @@ import {MatChipsModule} from '@angular/material/chips';
   styleUrls: ['./restaurants-list.component.css']
 })
 export class RestaurantsListComponent implements OnInit {
-   //restaurants:Restaurant[]=[];
   RestaurantData: any = [];
   dataSource: MatTableDataSource<Restaurant>;
   @ViewChild(MatSort,{ static: false }) sort: MatSort;

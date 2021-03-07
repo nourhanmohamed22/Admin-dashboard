@@ -200,10 +200,7 @@ this.cruiseForm=this.fb.group({
     dialogConfig.width="20%";
     dialogConfig.height="35%";
   
-    if (this.cruiseForm) {
-      // this.dialog.open(PopdialogComponent,dialogConfig)
-      // if (this.cruiseForm.valid && this.dialog.afterAllClosed){
-  
+    if (this.cruiseForm.valid) {
       this.cruiseApi.AddCruise(
         this.cruiseForm.value.shipName,
         this.cruiseForm.value.price,
@@ -221,10 +218,10 @@ this.cruiseForm=this.fb.group({
         this.cruiseForm.value.images)
 
      }
-  // }
-  //   else{
-  //     alert("Please fill all data")
-  //   }
+  
+    else{
+      alert("Please fill all data")
+    }
 
    }
 
