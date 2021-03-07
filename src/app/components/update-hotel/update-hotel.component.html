@@ -26,18 +26,7 @@
             </mat-error>
           </mat-form-field>
   
-          <!-- Section -->
-   <!--        <mat-form-field>
-            <mat-label>Section</mat-label>
-            <mat-select [(value)]="selected" formControlName="section">
-              <mat-option [value]="sectioinArray" *ngFor="let sectioinArray of SectioinArray">{{sectioinArray}}
-              </mat-option>
-            </mat-select>
-            <mat-error *ngIf="handleError('section', 'required')">
-              Section is required
-            </mat-error>
-          </mat-form-field> -->
-
+          
           <div class="misc-bottom-padding">
             <mat-label class="label">Hotel Class:</mat-label>
             <mat-radio-group  aria-label="Select an option" formControlName="class">
@@ -63,12 +52,6 @@
             </mat-error>
           </mat-form-field>
 
-         <!--  <mat-form-field>
-            <input matInput placeholder="map" formControlName="map"/>
-            <mat-error *ngIf="handleError('map', 'required')">
-              You must provide a<strong>hotel Map</strong>
-            </mat-error>
-          </mat-form-field> -->
           
           <mat-form-field class="example-full-width">
             <input matInput type="number" (change)="addMap($any($event.target).value,$any($event.target).name)"  placeholder="Map Latitude" name="latitude" [value]="map.latitude" required>
@@ -83,17 +66,7 @@
             </mat-error> -->
           </mat-form-field>
   
-          <!-- Gender -->
-        <!--   <div class="misc-bottom-padding">
-            <mat-label>Class:</mat-label>
-            <mat-radio-group aria-label="Select an option" formControlName="class">
-              <mat-radio-button value="Male">1</mat-radio-button>
-              <mat-radio-button value="Female">2</mat-radio-button>
-              <mat-radio-button value="Female">3</mat-radio-button>
-              <mat-radio-button value="Female">4</mat-radio-button>
-              <mat-radio-button value="Female">5</mat-radio-button>
-            </mat-radio-group>
-          </div> -->
+    
         </div>
       </mat-card>
     

@@ -6,7 +6,7 @@
   
   <!-- Form -->
   <div class="inner-wrapper">
-    <form [formGroup]="hotelForm"  #resetHotelForm="ngForm" novalidate>
+    <form [formGroup]="hotelForm" (ngSubmit)="submitHotelForm()" #resetHotelForm="ngForm" novalidate>
       <!-- Left block -->
       <mat-card>
         <div class="controlers-wrapper">
@@ -161,7 +161,7 @@
       <mat-card>
         <div class="full-wrapper button-wrapper">
           <div class="button-wrapper">
-            <button mat-flat-button color="warn" type="submit" (click)="submitHotelForm()">Submit</button>
+            <button mat-flat-button color="warn" type="submit">Submit</button>
             <!-- <button mat-flat-button color="primary"  (click)="Reset()" >Reset</button> -->
           </div>
         </div>

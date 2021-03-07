@@ -44,7 +44,7 @@ hotelRoute.post('/add-hotel', (req, res, next) => {
     Pricedeals:req.body.Pricedeals,
     popular:req.body.popular,
     langaugeSpoken:req.body.langaugeSpoken,
-images:req.body.images
+    images:req.body.images
 
   });
   hotel.save().then(result => {
@@ -53,7 +53,7 @@ images:req.body.images
       message: "data saved successfully!",
         id: result._id
       
-    })   
+    })
   })
 })
 // hotelRoute.route('/add-hotel').post((req, res, next) => {

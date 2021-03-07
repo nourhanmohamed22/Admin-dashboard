@@ -95,13 +95,13 @@ class:string;
       deals: [this.deals],
       amenities: [this.amenities],
       style: [this.style],
-      name: ['', [Validators.required]],
+      name: [''],
       map: [this.map],
-      rooms: ['', [Validators.required]],
+      rooms: [''],
       likes: [''],
-      distance: [this.distance,[Validators.required]],
+      distance: [this.distance,],
       Pricedeals:this.fb.array([this.createPriceDeal()]),
-      class: [this.class, [Validators.required]],
+      class: [this.class, ],
       popular: [this.popular],
       langaugeSpoken: [this.langaugeSpoken]
     })
