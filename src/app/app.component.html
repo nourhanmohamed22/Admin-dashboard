@@ -1,17 +1,13 @@
 <mat-toolbar color="primary" class="header" >
+   
   <div>
   <img class="logo" src="https://static.tacdn.com/img2/brand_refresh/Tripadvisor_lockup_horizontal_secondary_registered.svg">
   <span class="nav-tool-items">
     <mat-icon (click)="clickMenu()" class="hamburger">menu</mat-icon>
   </span>
-<<<<<<< HEAD
 </div>
-  <a class="nav-item nav-link login" *ngIf="!currentUser" routerLink="/login">Login</a>
-  <a class="nav-item nav-link login" *ngIf="currentUser" (click)="logout()"> Logout</a>
-=======
   <a class="nav-item nav-link login" *ngIf="!currentUser" style="color: white;" routerLink="/login">Login</a>
   <a class="nav-item nav-link login" *ngIf="currentUser" style="color: white;" (click)="logout()"> Logout</a>
->>>>>>> bb64b582862ffd100a4dfd69dd5540af4b1eabc5
 </mat-toolbar>
 
 <router-outlet></router-outlet>
